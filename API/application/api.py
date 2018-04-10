@@ -91,7 +91,7 @@ def homepage():
     else:
         return abort(404)
 
-@app.route('/register/', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def join():
     if request.method == 'POST' and request.form['username']:
         try:
@@ -112,7 +112,7 @@ def join():
 
     return homepage()
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST' and request.form['username']:
         try:
@@ -124,16 +124,24 @@ def login():
             flash('The password entered is incorrect')
         else:
             auth_user(user)
-            return "login success"
+            res = jsonify({
+                'status': 'logged in',
+                })
+            res.status_code = 200
+            return res
 
-    return "you are not logged in"
+    res = jsonify({
+        'status': 'not logged in',
+        })
+    res.status_code = 200
+    return res
 
-@app.route('/logout/')
+@app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     return "you were logged out"
 
-@app.route('/users/<string:username>/', methods=['GET'])
+@app.route('/users/<string:username>', methods=['GET'])
 def user_detail(username):
     if request.method == 'GET':
         try:
@@ -155,7 +163,7 @@ def user_detail(username):
             res.status_code = 404
         return res
 
-@app.route('/currentuser/', methods=['GET'])
+@app.route('/currentuser', methods=['GET'])
 def currentuser():
     try:
         res = jsonify({'current_user': get_current_user().username})
@@ -164,7 +172,7 @@ def currentuser():
     except Exception as e:
         return str(get_current_user())
 
-@app.route('/createdevice/', methods=['GET', 'POST'])
+@app.route('/createdevice', methods=['GET', 'POST'])
 def createdevice():
     if request.method == 'POST' and request.form['name']:
         try:
@@ -181,7 +189,7 @@ def createdevice():
 
     return homepage()
 
-@app.route('/devices/', methods=['GET'])
+@app.route('/devices', methods=['GET'])
 def devices():
     if request.method == 'GET':
         try:
@@ -205,7 +213,7 @@ def devices():
             res.status_code = 404
         return res
 
-@app.route('/devices/<string:id>/', methods=['GET'])
+@app.route('/devices/<string:id>', methods=['GET'])
 def device_detail(id):
     if request.method == 'GET':
         try:
@@ -225,7 +233,7 @@ def device_detail(id):
             res.status_code = 404
         return res
 
-@app.route('/subscribe/', methods=['GET', 'POST'])
+@app.route('/subscribe', methods=['GET', 'POST'])
 def subscribe():
     if request.method == 'POST' and request.form['deviceid']:
         try:
@@ -241,7 +249,7 @@ def subscribe():
 
     return homepage()
 
-@app.route('/unsubscribe/', methods=['GET', 'POST'])
+@app.route('/unsubscribe', methods=['GET', 'POST'])
 def unsubscribe():
     if request.method == 'POST' and request.form['deviceid']:
         try:
