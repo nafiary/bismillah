@@ -1,5 +1,5 @@
 <title>Devices List</title>
-<p>Hello, !</p>
+<p>Hello, {{ session['username'] }}!</p>
 <h1>Here come the list!</h1>
 {% for device in devices %}
   <ul>

@@ -11,12 +11,24 @@ from hashlib import md5
 from peewee import *
 import uuid
 from pprint import pprint
+from flask import Flask, jsonify, request
+from flask_jwt_extended import (
+    JWTManager, jwt_required, create_access_token,
+    get_jwt_identity, get_jwt_claims, get_raw_jwt
+)
+
 
 DEBUG = True
 SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config['JWT_SECRET_KEY'] = SECRET_KEY
+app.config['JWT_BLACKLIST_ENABLED'] = True
+app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
+jwt = JWTManager(app)
+
+blacklist = set()
 
 database = MySQLDatabase('mydb', user='root', password='password123!', host='localhost', port=3316)
 
@@ -30,6 +42,7 @@ class Users(BaseModel):
     username = CharField(unique=True)
     password = CharField()
     email = CharField()
+    role = CharField()
 
 class Devices(BaseModel):
     id = UUIDField(primary_key=True)
@@ -40,38 +53,20 @@ class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users)
     devices_id = ForeignKeyField(Devices)
 
-def auth_user(user):
-    session['logged_in'] = True
-    session['user_id'] = user.id
-    session['username'] = user.username
-    flash('You are logged in as %s' % (user.username))
+@jwt.user_claims_loader
+def add_claims_to_access_token(user):
+    return {'role': user.role,
+    'email': user.email,
+    'username': user.username}
 
-def get_current_user():
-    if session.get('logged_in'):
-        return Users.get(Users.id == session['user_id'])
-    else:
-        return "no user currently logged in"
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    return str(user.id)
 
-def login_required(f):
-    @wraps(f)
-    def inner(*args, **kwargs):
-        if not session.get('logged_in'):
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return inner
-
-# def object_list(template_name, qr, var_name='object_list', **kwargs):
-#     kwargs.update(
-#         page=int(request.args.get('page', 1)),
-#         pages=qr.count() / 20 + 1)
-#     kwargs[var_name] = qr.paginate(kwargs['page'])
-#     return render_template(template_name, **kwargs)
-#
-# def get_object_or_404(model, *expressions):
-#     try:
-#         return model.get(*expressions)
-#     except model.DoesNotExist:
-#         abort(404)
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    jti = decrypted_token['jti']
+    return jti in blacklist
 
 @app.before_request
 def before_request():
@@ -84,51 +79,61 @@ def after_request(response):
     return response
 
 @app.route('/')
-@login_required
+@jwt_required
 def homepage():
-    if session.get('logged_in'):
-        return "homepage"
-    else:
-        return abort(404)
+    ret = jsonify({
+        'current_identity': get_jwt_identity(),
+        'current_username': get_jwt_claims()['username'],
+        'current_email': get_jwt_claims()['email'],
+        'current_role': get_jwt_claims()['role']
+    })
+    return ret, 200
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def join():
-    if request.method == 'POST' and request.form['username']:
+    if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
                 user = Users.create(
                     id=uuid.uuid4(),
-                    name=request.form['name'],
-                    username=request.form['username'],
-                    password=md5((request.form['password']).encode('utf-8')).hexdigest(),
-                    email=request.form['email'],
+                    name=request.json.get('name', None),
+                    username=request.json.get('username', None),
+                    password=md5((request.json.get('password', None)).encode('utf-8')).hexdigest(),
+                    email=request.json.get('email', None),
                     join_date=datetime.datetime.now())
 
-            auth_user(user)
-            return redirect(url_for('homepage'))
+            return jsonify({"msg": "New User Created"}), 200
 
         except IntegrityError:
-            flash('That username is already taken')
+            return jsonify({"msg": "Error Create New User"}), 401
 
     return homepage()
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST' and request.form['username']:
+    if request.method == 'POST':
+        if not request.is_json:
+            return jsonify({"msg": "Missing JSON in request"}), 400
+
+        username = request.json.get('username', None)
+        password = request.json.get('password', None)
+        if not username:
+            return jsonify({"msg": "Missing username parameter"}), 400
+        if not password:
+            return jsonify({"msg": "Missing password parameter"}), 400
+
         try:
-            pw_hash = md5(request.form['password'].encode('utf-8')).hexdigest()
+            pw_hash = md5(password.encode('utf-8')).hexdigest()
             user = Users.get(
-                (Users.username == request.form['username']) &
+                (Users.username == username) &
                 (Users.password == pw_hash))
         except Users.DoesNotExist:
-            flash('The password entered is incorrect')
+            return jsonify({"msg": "Bad username or password"}), 401
         else:
-            auth_user(user)
-            res = jsonify({
-                'status': 'logged in',
-                })
-            res.status_code = 200
-            return res
+            # Identity can be any data that is json serializable
+            access_token = create_access_token(identity=user)
+            return jsonify(access_token=access_token), 200
 
     res = jsonify({
         'status': 'not logged in',
@@ -136,12 +141,15 @@ def login():
     res.status_code = 200
     return res
 
-@app.route('/logout')
+@app.route('/logout', methods=['DELETE'])
+@jwt_required
 def logout():
-    session.pop('logged_in', None)
-    return "you were logged out"
+    jti = get_raw_jwt()['jti']
+    blacklist.add(jti)
+    return jsonify({"msg": "Successfully logged out"}), 200
 
 @app.route('/users/<string:username>', methods=['GET'])
+@jwt_required
 def user_detail(username):
     if request.method == 'GET':
         try:
@@ -163,33 +171,26 @@ def user_detail(username):
             res.status_code = 404
         return res
 
-@app.route('/currentuser', methods=['GET'])
-def currentuser():
-    try:
-        res = jsonify({'current_user': get_current_user().username})
-        res.status_code = 200
-        return res
-    except Exception as e:
-        return str(get_current_user())
-
 @app.route('/createdevice', methods=['GET', 'POST'])
+@jwt_required
 def createdevice():
-    if request.method == 'POST' and request.form['name']:
+    if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
                 device = Devices.create(
                     id=uuid.uuid4(),
-                    name=request.form['name'],
-                    type=request.form['type'],)
+                    name=request.json.get('name', None),
+                    type=request.json.get('type', None),)
 
-            return redirect(url_for('homepage'))
+            return jsonify({"msg": "Device data created"}), 200
 
         except IntegrityError:
-            flash('error create device data')
+            jsonify({"msg": "Error while creating device data"}), 401
 
     return homepage()
 
 @app.route('/devices', methods=['GET'])
+@jwt_required
 def devices():
     if request.method == 'GET':
         try:
@@ -214,6 +215,7 @@ def devices():
         return res
 
 @app.route('/devices/<string:id>', methods=['GET'])
+@jwt_required
 def device_detail(id):
     if request.method == 'GET':
         try:
@@ -234,32 +236,34 @@ def device_detail(id):
         return res
 
 @app.route('/subscribe', methods=['GET', 'POST'])
+@jwt_required
 def subscribe():
-    if request.method == 'POST' and request.form['deviceid']:
+    if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
                 subscribe = Subscribe.create(
-                    users_id=get_current_user().id,
-                    devices_id=request.form['deviceid'],)
+                    users_id=get_jwt_identity(),
+                    devices_id=request.json.get('deviceid', None),)
 
-            return redirect(url_for('homepage'))
+            return jsonify({"msg": "Device Subscribed"}), 200
 
         except IntegrityError:
-            flash('error create device data')
+            jsonify({"msg": "Error while subscribing devices"}), 401
 
     return homepage()
 
 @app.route('/unsubscribe', methods=['GET', 'POST'])
+@jwt_required
 def unsubscribe():
-    if request.method == 'POST' and request.form['deviceid']:
+    if request.method == 'POST' and request.is_json == True:
         try:
             with database.atomic():
-                unsubscribe = Subscribe.delete().where( Subscribe.users_id == get_current_user().id, Subscribe.devices_id == request.form['deviceid'] )
+                unsubscribe = Subscribe.delete().where( Subscribe.users_id == get_jwt_identity(), Subscribe.devices_id == request.json.get('deviceid', None) )
                 unsubscribe.execute()
-            return redirect(url_for('homepage'))
+            return jsonify({"msg": "Device Unsubscribed"}), 200
 
         except IntegrityError:
-            flash('error delete subscribe data')
+            jsonify({"msg": "Error while unsubscribing device devices"}), 401
 
     return homepage()
 
