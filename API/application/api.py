@@ -10,8 +10,9 @@ from functools import wraps
 from hashlib import md5
 from peewee import *
 import uuid
-from pprint import pprint
+from playhouse.shortcuts import *
 from flask import Flask, jsonify, request
+from datetime import timedelta
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
     get_jwt_identity, get_jwt_claims, get_raw_jwt
@@ -26,6 +27,7 @@ app.config.from_object(__name__)
 app.config['JWT_SECRET_KEY'] = SECRET_KEY
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access']
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=12)
 jwt = JWTManager(app)
 
 blacklist = set()
@@ -148,21 +150,25 @@ def logout():
     blacklist.add(jti)
     return jsonify({"msg": "Successfully logged out"}), 200
 
-@app.route('/users/<string:username>', methods=['GET'])
+@app.route('/users', methods=['GET'])
 @jwt_required
-def user_detail(username):
+def users():
     if request.method == 'GET':
         try:
-            users = Users.select().where(Users.username == username).get()
-            res = jsonify({
-                'id': users.id,
-                'name': users.name,
-                'username': users.username,
-                'password': users.password,
-                'email': users.email,
-                })
+            userlist = []
+            users = Users.select().order_by(Users.username)
+            for user in users:
+                data = userlist.append({
+                    'id': user.id,
+                    'email': user.email,
+                    'name': user.name,
+                    'username': user.username,
+                    'role': user.role,
+                    })
+            res = jsonify(userlist)
             res.status_code = 200
         except Users.DoesNotExist:
+            # if no results are found.
             output = {
                 "error": "No results found. Check url again",
                 "url": request.url,
@@ -170,6 +176,99 @@ def user_detail(username):
             res = jsonify(output)
             res.status_code = 404
         return res
+
+# try:
+#     device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
+#     dicti =  {
+#             'id': device[0].subscribe.devices_id.id,
+#             'name': device[0].subscribe.devices_id.name,
+#             'type': device[0].subscribe.devices_id.type,
+#             'subscribed_by' : [],
+#             }
+#     for item in device:
+#         dicti['subscribed_by'].append({
+#         'id' : item.subscribe.users_id.id,
+#         'username' : item.subscribe.users_id.username,
+#         })
+#     res = jsonify(dicti)
+#     res.status_code = 200
+# except Devices.DoesNotExist:
+#     try:
+#         device = Devices.select().where(Devices.id == id).get()
+#         res = jsonify({
+#             'id': device.id,
+#             'name': device.name,
+#             'type': device.type,
+#             'subscribed_by' : None,
+#             })
+#         res.status_code = 200
+#     except Devices.DoesNotExist:
+#         output = {
+#             "error": "No results found. Check url again",
+#             "url": request.url,
+#         }
+#         res = jsonify(output)
+#         res.status_code = 404
+# return res
+@app.route('/users/<string:username>', methods=['GET'])
+@jwt_required
+def user_detail(username):
+    if request.method == 'GET':
+        try:
+            users = Users.select().where(Users.username == username).get()
+            usersdevice = Users.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Devices).where(Users.id == users.id)
+            dicti =  {
+                    'id': usersdevice[0].subscribe.users_id_id.id,
+                    'name': usersdevice[0].subscribe.users_id.name,
+                    'username': usersdevice[0].subscribe.users_id.username,
+                    'email': usersdevice[0].subscribe.users_id.email,
+                    'role': usersdevice[0].subscribe.users_id.role,
+                    'subscribing' : [],
+                    }
+            for item in usersdevice:
+                dicti['subscribing'].append({
+                'id' : item.subscribe.devices_id.id,
+                'name' : item.subscribe.devices_id.name,
+                'type' : item.subscribe.devices_id.type,
+                })
+            res = jsonify(dicti)
+            res.status_code = 200
+        except Users.DoesNotExist:
+            try:
+                users = Users.select().where(Users.username == username).get()
+                res = jsonify({
+                    'id': users.id,
+                    'name': users.name,
+                    'username': users.username,
+                    'email': users.email,
+                    'role': users.role,
+                    'subscribing' : None,
+                    })
+                res.status_code = 200
+            except Devices.DoesNotExist:
+                output = {
+                    "error": "No results found. Check url again",
+                    "url": request.url,
+                }
+                res = jsonify(output)
+                res.status_code = 404
+        return res
+        #     res = jsonify({
+        #         'id': users.id,
+        #         'name': users.name,
+        #         'username': users.username,
+        #         'email': users.email,
+        #         'role': users.role,
+        #         })
+        #     res.status_code = 200
+        # except Users.DoesNotExist:
+        #     output = {
+        #         "error": "No results found. Check url again",
+        #         "url": request.url,
+        #     }
+        #     res = jsonify(output)
+        #     res.status_code = 404
+        # return res
 
 @app.route('/createdevice', methods=['GET', 'POST'])
 @jwt_required
@@ -217,27 +316,46 @@ def devices():
 @app.route('/devices/<string:id>', methods=['GET'])
 @jwt_required
 def device_detail(id):
+
     if request.method == 'GET':
         try:
-            device = Devices.select().where(Devices.id == id).get()
-            res = jsonify({
-                'id': device.id,
-                'name': device.name,
-                'type': device.type,
+            device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
+            dicti =  {
+                    'id': device[0].subscribe.devices_id.id,
+                    'name': device[0].subscribe.devices_id.name,
+                    'type': device[0].subscribe.devices_id.type,
+                    'subscribed_by' : [],
+                    }
+            for item in device:
+                dicti['subscribed_by'].append({
+                'id' : item.subscribe.users_id.id,
+                'username' : item.subscribe.users_id.username,
                 })
+            res = jsonify(dicti)
             res.status_code = 200
         except Devices.DoesNotExist:
-            output = {
-                "error": "No results found. Check url again",
-                "url": request.url,
-            }
-            res = jsonify(output)
-            res.status_code = 404
+            try:
+                device = Devices.select().where(Devices.id == id).get()
+                res = jsonify({
+                    'id': device.id,
+                    'name': device.name,
+                    'type': device.type,
+                    'subscribed_by' : None,
+                    })
+                res.status_code = 200
+            except Devices.DoesNotExist:
+                output = {
+                    "error": "No results found. Check url again",
+                    "url": request.url,
+                }
+                res = jsonify(output)
+                res.status_code = 404
         return res
 
-@app.route('/subscribe', methods=['GET', 'POST'])
+
+@app.route('/subscribe/devices', methods=['GET', 'POST'])
 @jwt_required
-def subscribe():
+def subscribedevice():
     if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
@@ -252,9 +370,9 @@ def subscribe():
 
     return homepage()
 
-@app.route('/unsubscribe', methods=['GET', 'POST'])
+@app.route('/unsubscribe/devices', methods=['GET', 'POST'])
 @jwt_required
-def unsubscribe():
+def unsubscribedevice():
     if request.method == 'POST' and request.is_json == True:
         try:
             with database.atomic():

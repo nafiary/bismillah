@@ -6,6 +6,6 @@
     <li>ID: {{ device.id }}</li>
     <li>Name: {{ device.name }}</li>
     <li>Type: {{ device.type }}</li>
-    <li><a href="#">subscribe</a></li>
+    <li><a href="{{ request.url }}/{{ device.id }}">Info</a></li>
   </ul>
 {% endfor %}

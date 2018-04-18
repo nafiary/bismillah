@@ -9,14 +9,15 @@ from flask import url_for, abort, render_template, flash
 from functools import wraps
 from hashlib import md5
 import uuid
-from pprint import pprint
 import requests
+from datetime import timedelta
 
 DEBUG = True
 SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=12)
 
 def login_required(f):
     @wraps(f)
@@ -53,7 +54,7 @@ def login():
             auth_user(auth, jwtoken)
             return index()
         except Exception as e:
-            return redirect('http://localhost:5555/login')
+            return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
@@ -68,7 +69,25 @@ def logout():
     session.pop('token', None)
     return jsonify({'msg' : 'Logged out'}), 200
 
-@app.route('/devices')
+@app.route('/users', methods=['GET'])
+@login_required
+def users():
+    print session['token']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    users = requests.get('http://localhost:5000/users', headers = headers).json()
+    # print devices
+    return render_template('userlist.html', users = users)
+
+@app.route('/users/<string:username>', methods=['GET'])
+@login_required
+def userdetail(username):
+    print session['token']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    userdetail = requests.get('http://localhost:5000/users/%s' % username, headers = headers).json()
+    # print devicedetail
+    return render_template('userdetail.html', userdetail = userdetail)
+
+@app.route('/devices', methods=['GET'])
 @login_required
 def devices():
     print session['token']
@@ -76,6 +95,32 @@ def devices():
     devices = requests.get('http://localhost:5000/devices', headers = headers).json()
     # print devices
     return render_template('devicelist.html', devices = devices)
+
+@app.route('/devices/<string:id>', methods=['GET'])
+@login_required
+def devicedetail(id):
+    print session['token']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
+    # print devicedetail['subscribed_by']
+    subscriber = []
+    for subscribe in devicedetail['subscribed_by']:
+        subscriber.append(subscribe['id'])
+    return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
+
+@app.route('/subscribe/devices', methods=['POST'])
+@login_required
+def subscribedevice():
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    subscribe = requests.post('http://localhost:5000/subscribe/devices', headers = headers, json={ "deviceid": request.form['deviceid'] }).json()
+    return redirect(request.url_root+'devices/%s' % request.form['deviceid'])
+
+@app.route('/unsubscribe/devices', methods=['POST'])
+@login_required
+def unsubscribedevice():
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    subscribe = requests.post('http://localhost:5000/unsubscribe/devices', headers = headers, json={ "deviceid": request.form['deviceid'] }).json()
+    return redirect(request.url_root+'devices/%s' % request.form['deviceid'])
 
 
 if __name__ == '__main__':
