@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO, Namespace, emit
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO, Namespace, emit, send
 import logging
 import pika
 from threading import Thread
@@ -21,56 +21,46 @@ def disconnect_to_rabbitmq():
 	connection.close()
 	logging.info('Disconnected from Rabbitmq')
 
-def consumer_callback(ch, method, properties, body):
-		logging.info("[x] Received %r" % (body,))
-		# The messagge is brodcast to the connected clients
-		for itm in clients:
-			itm.write_message(body)
+
+def consumer_callback(ch, method, properties, body, client):
+	logging.info("[x] Received %r" % (body,))
+	emit('kontol', 'anjay')
 
 class WebSocketHandler(Namespace):
-    threadRMQ = None
-    channel = connection.channel()
+	threadRMQ = None
+	channel = connection.channel()
 
-    def handle_message(self, message):
-        print('received message: ' + str(message))
+	def threaded_rmq(self):
+		self.channel.exchange_declare(exchange='logs', exchange_type='fanout')
+		result = self.channel.queue_declare(exclusive=True)
+		queue_name = result.method.queue
+		self.channel.queue_bind(exchange='logs', queue=queue_name)
+		logging.info('consumer ready, on my_queue')
+		self.channel.basic_consume(lambda ch, method, properties, body: consumer_callback(ch, method, properties, body, client = self), queue=queue_name, no_ack=True)
+		self.channel.start_consuming()
 
-    def handle_json(self, json):
-        print('received json: ' + str(json))
+	def on_connect(self):
+		logging.info('tes')
+		self.threadRMQ = Thread(target=self.threaded_rmq)
+		self.threadRMQ.start()
+		emit('kontol', 'cobacobacoba')
+		logging.info('WebSocket opened')
+		# logging.info(request.sid)
+		clients.append(self)
 
-    def threaded_rmq(self):
-        self.channel.exchange_declare(exchange='logs',
-                         exchange_type='fanout')
-        result = self.channel.queue_declare(exclusive=True)
-        queue_name = result.method.queue
-
-        self.channel.queue_bind(exchange='logs',
-                           queue=queue_name)
-        logging.info('consumer ready, on my_queue')
-        self.channel.basic_consume(consumer_callback, queue=queue_name, no_ack=True)
-        self.channel.start_consuming()
-
-    def on_connect(self):
-        self.threadRMQ = Thread(target=self.threaded_rmq)
-        self.threadRMQ.start()
-        logging.info('WebSocket opened')
-        clients.append(self)
-
-    def on_disconnect(self):
-        print "status: "+ str(self.threadRMQ.isAlive())
-        self.channel.stop_consuming()
-        self.threadRMQ.join()
-        print "status: "+ str(self.threadRMQ.isAlive())
-        logging.info('WebSocket closed')
-        clients.remove(self)
-
-    # def on_my_event(self, data):
-    #     emit('my_response', data)
+	def on_disconnect(self):
+	    # print "status: "+ str(self.threadRMQ.isAlive())
+	    self.channel.stop_consuming()
+	    self.threadRMQ.join()
+	    # print "status: "+ str(self.threadRMQ.isAlive())
+	    logging.info('WebSocket closed')
+	    clients.remove(self)
 
 socketio.on_namespace(WebSocketHandler('/ws'))
 
-@app.route('/')
-def index():
-    return render_template('devicelist.html')
+# @app.route('/')
+# def index():
+#     return render_template('index2.html')
 
 if __name__ == '__main__':
     logging.info('Server Starts')

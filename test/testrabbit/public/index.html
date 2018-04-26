@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+         (function () {
+            var onMessage = function (data) {
+               // Do something with the message data
+            };
+            var connectToServer = function () {
+               var socket = io.connect('http://localhost:8080');
+               socket.on('message-name', onMessage);
+            };
+            connectToServer();
+         })();
+      </script>
+   </head>
+   <body>
+   </body>
+</html>

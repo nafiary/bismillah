@@ -5,6 +5,8 @@
   <li>ID: {{ devicedetail.id }}</li>
   <li>Name: {{ devicedetail.name }}</li>
   <li>Type: {{ devicedetail.type }}</li>
+  <li>Location: {{ devicedetail.location }}</li>
+  <li>Address: {{ devicedetail.address }}</li>
   <li>Subscribed By:
     <ul>
       {% for user in devicedetail.subscribed_by %}

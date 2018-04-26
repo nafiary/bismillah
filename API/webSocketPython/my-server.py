@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 # web socket clients connected.
 clients = []
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='10.151.36.98'))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 logging.info('Connected: RabbitMQ Server')
 # channel = connection.channel()
 
@@ -80,7 +80,7 @@ application = tornado.web.Application([
 ])
 
 def startTornado():
-    application.listen(8888)
+    application.listen(8000)
     tornado.ioloop.IOLoop.instance().start()
 
 def stopTornado():

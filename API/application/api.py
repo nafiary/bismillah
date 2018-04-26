@@ -50,6 +50,8 @@ class Devices(BaseModel):
     id = UUIDField(primary_key=True)
     name = CharField()
     type = CharField()
+    location = CharField()
+    address = CharField()
 
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users)
@@ -218,7 +220,7 @@ def user_detail(username):
             users = Users.select().where(Users.username == username).get()
             usersdevice = Users.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Devices).where(Users.id == users.id)
             dicti =  {
-                    'id': usersdevice[0].subscribe.users_id_id.id,
+                    'id': usersdevice[0].subscribe.users_id.id,
                     'name': usersdevice[0].subscribe.users_id.name,
                     'username': usersdevice[0].subscribe.users_id.username,
                     'email': usersdevice[0].subscribe.users_id.email,
@@ -232,6 +234,7 @@ def user_detail(username):
                 'type' : item.subscribe.devices_id.type,
                 })
             res = jsonify(dicti)
+            # print dicti
             res.status_code = 200
         except Users.DoesNotExist:
             try:
@@ -279,7 +282,9 @@ def createdevice():
                 device = Devices.create(
                     id=uuid.uuid4(),
                     name=request.json.get('name', None),
-                    type=request.json.get('type', None),)
+                    type=request.json.get('type', None),
+                    location=request.json.get('location', None),
+                    address=request.json.get('address', None),)
 
             return jsonify({"msg": "Device data created"}), 200
 
@@ -300,6 +305,8 @@ def devices():
                     'id': device.id,
                     'name': device.name,
                     'type': device.type,
+                    'location': device.location,
+                    'address': device.address,
                     })
             res = jsonify(devicelist)
             res.status_code = 200
@@ -324,6 +331,8 @@ def device_detail(id):
                     'id': device[0].subscribe.devices_id.id,
                     'name': device[0].subscribe.devices_id.name,
                     'type': device[0].subscribe.devices_id.type,
+                    'location': device[0].subscribe.devices_id.location,
+                    'address': device[0].subscribe.devices_id.address,
                     'subscribed_by' : [],
                     }
             for item in device:
@@ -340,6 +349,8 @@ def device_detail(id):
                     'id': device.id,
                     'name': device.name,
                     'type': device.type,
+                    'location': device.location,
+                    'address': device.address,
                     'subscribed_by' : None,
                     })
                 res.status_code = 200

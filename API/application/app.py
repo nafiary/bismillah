@@ -84,7 +84,7 @@ def userdetail(username):
     print session['token']
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
     userdetail = requests.get('http://localhost:5000/users/%s' % username, headers = headers).json()
-    # print devicedetail
+    print userdetail
     return render_template('userdetail.html', userdetail = userdetail)
 
 @app.route('/devices', methods=['GET'])
@@ -122,6 +122,12 @@ def unsubscribedevice():
     subscribe = requests.post('http://localhost:5000/unsubscribe/devices', headers = headers, json={ "deviceid": request.form['deviceid'] }).json()
     return redirect(request.url_root+'devices/%s' % request.form['deviceid'])
 
+@app.route('/monitor', methods=['GET'])
+@login_required
+def monitor():
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    monitor = requests.get('http://localhost:5000/users/%s' % session['username'], headers = headers).json()
+    return render_template('monitor.html', monitor = monitor)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5555)
