@@ -53,6 +53,12 @@ class Devices(BaseModel):
     location = CharField()
     address = CharField()
 
+class Oid(BaseModel):
+    id = UUIDField(primary_key=True)
+    oid = CharField()
+    oidname = CharField()
+    devices_id = ForeignKeyField(Devices)
+
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users)
     devices_id = ForeignKeyField(Devices)
@@ -179,39 +185,6 @@ def users():
             res.status_code = 404
         return res
 
-# try:
-#     device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
-#     dicti =  {
-#             'id': device[0].subscribe.devices_id.id,
-#             'name': device[0].subscribe.devices_id.name,
-#             'type': device[0].subscribe.devices_id.type,
-#             'subscribed_by' : [],
-#             }
-#     for item in device:
-#         dicti['subscribed_by'].append({
-#         'id' : item.subscribe.users_id.id,
-#         'username' : item.subscribe.users_id.username,
-#         })
-#     res = jsonify(dicti)
-#     res.status_code = 200
-# except Devices.DoesNotExist:
-#     try:
-#         device = Devices.select().where(Devices.id == id).get()
-#         res = jsonify({
-#             'id': device.id,
-#             'name': device.name,
-#             'type': device.type,
-#             'subscribed_by' : None,
-#             })
-#         res.status_code = 200
-#     except Devices.DoesNotExist:
-#         output = {
-#             "error": "No results found. Check url again",
-#             "url": request.url,
-#         }
-#         res = jsonify(output)
-#         res.status_code = 404
-# return res
 @app.route('/users/<string:username>', methods=['GET'])
 @jwt_required
 def user_detail(username):
@@ -256,24 +229,8 @@ def user_detail(username):
                 res = jsonify(output)
                 res.status_code = 404
         return res
-        #     res = jsonify({
-        #         'id': users.id,
-        #         'name': users.name,
-        #         'username': users.username,
-        #         'email': users.email,
-        #         'role': users.role,
-        #         })
-        #     res.status_code = 200
-        # except Users.DoesNotExist:
-        #     output = {
-        #         "error": "No results found. Check url again",
-        #         "url": request.url,
-        #     }
-        #     res = jsonify(output)
-        #     res.status_code = 404
-        # return res
 
-@app.route('/createdevice', methods=['GET', 'POST'])
+@app.route('/createdevice', methods=['POST'])
 @jwt_required
 def createdevice():
     if request.method == 'POST' and request.is_json:
@@ -290,8 +247,6 @@ def createdevice():
 
         except IntegrityError:
             jsonify({"msg": "Error while creating device data"}), 401
-
-    return homepage()
 
 @app.route('/devices', methods=['GET'])
 @jwt_required
@@ -325,24 +280,60 @@ def devices():
 def device_detail(id):
 
     if request.method == 'GET':
+        # # device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
+        # deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == id)
+        # # return jsonify({ 'msg': deviceoid[0] })
+        # for f in deviceoid:
+        #     print f.devices_id.id
+        # return jsonify({ 'msg': 'testing' })
         try:
             device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
-            dicti =  {
-                    'id': device[0].subscribe.devices_id.id,
-                    'name': device[0].subscribe.devices_id.name,
-                    'type': device[0].subscribe.devices_id.type,
-                    'location': device[0].subscribe.devices_id.location,
-                    'address': device[0].subscribe.devices_id.address,
-                    'subscribed_by' : [],
-                    }
+            deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == id)
+            for item in deviceoid:
+                print item.oidname
             for item in device:
-                dicti['subscribed_by'].append({
-                'id' : item.subscribe.users_id.id,
-                'username' : item.subscribe.users_id.username,
-                })
-            res = jsonify(dicti)
-            res.status_code = 200
-        except Devices.DoesNotExist:
+                print item
+            try:
+                dicti =  {
+                        'id': device[0].subscribe.devices_id.id,
+                        'name': device[0].subscribe.devices_id.name,
+                        'type': device[0].subscribe.devices_id.type,
+                        'location': device[0].subscribe.devices_id.location,
+                        'address': device[0].subscribe.devices_id.address,
+                        'subscribed_by' : [],
+                        'oid' : [],
+                        }
+                for item in device:
+                    dicti['subscribed_by'].append({
+                    'id' : item.subscribe.users_id.id,
+                    'username' : item.subscribe.users_id.username,
+                    })
+                for item in deviceoid:
+                    dicti['oid'].append({
+                    'oid' : item.oid,
+                    'oidname' : item.oidname,
+                    })
+                res = jsonify(dicti)
+                res.status_code = 200
+            except Exception as e:
+                dicti =  {
+                        'id': deviceoid[0].devices_id.id,
+                        'name': deviceoid[0].devices_id.name,
+                        'type': deviceoid[0].devices_id.type,
+                        'location': deviceoid[0].devices_id.location,
+                        'address': deviceoid[0].devices_id.address,
+                        'subscribed_by' : None,
+                        'oid' : [],
+                        }
+                for item in deviceoid:
+                    dicti['oid'].append({
+                    'oid' : item.oid,
+                    'oidname' : item.oidname,
+                    })
+                res = jsonify(dicti)
+                res.status_code = 200
+
+        except Exception as e:
             try:
                 device = Devices.select().where(Devices.id == id).get()
                 res = jsonify({
@@ -352,6 +343,7 @@ def device_detail(id):
                     'location': device.location,
                     'address': device.address,
                     'subscribed_by' : None,
+                    'oid' : None,
                     })
                 res.status_code = 200
             except Devices.DoesNotExist:
@@ -363,6 +355,22 @@ def device_detail(id):
                 res.status_code = 404
         return res
 
+@app.route('/createoid', methods=['POST'])
+@jwt_required
+def createoid():
+    if request.method == 'POST' and request.is_json:
+        try:
+            with database.atomic():
+                createoid = Oid.create(
+                    id=uuid.uuid4(),
+                    oid=request.json.get('oid', None),
+                    oidname=request.json.get('oidname', None),
+                    devices_id=request.json.get('deviceid', None),)
+
+            return jsonify({"msg": "OID data created"}), 200
+
+        except IntegrityError:
+            jsonify({"msg": "Error while creating OID data"}), 401
 
 @app.route('/subscribe/devices', methods=['GET', 'POST'])
 @jwt_required

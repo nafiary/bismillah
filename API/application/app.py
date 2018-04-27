@@ -67,7 +67,7 @@ def logout():
     session.pop('email', None)
     session.pop('role', None)
     session.pop('token', None)
-    return jsonify({'msg' : 'Logged out'}), 200
+    return login()
 
 @app.route('/users', methods=['GET'])
 @login_required
@@ -104,9 +104,13 @@ def devicedetail(id):
     devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
     # print devicedetail['subscribed_by']
     subscriber = []
-    for subscribe in devicedetail['subscribed_by']:
-        subscriber.append(subscribe['id'])
-    return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
+    try:
+        for subscribe in devicedetail['subscribed_by']:
+            subscriber.append(subscribe['id'])
+        return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
+    except Exception as e:
+        return render_template('devicedetail.html', devicedetail = devicedetail)
+
 
 @app.route('/subscribe/devices', methods=['POST'])
 @login_required

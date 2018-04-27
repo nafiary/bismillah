@@ -17,7 +17,17 @@
             });
 
             socket.on('consume', function(data) {
-                console.log(data);
+              json = JSON.parse(data)
+              hasil = ''
+              json.forEach(function(entry) {
+                hasil = hasil + '<li>' + entry.oidname + ' : ' + entry.snmpresult + '</li>'
+              });
+
+              $('.snmpresult').each(function() {
+                if (this.id === json[0].deviceid) {
+                  $(this).html(hasil)
+                }
+              });
             });
         });
     </script>
@@ -29,6 +39,7 @@
   {% for subscribing in monitor.subscribing %}
   <p class="device" id="{{subscribing.id}}">{{subscribing.name}} ({{subscribing.type}})</p>
   <a href="{{ request.url_root }}devices/{{ subscribing.id }}">Info</a>
-  {# <textarea id="idlogs" cols='60' rows='8'>...</textarea> #}
+  <ul class="snmpresult" id="{{ subscribing.id }}">
+  </ul>
   {% endfor %}
 </ul>

@@ -63,7 +63,7 @@ io.on('connection', function (socket) {
               }
               forEach(msg['data'], function (item, index, arr) {
                   var done = this.async()
-                  var ok = ch.assertExchange(item, 'fanout' );
+                  var ok = ch.assertExchange(item, 'fanout', {durable: false});
                   ok = ok.then(function() {
                     return ch.assertQueue(msg['id'], {exclusive: false});
                   });
