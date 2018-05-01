@@ -33,11 +33,11 @@ class Oid(BaseModel):
     id = UUIDField(primary_key=True)
     oid = CharField()
     oidname = CharField()
-    devices_id = ForeignKeyField(Devices)
+    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
-    users_id = ForeignKeyField(Users)
-    devices_id = ForeignKeyField(Devices)
+    users_id = ForeignKeyField(Users, on_delete='CASCADE')
+    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 def rabbitMq(exchange, address):
     try:
@@ -65,6 +65,7 @@ def rabbitMq(exchange, address):
         output, err = p.communicate()
         oid['snmpresult'] = output.split('|')[0]
 
+    print oidList
     connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     channel = connection.channel()
     message = json.dumps(oidList)
@@ -91,9 +92,8 @@ if __name__ == '__main__':
              'id' : device.id,
              'address' : device.address
             })
-
+        print deviceInfo
         for info in deviceInfo:
             threadRMQ = Thread(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
             threadRMQ.start()
-            threadRMQ.join()
-        time.sleep(1)
+        time.sleep(2)

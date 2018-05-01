@@ -10,7 +10,7 @@ from functools import wraps
 from hashlib import md5
 from peewee import *
 import uuid
-from playhouse.shortcuts import *
+# from playhouse.shortcuts import *
 from flask import Flask, jsonify, request
 from datetime import timedelta
 from flask_jwt_extended import (
@@ -57,11 +57,11 @@ class Oid(BaseModel):
     id = UUIDField(primary_key=True)
     oid = CharField()
     oidname = CharField()
-    devices_id = ForeignKeyField(Devices)
+    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
-    users_id = ForeignKeyField(Users)
-    devices_id = ForeignKeyField(Devices)
+    users_id = ForeignKeyField(Users, on_delete='CASCADE')
+    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 @jwt.user_claims_loader
 def add_claims_to_access_token(user):
@@ -230,23 +230,53 @@ def user_detail(username):
                 res.status_code = 404
         return res
 
-@app.route('/createdevice', methods=['POST'])
+@app.route('/devices/create', methods=['POST'])
 @jwt_required
 def createdevice():
     if request.method == 'POST' and request.is_json:
         try:
-            with database.atomic():
-                device = Devices.create(
-                    id=uuid.uuid4(),
+            uuiddevices = uuid.uuid4()
+            with database.atomic() as createdevice:
+                Devices.create(
+                    id=uuiddevices,
                     name=request.json.get('name', None),
                     type=request.json.get('type', None),
                     location=request.json.get('location', None),
                     address=request.json.get('address', None),)
+            try:
+                for value in request.json.get('oid', None):
+                    with database.atomic() as createoid:
+                        Oid.create(
+                            id=uuid.uuid4(),
+                            oid=value['oid'],
+                            oidname=value['oidname'],
+                            devices_id=uuiddevices,)
+
+            except IntegrityError:
+                createdevice.rollback()
+                jsonify({"msg": "Error while creating OID data"}), 401
 
             return jsonify({"msg": "Device data created"}), 200
 
         except IntegrityError:
             jsonify({"msg": "Error while creating device data"}), 401
+
+
+@app.route('/devices/delete', methods=['DELETE'])
+@jwt_required
+def deletedevices():
+    if request.method == 'DELETE' and request.is_json == True:
+        try:
+            with database.atomic():
+                devices = Devices.delete().where( Devices.id == request.json.get('deviceid', None) )
+                devices.execute()
+            res = jsonify({"msg": "Device Deleted"}), 200
+
+        except Exception as e:
+            print e
+            res = jsonify({"msg": "Error while deteting device"}), 401
+
+    return res
 
 @app.route('/devices', methods=['GET'])
 @jwt_required
@@ -280,12 +310,6 @@ def devices():
 def device_detail(id):
 
     if request.method == 'GET':
-        # # device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
-        # deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == id)
-        # # return jsonify({ 'msg': deviceoid[0] })
-        # for f in deviceoid:
-        #     print f.devices_id.id
-        # return jsonify({ 'msg': 'testing' })
         try:
             device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
             deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == id)
@@ -355,22 +379,22 @@ def device_detail(id):
                 res.status_code = 404
         return res
 
-@app.route('/createoid', methods=['POST'])
-@jwt_required
-def createoid():
-    if request.method == 'POST' and request.is_json:
-        try:
-            with database.atomic():
-                createoid = Oid.create(
-                    id=uuid.uuid4(),
-                    oid=request.json.get('oid', None),
-                    oidname=request.json.get('oidname', None),
-                    devices_id=request.json.get('deviceid', None),)
-
-            return jsonify({"msg": "OID data created"}), 200
-
-        except IntegrityError:
-            jsonify({"msg": "Error while creating OID data"}), 401
+# @app.route('/oid/create', methods=['POST'])
+# @jwt_required
+# def createoid():
+#     if request.method == 'POST' and request.is_json:
+#         try:
+#             with database.atomic():
+#                 createoid = Oid.create(
+#                     id=uuid.uuid4(),
+#                     oid=request.json.get('oid', None),
+#                     oidname=request.json.get('oidname', None),
+#                     devices_id=request.json.get('deviceid', None),)
+#
+#             return jsonify({"msg": "OID data created"}), 200
+#
+#         except IntegrityError:
+#             jsonify({"msg": "Error while creating OID data"}), 401
 
 @app.route('/subscribe/devices', methods=['GET', 'POST'])
 @jwt_required

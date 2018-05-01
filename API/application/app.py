@@ -12,12 +12,18 @@ import uuid
 import requests
 from datetime import timedelta
 
+from flask_assets import Environment, Bundle
+
 DEBUG = True
 SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=12)
+assets = Environment(app)
+
+js = Bundle('js/jquery.input-ip-address-control-1.0.min.js')
+assets.register('js_all', js)
 
 def login_required(f):
     @wraps(f)
@@ -87,14 +93,57 @@ def userdetail(username):
     print userdetail
     return render_template('userdetail.html', userdetail = userdetail)
 
+@app.route('/devices/create', methods=['POST', 'GET'])
+@login_required
+def createdevice():
+    if request.method == 'GET':
+        return render_template('createdevice.html')
+    elif request.method == 'POST':
+        name = request.form['name']
+        type = request.form['type']
+        location = request.form['location']
+        address = request.form['address']
+
+        oidNameList = request.form.getlist('oidname[]')
+        oidList = request.form.getlist('oid[]')
+        oidArray = []
+        for index, value in enumerate(request.form.getlist('oidname[]')):
+            oidArray.append({ 'oidname' : request.form.getlist('oidname[]')[index],
+                    'oid' : request.form.getlist('oid[]')[index]})
+        print oidArray
+        # headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+        # try:
+        #     requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": username, "type":type, "location":location, "address":address })
+        #     return redirect(url_for('devices'))
+        # except Exception as e:
+        #     return redirect(url_for('createdevice'))
+        return jsonify({'msg' : 'testing'})
+
+@app.route('/devices/delete', methods=['POST'])
+@login_required
+def deletedevice():
+    print session['token']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    deviceid = request.form.getlist('deviceid[]')[0]
+    try:
+        devices = requests.delete('http://localhost:5000/devices/delete', headers = headers, json={ "deviceid": deviceid }).json()
+        return redirect(url_for('devices'))
+    except Exception as e:
+        return redirect(url_for('devices'))
+
+    # return devices
+    # return render_template('devicelist.html', devices = devices)
+
+
 @app.route('/devices', methods=['GET'])
 @login_required
 def devices():
     print session['token']
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
     devices = requests.get('http://localhost:5000/devices', headers = headers).json()
-    # print devices
+    # return devices
     return render_template('devicelist.html', devices = devices)
+
 
 @app.route('/devices/<string:id>', methods=['GET'])
 @login_required
