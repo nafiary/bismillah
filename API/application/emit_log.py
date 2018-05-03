@@ -60,15 +60,18 @@ def rabbitMq(exchange, address):
             'deviceid' : str(exchange)
             })
 
-    for oid in oidList:
-        p = subprocess.Popen(["/usr/local/nagios/libexec/check_snmp", "-H", address, "-o", oid['oid']], stdout=subprocess.PIPE)
-        output, err = p.communicate()
-        oid['snmpresult'] = output.split('|')[0]
+    try:
+        for oid in oidList:
+            p = subprocess.Popen(["/usr/local/nagios/libexec/check_snmp", "-H", address, "-o", oid['oid']], stdout=subprocess.PIPE)
+            output, err = p.communicate()
+            oid['snmpresult'] = output.split('|')[0]
+            message = json.dumps(oidList)
+    except Exception as e:
+        message = e
 
-    print oidList
     connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     channel = connection.channel()
-    message = json.dumps(oidList)
+
     try:
         channel.basic_publish(exchange=str(exchange),
                               routing_key='',

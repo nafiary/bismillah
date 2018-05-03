@@ -254,12 +254,30 @@ def createdevice():
 
             except IntegrityError:
                 createdevice.rollback()
-                jsonify({"msg": "Error while creating OID data"}), 401
+                return jsonify({"msg": "Error while creating OID data"}), 401
 
-            return jsonify({"msg": "Device data created"}), 200
+            res = jsonify({"msg": "Device data created"}), 200
 
         except IntegrityError:
-            jsonify({"msg": "Error while creating device data"}), 401
+            res = jsonify({"msg": "Error while creating device data"}), 401
+    return res
+
+@app.route('/devices/edit/<string:id>', methods=['POST'])
+@jwt_required
+def editdevice(id):
+    if request.method == 'POST' and request.is_json:
+        try:
+            edit = Devices.update(
+                    name=request.json.get('name', None),
+                    type=request.json.get('type', None),
+                    location=request.json.get('location', None),
+                    address=request.json.get('address', None)).where(Devices.id==id)
+            edit.execute()
+            res = jsonify({"msg": "Device data edited"}), 200
+
+        except IntegrityError:
+            res = jsonify({"msg": "Error while creating device data"}), 401
+    return res
 
 
 @app.route('/devices/delete', methods=['DELETE'])
@@ -379,22 +397,58 @@ def device_detail(id):
                 res.status_code = 404
         return res
 
-# @app.route('/oid/create', methods=['POST'])
-# @jwt_required
-# def createoid():
-#     if request.method == 'POST' and request.is_json:
-#         try:
-#             with database.atomic():
-#                 createoid = Oid.create(
-#                     id=uuid.uuid4(),
-#                     oid=request.json.get('oid', None),
-#                     oidname=request.json.get('oidname', None),
-#                     devices_id=request.json.get('deviceid', None),)
-#
-#             return jsonify({"msg": "OID data created"}), 200
-#
-#         except IntegrityError:
-#             jsonify({"msg": "Error while creating OID data"}), 401
+@app.route('/oid/create', methods=['POST'])
+@jwt_required
+def createoid():
+    if request.method == 'POST' and request.is_json:
+        try:
+            with database.atomic():
+                createoid = Oid.create(
+                    id=uuid.uuid4(),
+                    oid=request.json.get('oid', None),
+                    oidname=request.json.get('oidname', None),
+                    devices_id=request.json.get('deviceid', None),)
+
+            res =  jsonify({"msg": "OID data created"}), 200
+
+        except IntegrityError:
+            res = jsonify({"msg": "Error while creating OID data"}), 401
+
+    return res
+
+@app.route('/oid/edit', methods=['POST'])
+@jwt_required
+def editoid():
+    if request.method == 'POST' and request.is_json:
+        try:
+            with database.atomic():
+                editoid = Oid.update(
+                    oid=request.json.get('oid', None),
+                    oidname=request.json.get('oidname', None),).where(Oid.devices_id == request.json.get('deviceid', None))
+                editoid.execute()
+
+            res = jsonify({"msg": "OID data edited"}), 200
+
+        except IntegrityError:
+            res = jsonify({"msg": "Error while edit OID data"}), 401
+
+    return res
+
+@app.route('/oid/delete', methods=['DELETE'])
+@jwt_required
+def deleteoid():
+    if request.method == 'DELETE' and request.is_json == True:
+        try:
+            with database.atomic():
+                deleteoid = Oid.delete().where( Oid.id == request.json.get('oid_id', None) )
+                deleteoid.execute()
+            res = jsonify({"msg": "Oid Deleted"}), 200
+
+        except Exception as e:
+            print e
+            res = jsonify({"msg": "Error while deleting oid"}), 401
+
+    return res
 
 @app.route('/subscribe/devices', methods=['GET', 'POST'])
 @jwt_required

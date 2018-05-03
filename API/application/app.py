@@ -111,13 +111,44 @@ def createdevice():
             oidArray.append({ 'oidname' : request.form.getlist('oidname[]')[index],
                     'oid' : request.form.getlist('oid[]')[index]})
         print oidArray
-        # headers = { 'Authorization' : 'Bearer %s' % session['token'] }
-        # try:
-        #     requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": username, "type":type, "location":location, "address":address })
-        #     return redirect(url_for('devices'))
-        # except Exception as e:
-        #     return redirect(url_for('createdevice'))
-        return jsonify({'msg' : 'testing'})
+        headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+        try:
+            requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address, "oid" : oidArray })
+            return redirect(url_for('devices'))
+        except Exception as e:
+            print e
+            return redirect(url_for('createdevice'))
+        # return jsonify({'msg' : 'testing'})
+
+@app.route('/devices/edit/<string:id>', methods=['GET', 'POST'])
+@login_required
+def editdevices(id):
+    if request.method == 'GET':
+        print session['token']
+        headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+        devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
+        # print devicedetail['subscribed_by']
+        subscriber = []
+        try:
+            for subscribe in devicedetail['subscribed_by']:
+                subscriber.append(subscribe['id'])
+            return render_template('editdevice.html', devicedetail = devicedetail, subscriber = subscriber)
+        except Exception as e:
+            return render_template('editdevice.html', devicedetail = devicedetail)
+    elif request.method == 'POST':
+        name = request.form['name']
+        type = request.form['type']
+        location = request.form['location']
+        address = request.form['address']
+
+        headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+        try:
+            editdevice = requests.post('http://localhost:5000/devices/edit/%s' % id, headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address })
+            return redirect(url_for('devices'))
+        except Exception as e:
+            print e
+            return redirect(url_for('editdevices'))
+
 
 @app.route('/devices/delete', methods=['POST'])
 @login_required

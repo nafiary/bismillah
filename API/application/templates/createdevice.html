@@ -4,12 +4,11 @@
   <script type="text/javascript">
     jQuery(function($){
       $("#addoid").click(function() {
-        $("#oidsection").append('<div class="oidinputfield"><span>Name: </span><input type="text" name="oidname[]">&nbsp<span>OID:</span><input type="text" name="oid[]">&nbsp<button type="button" class="deleteoid">-</button><br></div>')
+        $("#oidsection").append('<div class="oidinputfield"><span>Name: </span><input required type="text" name="oidname[]">&nbsp<span>OID:</span><input required type="text" name="oid[]">&nbsp<button type="button" class="deleteoid">-</button><br></div>')
+        $(".deleteoid").click(function() {
+          $(this).parent().remove();
+        });
       });
-      $(".deleteoid").click(function() {
-        console.log('asddasas');
-      });
-      console.log("ready");
     });
   </script>
 </head>
@@ -19,16 +18,16 @@
 
   <form action="{{ request.url_root }}devices/create" method="POST">
     Device Name:
-    <input id="devicename" type="text" name="name">
+    <input id="devicename" type="text" name="name" required>
     <br>
     Device Type
-    <input type="text" name="type">
+    <input type="text" name="type" required>
     <br><br>
     Location:
-    <input type="text" name="location">
+    <input type="text" name="location" required>
     <br><br>
     Address:
-    <input type="text" name="address">
+    <input type="text" name="address" required>
     <br><br>
     <span>OID</span>&nbsp<button type="button" name="button" id="addoid">+</button><br>
     <div id="oidsection">

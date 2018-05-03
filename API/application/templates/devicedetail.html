@@ -2,6 +2,7 @@
 <p>Hello, {{ session['username'] }}! (User ID: {{ session['userid'] }})</p>
 <h1>Here come the detail!</h1>
 <ul>
+  <a href="{{ request.url_root }}devices/edit/{{ devicedetail.id }}"><button type="button" name="button">Edit Devices</button></a>
   <li>ID: {{ devicedetail.id }}</li>
   <li>Name: {{ devicedetail.name }}</li>
   <li>Type: {{ devicedetail.type }}</li>
@@ -31,6 +32,7 @@
   </form>
   {% endif %}
 <li>OID:
+  <a href="{{ request.url_root }}oid/edit/{{ devicedetail.id }}"><button type="button" name="button">Edit OID</button></a>
   {% if devicedetail.oid is not defined %}
   {% else %}
   <ul>
