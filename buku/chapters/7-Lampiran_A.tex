@@ -1,0 +1,225 @@
+\chapter{INSTALASI PERANGKAT LUNAK}
+
+\section*{Instalasi Lingkungan Docker}
+	Proses pemasangan Docker dpat dilakukan sesuai tahap berikut:
+    \begin{itemize}
+    \item Menambahkan repository Docker\\
+    	Langkah ini dilakukan untuk menambahkan \textit{repository} Docker ke dalam paket \texttt{apt} agar dapat di unduh oleh Ubuntu. Untuk melakukannya, jalankan perintah berikut:
+		\begin{tabbing}
+          \texttt{sudo apt-get -y install \char`\\} \\
+          \hspace{5 mm} \texttt{apt-transport-https \char`\\} \\
+          \hspace{5 mm} \texttt{ca-certificates \char`\\} \\
+          \hspace{5 mm} \texttt{curl} \\
+          \\
+          \texttt{curl -fsSL https://download.docker.com/linux/} \\
+          \hspace{7 mm} \texttt{ubuntu/gpg | sudo apt-key add -} \\
+          \\
+          \texttt{sudo add-apt-repository \char`\\} \\
+          \hspace{7 mm} \texttt{"deb [arch=amd64] https://download.docker.com/} \\
+          \hspace{9 mm} \texttt{linux/ubuntu \char`\\} \\
+          \hspace{7 mm} \texttt{\$ (lsb\_release -cs) \char`\\} \\
+          \hspace{7 mm} \texttt{stable"} \\
+          \\
+          \texttt{sudo apt-get update} \\
+        \end{tabbing}
+        
+    \item Mengunduh Docker \\
+    	Docker dikembangkan dalam dua versi, yaitu CE (\textit{Community Edition}) dan EE (\textit{Enterprise Edition}). Dalam pengembangan sistem ini, digunakan Docker CE karena merupakan versi Docker yang gratis. Untuk mengunduh Docker CE, jalankan perintah \texttt{sudo apt-get -y install docker-ce}.
+    
+    \item Mencoba menjalankan Docker \\
+    	Untuk melakukan tes apakah Docker sudah terpasang dengan benar, gunakan perintah \texttt{sudo docker run hello-world}.
+    \end{itemize}
+
+\section*{Instalasi Docker Registry} \label{install:dockerRegistry}
+	Docker Registry dikembangkan menggunakan Docker Compose. Dengan menggunakan Docker Compose, proses pemasangan Docker Registry menjadi lebih mudah dan fleksibel untuk dikembangkan ditempat lain. Docker Registry akan dijalankan pada satu \textit{container} dan Nginx juga akan dijalankan di satu \textit{container} lain yang berfungsi sebagai perantara komunikasi antara Docker Registry dengna dunia luar. Berikut adalah proses pengembangan Docker Registry yang penulis lakukan:
+    \begin{itemize}
+    \item Pemasangan Docker Compose\\
+    \$ \texttt{sudo apt-get -y install python-pip} \\
+    \$ \texttt{sudo pip install docker-compose}
+    
+    \item Pemasangan paket \texttt{apache2-utils}\\
+    	Pada paket \texttt{apache2-utils} terdapat fungsi \texttt{htpasswd} yang digunakan untuk membuat \textit{hash password} untuk Nginx. Proses pemasangan paket dapat dilakukan dengan menjalankan perintah \texttt{sudo apt-get -y install apache2-utils}.
+        
+    \item Pemasangan dan pengaturan Docker Registry\\
+    	Buat folder \texttt{docker-registry} dan \texttt{data} dengan menjalankan perintah berikut:\\
+        \$ \texttt{mkdir ~/docker-registry \&\& cd \$\_} \\
+        \$ \texttt{mkdir data} \\
+        Folder \texttt{data} digunakan untuk menyimpan data yang dihasilkan dan digunakan oleh \textit{container} Docker Registry. Kemudian di dalam folder \texttt{docker-registry} buat sebuah berkas dengan nama \texttt{docker-compose.yml} yang akan digunakan oleh Docker Compose untuk membangun aplikasi. Tambahkan isi berkasnya sesuai dengan Kode Sumber \ref{dockerCompose}.
+        
+        \begin{lstlisting}[frame=single,tabsize=2,breaklines,caption={Isi Berkas docker-compose.yml},label=dockerCompose, captionpos=b]
+nginx:
+image: "nginx:1.9"
+ports:
+	- 443:443
+	- 80:80
+links:
+	- registry:registry
+volumes:
+	- ./nginx/:/etc/nginx/conf.d
+registry:
+	image: registry:2
+	ports:
+		- 127.0.0.1:5000:5000
+	environment:
+		REGISTRY_STORAGE_FILESYSTEM _ROOTDIRECTORY: /data
+	volumes:
+		- ./data:/data
+		- ./registry/config.yml:/etc/docker/registry/config.yml
+		\end{lstlisting}
+	
+    \item Pemasangan \textit{container} Nginx
+    	Buat folder \texttt{nginx} di dalam folder \texttt{docker-registry}. Di dalam folder \texttt{nginx} buat berkas dengan nama \texttt{registry.conf} yang berfungsi sebagai berkas konfigurasi yang akan digunakan oleh Nginx. Isi berkas sesuai denga Kode Sumber \ref{registryConf}.
+        \begin{lstlisting}[frame=single,tabsize=2,breaklines,caption={Isi Berkas registry.conf},label=registryConf, captionpos=b]
+upstream docker-registry{
+  server registry:5000;
+}
+server{
+  listen 80;
+  server_name registry.nota-no.life;
+  return 301 https://$server_name$request_uri;
+}
+server{
+  listen 443;
+  server_name registry.nota-no.life;
+  ssl on;
+  ssl_certificate /etc/nginx/conf.d/cert.pem;
+  ssl_certificate_key /etc/nginx/conf.d/privkey.pem;
+  client_max_body_size 0;
+  chunked_transfer_encoding on;
+  location /v2/{
+    if ($http_user_agent ~ "^(docker\/1\.(3|4|5(?!\.[0-9]-dev))|Go ).*$" ){
+      return 404;
+    }
+    auth_basic "registry.localhost";
+    auth_basic_user_file /etc/nginx/conf.d/registry.password;
+    add_header 'Docker-Distribution-Api-Version' 'registry/2.0' always;
+    proxy_pass http://docker-registry;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 900;
+  }
+}
+		\end{lstlisting}
+        
+    \end{itemize}
+
+\section*{Instalasi Pustaka Python} \label{install:pythonlibrary}
+	Dalam pengembangan sistem ini, digunakan berbagai pustaka pendukung. Pustaka pendukung yang digunakan merupakan pustaka untuk bahasa pemrograman Python. Berikut adalah daftar pustaka yang digunakan dan cara pemasangannya:
+    \begin{itemize}
+    \item Python Dev \\
+    	\$ \texttt{sudo apt-get install python-dev}
+    \item Flask \\
+    	\$ \texttt{sudo pip install Flask}
+    \item docker-py \\
+    	\$ \texttt{sudo pip install docker}
+    \item MySQLd \\
+    	\$ \texttt{sudo apt-get install python-mysqldb}
+    \item Redis \\
+    	\$ \texttt{sudo pip install redis}
+    \item RQ \\
+    	\$ \texttt{sudo pip install rq}
+    \end{itemize}
+
+\section*{Instalasi HAProxy} \label{install:haproxy}
+	HAProxy dapat dipasang dengna mudah menggunakan \texttt{apt-get} karena perangkat lunak tersebut sudah tersedia pada \textit{repository} Ubuntu. Untuk melakukan pemasangan HAProxy, gunakan perintah \texttt{apt-get install haproxy}. \\
+    \indent Setelah HAProxy diunduh, perangkat lunak tersebut belum berjalan karena belum diaktifkan. Untuk mengaktifkan \textit{service haproxy}, buka berkas di \texttt{/etc/default/harpoxy} kemudian ganti nilai \texttt{ENABLED} yang awalnya bernilai \texttt{0} menjadi \texttt{ENABLED=1}. Setelah itu service haproxy dapat dijalankan dengan menggunakan perintah \texttt{service harpoxy start}.
+    \indent Untuk konfigurasi dari HAProxy nantinya akan diurus oleh \textit{confd}. \textit{confd} akan menyesuaikan konfigurasi dari HAProxy sesuai dengan kebutuhan aplikasi yang tersedia.
+
+\section*{Instalasi etcd dan confd} \label{install:etcdconfd}
+	etcd dapat di unggah dengan menjalankan perintah berikut, \texttt{curl https://github.com/coreos/etcd/releases/ download/v3.2.0-rc.0/etcd-v3.2.0-rc.0-linux- amd64.tar.gz}. Setelah proses unduh berhasil dilakukan, selanjutnya yang dilakukan adalah melakukan ekstrak berkasnya menggunakan perintah \texttt{tar -xvzf etcd-v3.2.0-rc.0- linux-amd64.tar.gz}. Berkas binary dari etcd bisa ditemukan pada folder \texttt{./bin/etcd}. Berkas inilah yang digunakan untuk menjalankan perangkat lunak etcd. Untuk menjalankannya, dapat dilakukan dengan menggunakan perintah \texttt{etcd --listen-client-urls http://0.0.0.0:5050 --advertise-client-urls http://128.199.250.137 :5050}. Perintah tersebut memungkinkan etcd diakses oleh \textit{host} lain dengan IP 128.199.250.137, yang merupakan host dari \textit{load balancer} dan confd. Setelah proses tersebut, etcd sudah siap untuk digunakan. \\
+    \indent Setelah etcd siap digunakan, selanjutnya adalah memasang confd. Untuk menginstall confd gunakan rangkaian perintah berikut: \\
+    \$ \texttt{mkdir -p \$GOPATH/src/github.com/kelseyhightower} \\
+	\$ \texttt{git clone https://github.com/kelseyhightower/ confd.git \$GOPATH/src/github.com/kelseyhightower/ confd} \\
+	\$ \texttt{cd \$GOPATH/src/github.com/kelseyhightower/confd} \\
+	\$ \texttt{./build}
+	
+	Setelah berhasil memasang confd, selanjutnya buka berkas \texttt{/etc/confd/confd.toml} dan isi berkas sesuai dengan Kode Sumber \ref{confdToml}. Pengaturan tersebut bertujuan agar confd melakukan \textit{listen} terhadap server etcd dan melakukan tindakan jika terjadi perubahan pada etcd.
+	\begin{lstlisting}[frame=single,tabsize=2,breaklines,caption={Isi Berkas confd.toml},label=confdToml, captionpos=b]
+confdir = "/etc/confd"
+interval = 20
+backend = "etcd"
+nodes = [
+        "http://128.199.250.137:5050"
+]
+prefix = "/"
+scheme = "http"
+verbose = true
+		\end{lstlisting}
+	Setelah melakukan konfigurasi confd, selanjutnya adalah membuat \textit{template} konfigurasi untuk HAProxy. Buka berkas di \texttt{/etc/confd/templates/haproxy.cfg.tmpl}. Jika berkas tidak ada maka buat berkasnya dan isi berkas sesuai dengan Kode Sumber \ref{haproxyCfgTmpl}.
+        
+    \begin{lstlisting}[frame=single,tabsize=2,breaklines,caption={Isi Berkas haproxy.cfg.tmpl},label=haproxyCfgTmpl, captionpos=b]
+global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+        chroot /var/lib/haproxy
+        stats socket /run/haproxy/admin.sock mode 660 level admin
+        stats timeout 30s
+        daemon
+defaults
+        log     global
+        mode    http
+        option  httplog
+        option  dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+        errorfile 400 /etc/haproxy/errors/400.http
+        errorfile 403 /etc/haproxy/errors/403.http
+        errorfile 408 /etc/haproxy/errors/408.http
+        errorfile 500 /etc/haproxy/errors/500.http
+        errorfile 502 /etc/haproxy/errors/502.http
+        errorfile 503 /etc/haproxy/errors/503.http
+        errorfile 504 /etc/haproxy/errors/504.http
+frontend http-in
+        bind *:80
+
+        # Define hosts
+        {{range gets "/images/*"}}
+        {{$data := json .Value}}
+                acl host_{{$data.image_name}} hdr(host) -i {{$data.domain}}.nota-no.life
+        {{end}}
+
+        ## Figure out which one to use
+        {{range gets "/images/*"}}
+        {{$data := json .Value}}
+                use_backend {{$data.image_name}}_cluster if host_{{$data.image_name}}
+        {{end}}
+{{range gets "/images/*"}}
+{{$data := json .Value}}
+backend {{$data.image_name}}_cluster
+        mode http
+        balance roundrobin
+        option forwardfor
+        cookie JSESSIONID prefix
+        {{range $data.containers}}
+        server {{.name}} {{.ip}}:{{.port}} check
+        {{end}}
+{{end}}
+		\end{lstlisting}    
+
+	Langkah terakhir adalah membuat berkas konfigurasi untuk HAProxy di \texttt{/etc/confd/conf.d/haproxy.toml}. Jika berkas tidak ada, maka buat berkasnya dan isi berkas sesuai dengan Kode Sumber \ref{haproxyToml}.
+	\begin{lstlisting}[frame=single,tabsize=2,breaklines,caption={Isi Berkas haproxy.toml},label=haproxyToml, captionpos=b]
+[template]
+src = "haproxy.cfg.tmpl"
+dest = "/etc/haproxy/haproxy.cfg"
+keys = [
+        "/images"
+]
+reload_cmd = "iptables -I INPUT -p tcp --dport 80 --syn -j DROP && sleep 1 && service haproxy restart && iptables -D INPUT -p tcp --dport 80 --syn -j DROP"
+	\end{lstlisting}
+    
+    Setelah melakukan konfigurasi, selanjutnya adalah menjalankan confd dengan menggunakan perintah \texttt{confd \&}.
+
+\section*{Pemasangan Redis} \label{install:redis}
+	Redis dapat dipasang dengan mempersiapkan kebutuhan pustaka pendukungnya. Pustaka yang digunakan adalah \texttt{build-essential} dan \texttt{tcl8.5}. Untuk melakukan pemasangannya, jalankan perintah berikut:\\
+	 \$ \texttt{sudo apt-get install build-essential}\\
+     \$ \texttt{sudo apt-get install tcl8.5}\\
+     \indent Setelah itu unduh aplikasi Redis dengan menjalankan perintah \texttt{wget http://download.redis.io/releases/redis-stable.tar.gz}. Setelah selesai diunduh, buka file dengan perintah berikut:\\
+     \$ \texttt{tar xzf redis-stable.tar.gz \&\& cd redis-stable}\\
+     \indent Di dalam folder \texttt{redis-stable}, bangun Redis dari kode sumber dengan menjalankan perintah \texttt{make}. Setelah itu lakukan tes kode sumber dengan menjalankan \texttt{make test}. Setelah selesai, pasang Redis dengan menggunakan perinah \texttt{sudo make install}. Setelah selesai melakukan pemasangan, Redis dapat diaktifkan dengan menjalankan berkas bash dengan nama \texttt{install\_server.sh}.\\
+     Untuk menambah pengaman pada Redis, diatur agar Redis hanya bisa dari \textit{localhost}. Untuk melakukannya, buka file \texttt{/etc/redis/6379.conf}, kemudian cari baris \texttt{bind 127.0.0.1}. Hapus komen jika sebelumnya baris tersebut dalam keadaan tidak aktif. Jika tidak ditemukan baris dengan isi tersebut, tambahkan pada akhir berkas baris tersebut.
+
+\section*{Pemasangan kerangka kerja React}
+	Pada pengembangan sistem ini, penggunaan pustaka React dibangun di atas konfigurasi Create React App. Untuk memasang Create React App, gunakan perintah \texttt{npm install -g create-react-app}. Setelah terpasang, untuk membangun aplikasinya jalankan perintah \texttt{create-react-app fe-controller}. Setelah proses tersebut, dasar dari aplikasi sudah terbangun dan siap untuk dikembangkan lebih lanjut.

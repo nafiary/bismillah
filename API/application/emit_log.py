@@ -45,6 +45,7 @@ def rabbitMq(exchange, address):
         oidList = []
         for oid in deviceoid:
             oidList.append({
+            'id' : str(oid.id),
             'oidname' : oid.oidname,
             'oid': oid.oid,
             'snmpresult' : None,
@@ -54,6 +55,7 @@ def rabbitMq(exchange, address):
         oidList = []
         for oid in deviceoid:
             oidList.append({
+            'id' : None,
             'oidname' : None,
             'oid': None,
             'snmpresult' : None,
@@ -62,12 +64,18 @@ def rabbitMq(exchange, address):
 
     try:
         for oid in oidList:
-            p = subprocess.Popen(["/usr/local/nagios/libexec/check_snmp", "-H", address, "-o", oid['oid']], stdout=subprocess.PIPE)
+            p = subprocess.Popen(["/usr/local/nagios/libexec/check_snmp", "-H", address, "-o", oid['oid'], "-t", "1"], stdout=subprocess.PIPE)
             output, err = p.communicate()
-            oid['snmpresult'] = output.split('|')[0]
-            message = json.dumps(oidList)
+            if not p.wait():
+                oid['snmpresult'] = output.split('|')[0]
+                message = json.dumps(oidList)
+            else:
+                oid['snmpresult'] = 'SNMP CRITICAL -Error while checking related OID'
+                message = json.dumps(oidList)
     except Exception as e:
-        message = e
+        for oid in oidList:
+            oid['snmpresult'] = 'SNMP CRITICAL - Error while checking related OID'
+            message = json.dumps(oidList)
 
     connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     channel = connection.channel()

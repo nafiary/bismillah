@@ -11,6 +11,7 @@ from hashlib import md5
 import uuid
 import requests
 from datetime import timedelta
+import json
 
 from flask_assets import Environment, Bundle
 
@@ -20,10 +21,10 @@ SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=12)
-assets = Environment(app)
+# assets = Environment(app)
 
-js = Bundle('js/jquery.input-ip-address-control-1.0.min.js')
-assets.register('js_all', js)
+# js = Bundle('js/jquery.input-ip-address-control-1.0.min.js')
+# assets.register('js_all', js)
 
 def login_required(f):
     @wraps(f)
@@ -87,10 +88,8 @@ def users():
 @app.route('/users/<string:username>', methods=['GET'])
 @login_required
 def userdetail(username):
-    print session['token']
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
     userdetail = requests.get('http://localhost:5000/users/%s' % username, headers = headers).json()
-    print userdetail
     return render_template('userdetail.html', userdetail = userdetail)
 
 @app.route('/devices/create', methods=['POST', 'GET'])
@@ -110,7 +109,7 @@ def createdevice():
         for index, value in enumerate(request.form.getlist('oidname[]')):
             oidArray.append({ 'oidname' : request.form.getlist('oidname[]')[index],
                     'oid' : request.form.getlist('oid[]')[index]})
-        print oidArray
+
         headers = { 'Authorization' : 'Bearer %s' % session['token'] }
         try:
             requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address, "oid" : oidArray })
@@ -118,7 +117,6 @@ def createdevice():
         except Exception as e:
             print e
             return redirect(url_for('createdevice'))
-        # return jsonify({'msg' : 'testing'})
 
 @app.route('/devices/edit/<string:id>', methods=['GET', 'POST'])
 @login_required
@@ -127,7 +125,7 @@ def editdevices(id):
         print session['token']
         headers = { 'Authorization' : 'Bearer %s' % session['token'] }
         devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
-        # print devicedetail['subscribed_by']
+
         subscriber = []
         try:
             for subscribe in devicedetail['subscribed_by']:
@@ -146,7 +144,6 @@ def editdevices(id):
             editdevice = requests.post('http://localhost:5000/devices/edit/%s' % id, headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address })
             return redirect(url_for('devices'))
         except Exception as e:
-            print e
             return redirect(url_for('editdevices'))
 
 
@@ -161,9 +158,6 @@ def deletedevice():
         return redirect(url_for('devices'))
     except Exception as e:
         return redirect(url_for('devices'))
-
-    # return devices
-    # return render_template('devicelist.html', devices = devices)
 
 
 @app.route('/devices', methods=['GET'])
@@ -184,13 +178,65 @@ def devicedetail(id):
     devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
     # print devicedetail['subscribed_by']
     subscriber = []
+    oidsubscriber = []
     try:
         for subscribe in devicedetail['subscribed_by']:
             subscriber.append(subscribe['id'])
-        return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
-    except Exception as e:
-        return render_template('devicedetail.html', devicedetail = devicedetail)
 
+        print subscriber
+        print '\n'
+        print oidsubscriber
+        return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
+        # return jsonify({'msg':'test'})
+    except Exception as e:
+        print e
+        return render_template('devicedetail.html', devicedetail = devicedetail)
+        # return jsonify({'msg':'test'})
+
+@app.route('/oid/edit', methods=['POST'])
+@login_required
+def editoid():
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    dataDict = []
+    oidNow = []
+    for index, value in enumerate(request.form.getlist('oid[]')):
+        oidNow.append(request.form.getlist('oidid[]')[index])
+        if request.form.getlist('oidid[]')[index] == '':
+            dataDict.append({ 'id' : request.form.getlist('oidid[]')[index],
+                        'oidname' : request.form.getlist('oidname[]')[index],
+                        'oid' : request.form.getlist('oid[]')[index],
+                        'deviceid' : request.referrer.split('/')[4]})
+        else:
+            dataDict.append({ 'id' : request.form.getlist('oidid[]')[index],
+                        'oidname' : request.form.getlist('oidname[]')[index],
+                        'oid' : request.form.getlist('oid[]')[index]})
+
+    currentOidid = []
+    oidData = requests.get('http://localhost:5000/devices/%s' % request.referrer.split('/')[4], headers = headers).json()
+    for oid in oidData['oid']:
+        currentOidid.append(oid['id'])
+
+    dataToDelete = set(currentOidid) - set(oidNow)
+    for data in dataToDelete:
+        print data
+        try:
+            deleteoid = requests.delete('http://localhost:5000/oid/delete', headers = headers, json={ "oid_id": data })
+        except Exception as e:
+            pass
+
+    for data in dataDict:
+        if data['id'] == '':
+            try:
+                editoid = requests.post('http://localhost:5000/oid/create', headers = headers, json=data)
+            except Exception as e:
+                return redirect(url_for('devices'))
+        else:
+            try:
+                editoid = requests.post('http://localhost:5000/oid/edit', headers = headers, json=data)
+            except Exception as e:
+                return redirect(url_for('devices'))
+
+    return jsonify({ 'msg' : 'request success' })
 
 @app.route('/subscribe/devices', methods=['POST'])
 @login_required
@@ -203,8 +249,26 @@ def subscribedevice():
 @login_required
 def unsubscribedevice():
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
-    subscribe = requests.post('http://localhost:5000/unsubscribe/devices', headers = headers, json={ "deviceid": request.form['deviceid'] }).json()
+    unsubscribe = requests.post('http://localhost:5000/unsubscribe/devices', headers = headers, json={ "deviceid": request.form['deviceid'] }).json()
+    for i in request.form.getlist('oid_id[]'):
+        unsubscribeoid = requests.post('http://localhost:5000/unsubscribe/oid', headers = headers, json={ "oid_id": i }).json()
     return redirect(request.url_root+'devices/%s' % request.form['deviceid'])
+
+@app.route('/subscribe/oid', methods=['POST'])
+@login_required
+def subscribeoid():
+    oid = request.form['data']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    subscribe = requests.post('http://localhost:5000/subscribe/oid', headers = headers, json={ "oid_id": oid }).json()
+    return jsonify( { 'res' : 'success'} )
+
+@app.route('/unsubscribe/oid', methods=['POST'])
+@login_required
+def unsubscribeoid():
+    oid = request.form['data']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    unsubscribe = requests.post('http://localhost:5000/unsubscribe/oid', headers = headers, json={ "oid_id": oid }).json()
+    return jsonify( { 'res' : 'success'} )
 
 @app.route('/monitor', methods=['GET'])
 @login_required

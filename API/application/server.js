@@ -42,10 +42,14 @@ io.on('connection', function (socket) {
   console.log(socket.id+' connected');
 
   socket.on('disconnect', function () {
-    console.log(socket.id+' disconnected');
-    consumerChannel.deleteQueue(id).then(() => {
-      return consumerChannel.close();
-    });
+    try {
+      consumerChannel.deleteQueue(id).then(() => {
+        console.log(socket.id+' disconnected');
+        return consumerChannel.close();
+      });
+    } catch (e) {
+      console.log(socket.id+' disconnected');
+    }
   });
 
   socket.on('startRabbit', function(msg){

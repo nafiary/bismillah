@@ -1,0 +1,20 @@
+\chapter{PENUTUP}
+    Bab ini membahas kesimpulan yang dapat diambil dari tujuan pembuatan sistem dan hubungannya dengan hasil uji coba dan evaluasi yang telah dilakukan. Selain itu, terdapat beberapa saran yang bisa dijadikan acuan untuk melakukan pengembangan dan penelitian lebih lanjut.
+        
+	\section{Kesimpulan}
+        Dari proses perencangan, implementasi dan pengujian terhadap sistem, dapat diambil beberapa kesimpulan berikut:
+		\begin{enumerate}
+            \item Sistem dapat menjalankan dan menyajikan satu atau lebih aplikasi web berbasis \textit{docker} kepada \textit{end-user} melalui domain yang disediakan.
+            \item Sistem dapat menyesuaikan sumber daya secara otomatis berdasarkan jumlah \textit{request} dengan menggunakan \textit{proactive model} dan penggunaan sumber daya, yaitu CPU dan \textit{memory}, pada \textit{container} dengan menggunakan \textit{reactive model}.
+            \item Penggunaan \textit{load balancer} cocok digunakan dengan aplikasi yang berjalan di atas \textit{docker} \textit{container}. Hal tersebut karena semua \textit{request} ke aplikasi akan melalui \textit{load balancer}. Jika terjadi penambahan dan pengurangan sumber daya, penyesuaian dengan cepat dilakukan dan hanya perlu merubah sedikit konfigurasi pada \textit{load balancer} dan pengguna tidak perlu tahu apa yang terjadi di dalam sistem.
+            \item Prediksi jumlah \textit{request} menggunakan ARIMA sudah bisa menangani skenario uji coba. Perbedaan \textit{order} ARIMA yang digunakan mempengaruhi akurasi dalam menentukan \textit{request} yang akan terjadi ke depannya. Dalam pengujian ini, ARIMA(4,1,0) memiliki hasil pengujian paling bagus dengan jumlah rata-rata \textit{error request} yang paling rendah, yaitu sebesar 7.83\%. Lalu untuk kecepatan menerima \textit{request}, ARIMA(2,1,0) dan ARIMA(4,1,0) memiliki konsistensi yang berbanding lurus dengan jumlah \textit{request}.
+            \item Penggunaan sumber daya CPU dan \textit{memory} tidak dipengaruhi oleh penggunaan ARIMA yang berbeda. Penggunaan sumber daya tersebut bergantung kepada jumlah \textit{request}, semakin banyak \textit{request} yang diberikan, penggunaan CPU dan \textit{memory} akan semakin tinggi. Penggunaan CPU paling tinggi yaitu sebesar 12.9\% dan penggunaan \textit{memory} paling tinggi sebesar 158.71 MB. Dengan penggunaan tersebut, masih tersisa lebih dari setengah sumber daya yang bisa digunakan.
+            \item Sebuah \textit{container} dari sebuah aplikasi dapat dibentuk dalam waktu $\pm$ 1 detik sehingga penambahan sumber daya bisa dilakukan dengan cepat dan proses untuk memperbarui konfigurasi dari HAProxy memerlukan waktu $\pm$ 5 detik. Selama proses tersebut, akses pengguna akan tertunda, namun tidak menunjukkan terjadinya \textit{down}.
+		\end{enumerate}
+        
+	\section{Saran}
+		Berikut beberapa saran yang diberikan untuk pengembangan lebih lanjut:
+		\begin{enumerate}
+			\item Mengamankan komunikasi antar \textit{server} karena saat ini \textit{endpoint server} bisa diakses oleh siapapun. Hal tersebut bisa dilakukan dengan mengimplentasikan \textit{private} IP dan menggunakan token untuk komunikasinya.
+            \item Pemodelan menggunakan ARIMA cukup baik, namun perlu dicoba untuk melakukan pembuatan model dengan \textit{dataset} yang lebih baru. Selain itu, bisa mencoba alternatif pemodelan \textit{time series} yang lain, seperti ARCH (Autoregressive Conditional Heteroskedasticity).
+		\end{enumerate}

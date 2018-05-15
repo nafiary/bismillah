@@ -22,20 +22,26 @@
 
             socket.on('connect', function() {
                 $("#idlogs").text("Connected");
-                var deviceid = [];
-                $('.device').each(function( index ) {
-                  deviceid.push($( this ).attr('id'));
-                });
-                socket.emit('startRabbit', {'data': deviceid, 'id': uuid4() });
+                {% if monitor.subscribing %}
+                  var deviceid = [];
+                  $('.device').each(function( index ) {
+                    deviceid.push($( this ).attr('id'));
+                  });
+                  socket.emit('startRabbit', {'data': deviceid, 'id': uuid4() });
+                {% endif %}
             });
 
             socket.on('consume', function(data) {
               json = JSON.parse(data)
               hasil = ''
               json.forEach(function(entry) {
-                hasil = hasil + '<li>' + entry.oidname + ' : ' + entry.snmpresult + '</li>'
+                {% for m in monitor.subscribingoid %}
+                if (entry.id === '{{ m.id }}' ) {
+                  hasil = hasil + '<li>' + entry.oidname + ' : ' + entry.snmpresult + '</li>'
+                }
+                {% endfor %}
               });
-
+              console.log(json);
               $('.snmpresult').each(function() {
                 if (this.id === json[0].deviceid) {
                   $(this).html(hasil)
@@ -49,10 +55,14 @@
 <h1>Here come the detail!</h1>
 <p>Websocket: <span id="idlogs">Not Connected</span></p>
 <ul>
+  {% if monitor.subscribing %}
   {% for subscribing in monitor.subscribing %}
   <p class="device" id="{{subscribing.id}}">{{subscribing.name}} ({{subscribing.type}})</p>
   <a href="{{ request.url_root }}devices/{{ subscribing.id }}">Info</a>
   <ul class="snmpresult" id="{{ subscribing.id }}">
   </ul>
   {% endfor %}
+  {% else %}
+  <p>No Device Subscribed</p>
+  {% endif %}
 </ul>

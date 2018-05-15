@@ -1,46 +1,185 @@
 <title>Devices Detail</title>
-<p>Hello, {{ session['username'] }}! (User ID: {{ session['userid'] }})</p>
-<h1>Here come the detail!</h1>
-<ul>
-  <a href="{{ request.url_root }}devices/edit/{{ devicedetail.id }}"><button type="button" name="button">Edit Devices</button></a>
-  <li>ID: {{ devicedetail.id }}</li>
-  <li>Name: {{ devicedetail.name }}</li>
-  <li>Type: {{ devicedetail.type }}</li>
-  <li>Location: {{ devicedetail.location }}</li>
-  <li>Address: {{ devicedetail.address }}</li>
-  <li>Subscribed By:
 
-  {% if subscriber is not defined %}
-    None
-  {% else %}
-      <ul>
-        {% for user in devicedetail.subscribed_by %}
-        <li><a href="{{ request.url_root }}users/{{ user.username }}">{{user.username}}</a></li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endif %}
-  {% if session['userid'] not in subscriber %}
-  <form action="{{ request.url_root }}subscribe/devices" method="POST">
-    <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
-    <li><input type="submit" value="subscribe"></li>
-  </form>
-  {% else %}
-  <form action="{{ request.url_root }}unsubscribe/devices" method="POST">
-    <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
-    <li><input type="submit" value="unsubscribe"></li>
-  </form>
-  {% endif %}
-<li>OID:
-  <a href="{{ request.url_root }}oid/edit/{{ devicedetail.id }}"><button type="button" name="button">Edit OID</button></a>
-  {% if devicedetail.oid is not defined %}
-  {% else %}
+<head>
+    <title>Flask-SocketIO Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <p>Hello, {{ session['username'] }}! (User ID: {{ session['userid'] }})</p>
+  <h1>Here come the detail!</h1>
   <ul>
-    {% for oid in devicedetail.oid %}
-    <li>{{ oid.oidname }}: {{ oid.oid }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</li>
+    <a href="{{ request.url_root }}devices/edit/{{ devicedetail.id }}"><button type="button" name="button">Edit Devices</button></a>
+    <li>ID: {{ devicedetail.id }}</li>
+    <li>Name: {{ devicedetail.name }}</li>
+    <li>Type: {{ devicedetail.type }}</li>
+    <li>Location: {{ devicedetail.location }}</li>
+    <li>Address: {{ devicedetail.address }}</li>
+    <li>Subscribed By:
 
-</ul>
+    {% if subscriber is not defined %}
+      None
+    {% else %}
+        <ul>
+          {% for user in devicedetail.subscribed_by %}
+          <li><a href="{{ request.url_root }}users/{{ user.username }}">{{user.username}}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+    {% if session['userid'] not in subscriber %}
+    <form action="{{ request.url_root }}subscribe/devices" method="POST">
+      <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
+      <li><button type="submit">Subscribe</button></li>
+    </form>
+    {% else %}
+    <form action="{{ request.url_root }}unsubscribe/devices" method="POST">
+      <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
+      {% for oid in devicedetail.oid %}
+        {% if session['userid'] not in subscriber %}
+        {% else %}
+          {% if oid.subscribed_by %}
+            {% for subs in oid.subscribed_by %}
+              {% if session['userid'] == subs['id'] %}
+              <input type="hidden" name="oid_id[]" value="{{ oid.id }}">
+              {% else %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      <li><button type="submit">Unsubscribe</button></li>
+    </form>
+    {% endif %}
+  <li>OID:
+
+    <div>
+      <button type="button" id="editoidbutton" class="editphase">Edit OID</button>
+      <button style="display: none" type="button" id="uneditoidbutton" class="editphase">Cancel Edit</button>
+    </div>
+
+    <div class="oidlist">
+      <form>
+        {% if devicedetail.oid is not defined %}
+        {% else %}
+        <ul>
+          {% for oid in devicedetail.oid %}
+          <li data-oidname="{{ oid.id }}">
+            <span class="inputoidname">{{ oid.oidname }}</span>:
+            <span class="inputoid" >{{ oid.oid }}</span>
+            {% if session['userid'] not in subscriber %}
+            {% else %}
+              {% if oid.subscribed_by %}
+                {% for subs in oid.subscribed_by %}
+                  {% if session['userid'] == subs['id'] %}
+                  <button class="unsubscribeoid" type="button" data-oidid="{{ oid.id }}">Unsubscribe</button>
+                  {% else %}
+                  {% endif %}
+                {% endfor %}
+              {% else %}
+              <button class="subscribeoid" type="button" data-oidid="{{ oid.id }}">Subscribe</button>
+              {% endif %}
+            {% endif %}
+            <button class="deleteoid" style="display: none" type="button">-</button>
+          </li>
+          {% endfor %}
+        </ul>
+        <button style="display: none" type="button" id="addoid" class="editphase">Add OID</button><br>
+        <button style="display: none" type="button" id="submitedit" class="editphase">Submit</button>
+        {% endif %}
+      </form>
+    </div>
+  </li>
+
+  </ul>
+</body>
+
+<script type="text/javascript" charset="utf-8">
+
+  var currentState = $(".oidlist").children().find("ul").html();
+
+  $("#editoidbutton").on('click',function() {
+    $('.inputoid').each(function(index, element){
+      $(this).html('<input type="text" name="'+
+      'oid'+'[]'
+      +'" value="'+
+      $(this).html()
+      +'">'+
+      '<input type="hidden" name="'+
+      'oidid'+'[]'
+      +'" value="'+
+      $(this).parent().data('oidname')
+      +'">')
+    })
+
+    $('.inputoidname').each(function(index, element){
+      $(this).html('<input type="text" name="'+
+      'oidname'+'[]'
+      +'" value="'+
+      $(this).html()
+      +'">')
+    })
+
+    $(this).closest("div").find("button").toggle();
+    $(".oidlist").find("ul").find("li").children("button").toggle();
+    $(".oidlist").children().children("button").toggle();
+    // $(".editphase").toggle();
+  });
+
+  $(document.body).on('click', '.deleteoid', function() {
+    $(this).parent().remove();
+  });
+
+  $(document.body).on('click', '#addoid', function() {
+    $(this).parent().find("ul").append('<li><input type="text" name="oidname[]">'+': '+'<input type="text" name="oid[]"><input type="hidden" name="oidid[]"><button class="deleteoid" type="button">-</button></li>');
+  });
+
+  $(document.body).on('click', '#submitedit', function() {
+    console.log($(this).parent().serialize());
+    $.ajax({
+        url: '{{ request.url_root }}oid/edit',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: $(this).parent().serialize()
+    });
+  });
+
+  $("#uneditoidbutton").on('click',function() {
+    $(this).closest("div").find("button").toggle();
+    $(".oidlist").find("ul").find("li").children("button").toggle();
+    $(".oidlist").children().children("button").toggle();
+    // $(".editphase").toggle();
+
+    $(".oidlist").children().find("ul").html(currentState);
+  });
+
+  $(document.body).on('click', '.subscribeoid', function() {
+    // console.log($(this).data('oidid'));
+    $.ajax({
+        url: '{{ request.url_root }}subscribe/oid',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: { data : $(this).data('oidid') }
+    });
+  });
+
+  $(document.body).on('click', '.unsubscribeoid', function() {
+    // console.log($(this).data('oidid'));
+    $.ajax({
+        url: '{{ request.url_root }}unsubscribe/oid',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: { data : $(this).data('oidid') }
+    });
+  });
+</script>

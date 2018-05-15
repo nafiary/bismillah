@@ -1,0 +1,55 @@
+\documentclass[12pt,oneside,reqno]{ta-its}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{mdframed}
+\usepackage{wrapfig}
+
+\renewcommand{\lstlistingname}{Kode Sumber}
+\renewcommand{\lstlistlistingname}{DAFTAR KODE SUMBER}
+
+\input{chapters/0-A.tex}
+
+\begin{document}
+	\frontmatter % Halaman dengan penomoran romawi kecil
+	\maketitle
+	\legalityPaper % Lembar Pengesahan
+	
+    \input{chapters/0-Abstrak.tex}
+	\input{chapters/0-Kata_Pengantar.tex}
+
+	\cleardoublepage % Mengisi penanda halaman genap yang kosong
+
+	\tableofcontents % Daftar Isi
+	\listoftables % Daftar Tabel
+	\listoffigures % Daftar Gambar
+	\lstlistoflistings % Daftar Kode Sumber
+
+	\mainmatter
+	\input{chapters/1-Pendahuluan.tex}
+	\input{chapters/2-Tinjauan_Pustaka.tex}
+	\input{chapters/3-Desain_dan_Perancangan.tex}
+	\input{chapters/4-Implementasi.tex}
+	\input{chapters/5-Pengujian_dan_Evaluasi.tex}
+	\input{chapters/6-Penutup.tex}
+
+	\bibliography{Zotero}
+	\bibliographystyle{IEEEtranID.bst}
+    
+    \renewcommand\chaptername{LAMPIRAN}
+	\appendix
+    \input{chapters/7-Lampiran_A.tex}
+    \input{chapters/8-Lampiran_B.tex}
+
+	\appendix
+
+	\backmatter % Lampiran tanpa judul LAMPIRAN X, biasanya untuk BIODATA PENULIS
+	\chapter{BIODATA PENULIS}
+		\begin{wrapfigure}{l}{0.3\textwidth}
+			\includegraphics[width=0.29\textwidth]{Images/MFR.jpg}
+		\end{wrapfigure}
+		
+		\textbf{Muhammad Fahrul Razi}, akbrab dipanggil Razi lahir pada tanggal 23 November 1994 di Ilung, Kalimantan Selatan. Penulis merupakan seorang mahasiswa yang sedang menempuh studi di Jurusan Teknik Informatika Institut Teknologi Sepuluh Nopember. Memiliki hobi antara lain membaca novel dan futsal. Selama menempuh pendidikan di kampus, penulis juga aktif dalam organisasi kemahasiswaan, antara lain Staff Departemen Pengembangan Sumber Daya Mahasiswa Himpunan Mahasiswa Teknik Computer-Informatika pada tahun ke-2. Pernah menjadi staff National Programming Contest Schematics tahun 2014 dan 2015. Selain itu penulis pernah menjadi asisten dosen di mata kuliah Pemrograman Jaringan, serta asisten praktikum pada mata kuliah Dasar Pemrograman dan Struktur Data.
+\end{document}
+
+\end{document} % YAY, WELCOME TO REAL WORD :)
