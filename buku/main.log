@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.5.15)  15 MAY 2018 18:24
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2018.5.15)  22 MAY 2018 12:24
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1394,22 +1394,19 @@ BAB I.
 [1
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] [3]) (./chapters/2-Tinjauan_Pustaka.tex [4] [5] [6
+[2]) (./chapters/2-Tinjauan_Pustaka.tex [3] [4
 
 ]
 BAB II.
 LaTeX Font Info:    Font shape `EU1/TimesNewRoman(0)/bx/it' will be
 (Font)              scaled to size 11.27493pt on input line 2.
-[7]
+[5]
 File: Images/C-2/websocket.png Graphic file (type QTm)
  <use  "Images/C-2/websocket.png" >
 LaTeX Font Info:    Font shape `EU1/TimesNewRoman(0)/m/n' will be
@@ -1421,73 +1418,58 @@ LaTeX Font Info:    Font shape `EU1/TimesNewRoman(0)/m/it' will be
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8])
-(./chapters/3-Desain_dan_Perancangan.tex [9] [10
+ [6]
+[7] [8]
+File: Images/C-2/OID.png Graphic file (type QTm)
+ <use  "Images/C-2/OID.png" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
+[10]) (./chapters/3-Desain_dan_Perancangan.tex [11] [12
 
 ]
 BAB III.
 File: Images/C-3/usecase.png Graphic file (type QTm)
-<use  "Images/C-3/usecase.png" > [11] [12]
+<use  "Images/C-3/usecase.png" > [13] [14] [15]
 File: Images/C-3/main.png Graphic file (type QTm)
  <use  "Images/C-3/main.png" >
-[13]
-File: Images/C-3/loadbalancer.png Graphic file (type QTm)
- <use  "Images/C-3/loadbalancer.png" > [14] [15]
-File: Images/C-3/dockerregistry.png Graphic file (type QTm)
+[16] [17]
+File: Images/C-3/desainrestapi.png Graphic file (type QTm)
+ <use  "Images/C-3/desainrestapi.png" > [18]
+File: Images/C-3/desainpublisher.png Graphic file (type QTm)
 
-<use  "Images/C-3/dockerregistry.png" > [16]
-File: Images/C-3/controller.png Graphic file (type QTm)
-
-<use  "Images/C-3/controller.png" > [17]
-File: Images/C-3/endpointdockerregistry.png Graphic file (type QTm)
-
-<use  "Images/C-3/endpointdockerregistry.png" >
-Underfull \vbox (badness 1406) has occurred while \output is active []
-
- [18]
+<use  "Images/C-3/desainpublisher.png" >
+File: Images/C-3/desainpubsub.png Graphic file (type QTm)
+ <use  "Images/C-3/desainpubsub.png" >
+[19]
+File: Images/C-3/desaindb.png Graphic file (type QTm)
+ <use  "Images/C-3/desaindb.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19]
-[20]
-File: Images/C-3/masterhost.png Graphic file (type QTm)
- <use  "Images/C-3/masterhost.png" >
-File: Images/C-3/createcontainer.png Graphic file (type QTm)
-
-<use  "Images/C-3/createcontainer.png" > [21]
-File: Images/C-3/deletecontainer.png Graphic file (type QTm)
-
-<use  "Images/C-3/deletecontainer.png" > [22] [23]
-File: Images/C-3/dashboard.png Graphic file (type QTm)
-
-<use  "Images/C-3/dashboard.png" >
-File: Images/C-3/beranda.png Graphic file (type QTm)
- <use  "Images/C-3/beranda.png" > [24]
-File: Images/C-3/image.png Graphic file (type QTm)
-
-<use  "Images/C-3/image.png" >
-File: Images/C-3/container.png Graphic file (type QTm)
- <use  "Images/C-3/container.png" >
+ [20]
+[21]
+File: Images/C-3/antarmuka1.png Graphic file (type QTm)
+ <use  "Images/C-3/antarmuka1.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-File: Images/C-3/metrik.png Graphic file (type QTm)
+ [22]
+File: Images/C-3/antarmuka2.png Graphic file (type QTm)
 
-<use  "Images/C-3/metrik.png" >
-Underfull \vbox (badness 1048) has occurred while \output is active []
-
- [26])
-(./chapters/4-Implementasi.tex [27] [28
-
-]
+<use  "Images/C-3/antarmuka2.png" >
+File: Images/C-3/antarmuka3.png Graphic file (type QTm)
+ <use  "Images/C-3/antarmuka3.png" >
+[23]) (./chapters/4-Implementasi.tex [24]
 BAB IV.
-[29] [30] [31] [32] [33]
+[25
+
+] [26] [27] [28] [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34]
-[35]
+ [30]
+[31]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36]
+ [32]
 Overfull \hbox (4.92569pt too wide) in paragraph at lines 101--101
 []|\EU1/TimesNewRoman(0)/bx/n/10.95 No| 
  []
@@ -1512,7 +1494,7 @@ Overfull \hbox (3.1087pt too wide) in alignment at lines 104--113
  [] [] [] [] 
  []
 
-[37]
+[33]
 Overfull \hbox (4.92569pt too wide) in paragraph at lines 120--120
 []|\EU1/TimesNewRoman(0)/bx/n/10.95 No| 
  []
@@ -1537,7 +1519,7 @@ Overfull \hbox (3.1087pt too wide) in alignment at lines 123--129
  [] [] [] [] 
  []
 
-[38]
+[34]
 Overfull \hbox (4.92569pt too wide) in paragraph at lines 136--136
 []|\EU1/TimesNewRoman(0)/bx/n/10.95 No| 
  []
@@ -1566,15 +1548,15 @@ File: Images/C-4/docp.png Graphic file (type QTm)
 <use  "Images/C-4/docp.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]
-[40] [41] [42] [43] [44] [45] [46]
+ [35]
+[36] [37] [38] [39] [40] [41] [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
-[48] [49] [50]
+ [43]
+[44] [45] [46]
 LaTeX Font Info:    Font shape `EU1/CourierNew(0)/m/n' will be
 (Font)              scaled to size 8.09995pt on input line 282.
- [51]
+ [47]
 File: Images/C-4/dasberanda.PNG Graphic file (type QTm)
  <use  "Images/C-4/dasberanda.PNG" >
 Overfull \hbox (25.61192pt too wide) in paragraph at lines 302--303
@@ -1584,7 +1566,7 @@ Overfull \hbox (25.61192pt too wide) in paragraph at lines 302--303
 
 Underfull \vbox (badness 1558) has occurred while \output is active []
 
- [52]
+ [48]
 File: Images/C-4/dasinformasi.PNG Graphic file (type QTm)
 
 <use  "Images/C-4/dasinformasi.PNG" >
@@ -1592,7 +1574,7 @@ Overfull \hbox (25.61136pt too wide) in paragraph at lines 310--311
  [][] 
  []
 
-[53]
+[49]
 File: Images/C-4/dasdafcont.PNG Graphic file (type QTm)
  <use  "Images/C-4/dasdafcont.PNG" >
 Overfull \hbox (25.60373pt too wide) in paragraph at lines 320--321
@@ -1605,7 +1587,7 @@ Overfull \hbox (25.6045pt too wide) in paragraph at lines 329--330
  [][] 
  []
 
-) (./chapters/5-Pengujian_dan_Evaluasi.tex [54] [55] [56
+) (./chapters/5-Pengujian_dan_Evaluasi.tex [50] [51] [52
 
 ]
 BAB V.
@@ -1634,13 +1616,13 @@ Overfull \hbox (17.76279pt too wide) in alignment at lines 15--23
  [] [] [] [] 
  []
 
-[57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67]
+[53] [54] [55] [56] [57] [58] [59] [60] [61] [62] [63]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [68]
-[69]
+ [64]
+[65]
 File: Images/C-5/jumlahcontainer.png Graphic file (type QTm)
- <use  "Images/C-5/jumlahcontainer.png" > [70]
+ <use  "Images/C-5/jumlahcontainer.png" > [66]
 Overfull \hbox (2.86229pt too wide) in paragraph at lines 235--235
 []|\EU1/TimesNewRoman(0)/m/n/10.95 ARIMA(1,1,0)| 
  []
@@ -1761,7 +1743,7 @@ Overfull \hbox (1.55699pt too wide) in paragraph at lines 238--238
  []
 
 File: Images/C-5/runningtime.png Graphic file (type QTm)
-<use  "Images/C-5/runningtime.png" > [71]
+<use  "Images/C-5/runningtime.png" > [67]
 Overfull \hbox (2.86229pt too wide) in paragraph at lines 263--263
 []|\EU1/TimesNewRoman(0)/m/n/10.95 ARIMA(1,1,0)| 
  []
@@ -1785,7 +1767,7 @@ File: Images/C-5/cpuusage.png Graphic file (type QTm)
 <use  "Images/C-5/cpuusage.png" >
 Underfull \vbox (badness 2913) has occurred while \output is active []
 
- [72]
+ [68]
 Overfull \hbox (2.86229pt too wide) in paragraph at lines 293--293
 []|\EU1/TimesNewRoman(0)/m/n/10.95 ARIMA(1,1,0)| 
  []
@@ -1866,7 +1848,7 @@ Overfull \hbox (1.55699pt too wide) in paragraph at lines 296--296
  []
 
 File: Images/C-5/memoryusage.png Graphic file (type QTm)
-<use  "Images/C-5/memoryusage.png" > [73]
+<use  "Images/C-5/memoryusage.png" > [69]
 Overfull \hbox (2.86229pt too wide) in paragraph at lines 323--323
 []|\EU1/TimesNewRoman(0)/m/n/10.95 ARIMA(1,1,0)| 
  []
@@ -1922,38 +1904,38 @@ Overfull \hbox (2.86229pt too wide) in paragraph at lines 326--326
  []
 
 File: Images/C-5/errorratio.png Graphic file (type QTm)
-<use  "Images/C-5/errorratio.png" >) (./chapters/6-Penutup.tex [74] [75]
-[76
+<use  "Images/C-5/errorratio.png" >) (./chapters/6-Penutup.tex [70] [71]
+[72
 
 ]
 BAB VI.
-[77]) (./main.bbl [78]) (./chapters/7-Lampiran_A.tex [79
+[73]) (./main.bbl [74]) (./chapters/7-Lampiran_A.tex [75
 
-] [80
+] [76
 
 ]
 Lampiran A.
+[77] [78] [79]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [80]
 [81] [82] [83]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [84]
-[85] [86] [87]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [88]
-[89] [90]) (./chapters/8-Lampiran_B.tex [91] [92
+[85] [86]) (./chapters/8-Lampiran_B.tex [87] [88
 
 ]
 Lampiran B.
 
 Underfull \vbox (badness 3919) has occurred while \output is active []
 
- [93])
-[94]
+ [89])
+[90]
 File: Images/MFR.jpg Graphic file (type QTm)
  <use  "Images/MFR.jpg" >
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
- [95
+ [91
 
 
 ]
@@ -1967,12 +1949,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 27771 strings out of 493638
- 484649 string characters out of 6146796
- 617649 words of memory out of 5000000
- 30797 multiletter control sequences out of 15000+600000
+ 27762 strings out of 493638
+ 484428 string characters out of 6146796
+ 617660 words of memory out of 5000000
+ 30792 multiletter control sequences out of 15000+600000
  7051 words of font info for 63 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  55i,12n,63p,10396b,1830s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (119 pages).
+Output written on main.pdf (115 pages).

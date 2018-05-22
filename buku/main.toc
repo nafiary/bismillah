@@ -8,77 +8,77 @@
 \contentsline {chapter}{DAFTAR KODE SUMBER}{xxi}{chapter*.6}
 \contentsline {chapter}{\numberline {I}PENDAHULUAN}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Rumusan Masalah}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Batasan Masalah}{4}{section.1.3}
-\contentsline {section}{\numberline {1.4}Tujuan}{4}{section.1.4}
-\contentsline {section}{\numberline {1.5}Manfaat}{4}{section.1.5}
-\contentsline {chapter}{\numberline {II}TINJAUAN PUSTAKA}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}\textit {Publish/subscribe}}{7}{section.2.1}
-\contentsline {section}{\numberline {2.2}\textit {Websocket}}{7}{section.2.2}
-\contentsline {section}{\numberline {2.3}\textit {SNMP}}{9}{section.2.3}
-\contentsline {chapter}{\numberline {III}DESAIN DAN PERANCANGAN}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Kasus Penggunaan}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Arsitektur Sistem}{13}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Desain Umum Sistem}{13}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Desain Load Balancer}{14}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Desain Private Docker Registry}{16}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Desain \textit {Server Controller}}{17}{subsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.4.1}Perancangan Endpoint}{18}{subsubsection.3.2.4.1}
-\contentsline {subsubsection}{\numberline {3.2.4.2}Perancangan Sistem Monitoring}{20}{subsubsection.3.2.4.2}
-\contentsline {subsubsection}{\numberline {3.2.4.3}Penggunaan Task Queue}{20}{subsubsection.3.2.4.3}
-\contentsline {subsection}{\numberline {3.2.5}Desain Master Host}{21}{subsection.3.2.5}
-\contentsline {subsection}{\numberline {3.2.6}Desain Dasbor}{24}{subsection.3.2.6}
-\contentsline {chapter}{\numberline {IV}IMPLEMENTASI}{29}{chapter.4}
-\contentsline {section}{\numberline {4.1}Lingkungan Implementasi}{29}{section.4.1}
-\contentsline {section}{\numberline {4.2}Implementasi Docker \textit {Registry}}{29}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Pengaturan \textit {Notification}}{29}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Melakukan Akses Terhadap \textit {Docker Registry}}{31}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Menambahkan dan memperbarui aplikasi}{32}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Implementasi Master Host}{33}{section.4.3}
-\contentsline {section}{\numberline {4.4}Implementasi Server Controller}{35}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}\textit {Endpoint Docker Regsitry}}{35}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Skema Basis Data Controller Menggunakan MySQL}{37}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Menambahkan dan Menghapus Domain}{40}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Implementasi Task Queue Menggunakan Redis}{41}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Penyimpanan Konfigurasi Load Balancer pada etcd}{42}{subsection.4.4.5}
-\contentsline {subsection}{\numberline {4.4.6}Implementasi Program Monitoring HAProxy}{43}{subsection.4.4.6}
-\contentsline {subsection}{\numberline {4.4.7}Implementasi Program Monitoring Server Master}{44}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Implementasi Pengendali Elastasitas}{46}{subsection.4.4.8}
-\contentsline {subsection}{\numberline {4.4.9}Implementasi \textit {Endpoint} Dasbor}{48}{subsection.4.4.9}
-\contentsline {section}{\numberline {4.5}Implementasi Load Balancer}{49}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Pengaturan Teknik \textit {Balancing}}{49}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Pengaturan Domain}{50}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Pengaturan \textit {Endpoint Log}}{50}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Pangaturan \textit {Hot-Upgrade}}{51}{subsection.4.5.4}
-\contentsline {section}{\numberline {4.6}Implementasi Dasbor}{52}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Daftar Aplikasi}{52}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Informasi Aplikasi}{53}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}Daftar \textit {Container}}{54}{subsection.4.6.3}
-\contentsline {subsection}{\numberline {4.6.4}Metrik Aplikasi}{54}{subsection.4.6.4}
-\contentsline {chapter}{\numberline {V}PENGUJIAN DAN EVALUASI}{57}{chapter.5}
-\contentsline {section}{\numberline {5.1}Lingkungan Uji Coba}{57}{section.5.1}
-\contentsline {section}{\numberline {5.2}Skenario Uji Coba}{58}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Skenario Uji Coba Fungsionalitas}{59}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Uji Mengelola Aplikasi Berbasis Docker}{59}{subsubsection.5.2.1.1}
-\contentsline {subsubsection}{\numberline {5.2.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{61}{subsubsection.5.2.1.2}
-\contentsline {subsection}{\numberline {5.2.2}Skenario Uji Coba Performa}{63}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Uji Performa Kecepatan Menangani \textit {Request}}{64}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Uji Performa Penggunaan CPU}{64}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Uji Performa Penggunaan \textit {Memory}}{65}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Uji Performa Keberhasilan \textit {Request}}{65}{subsubsection.5.2.2.4}
-\contentsline {section}{\numberline {5.3}Hasil Uji Coba dan Evaluasi}{65}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Uji Fungsionalitas}{65}{subsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Uji Mengelola Aplikasi Berbasis Docker}{66}{subsubsection.5.3.1.1}
-\contentsline {subsubsection}{\numberline {5.3.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{66}{subsubsection.5.3.1.2}
-\contentsline {subsection}{\numberline {5.3.2}Hasil Uji Performa}{69}{subsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.2.1}Kecepatan Menangani \textit {Request}}{70}{subsubsection.5.3.2.1}
-\contentsline {subsubsection}{\numberline {5.3.2.2}Penggunaan CPU}{71}{subsubsection.5.3.2.2}
-\contentsline {subsubsection}{\numberline {5.3.2.3}Penggunaan \textit {Memory}}{73}{subsubsection.5.3.2.3}
-\contentsline {subsubsection}{\numberline {5.3.2.4}Keberhasilan \textit {Request}}{74}{subsubsection.5.3.2.4}
-\contentsline {chapter}{\numberline {VI}PENUTUP}{77}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{77}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{78}{section.6.2}
-\contentsline {chapter}{DAFTAR PUSTAKA}{79}{chapter*.32}
-\contentsline {chapter}{\numberline {A}INSTALASI PERANGKAT LUNAK}{81}{appendix.A}
-\contentsline {chapter}{\numberline {B}KODE SUMBER}{93}{appendix.B}
-\contentsline {chapter}{BIODATA PENULIS}{95}{appendix*.33}
+\contentsline {section}{\numberline {1.2}Rumusan Masalah}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Batasan Masalah}{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}Tujuan}{2}{section.1.4}
+\contentsline {section}{\numberline {1.5}Manfaat}{3}{section.1.5}
+\contentsline {chapter}{\numberline {II}TINJAUAN PUSTAKA}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}\textit {Publish/subscribe}}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}\textit {Websocket}}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}SNMP}{7}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}OID}{9}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}Nagios}{10}{section.2.4}
+\contentsline {section}{\numberline {2.5}REST API}{11}{section.2.5}
+\contentsline {chapter}{\numberline {III}DESAIN DAN PERANCANGAN}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Kasus Penggunaan}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Arsitektur Sistem}{15}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Desain Umum Sistem}{15}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Desain REST API}{16}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Desain Publisher Server}{18}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Desain Pub/Sub Server}{19}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Desain Database Server}{21}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Desain Antarmuka}{21}{subsection.3.2.6}
+\contentsline {chapter}{\numberline {IV}IMPLEMENTASI}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Lingkungan Implementasi}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Implementasi Docker \textit {Registry}}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Pengaturan \textit {Notification}}{25}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Melakukan Akses Terhadap \textit {Docker Registry}}{27}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Menambahkan dan memperbarui aplikasi}{28}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Implementasi Master Host}{29}{section.4.3}
+\contentsline {section}{\numberline {4.4}Implementasi Server Controller}{31}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}\textit {Endpoint Docker Regsitry}}{31}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Skema Basis Data Controller Menggunakan MySQL}{33}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Menambahkan dan Menghapus Domain}{36}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Implementasi Task Queue Menggunakan Redis}{37}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Penyimpanan Konfigurasi Load Balancer pada etcd}{38}{subsection.4.4.5}
+\contentsline {subsection}{\numberline {4.4.6}Implementasi Program Monitoring HAProxy}{39}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.7}Implementasi Program Monitoring Server Master}{40}{subsection.4.4.7}
+\contentsline {subsection}{\numberline {4.4.8}Implementasi Pengendali Elastasitas}{42}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Implementasi \textit {Endpoint} Dasbor}{44}{subsection.4.4.9}
+\contentsline {section}{\numberline {4.5}Implementasi Load Balancer}{45}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Pengaturan Teknik \textit {Balancing}}{45}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Pengaturan Domain}{46}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Pengaturan \textit {Endpoint Log}}{46}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Pangaturan \textit {Hot-Upgrade}}{47}{subsection.4.5.4}
+\contentsline {section}{\numberline {4.6}Implementasi Dasbor}{48}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Daftar Aplikasi}{48}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Informasi Aplikasi}{49}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Daftar \textit {Container}}{50}{subsection.4.6.3}
+\contentsline {subsection}{\numberline {4.6.4}Metrik Aplikasi}{50}{subsection.4.6.4}
+\contentsline {chapter}{\numberline {V}PENGUJIAN DAN EVALUASI}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Lingkungan Uji Coba}{53}{section.5.1}
+\contentsline {section}{\numberline {5.2}Skenario Uji Coba}{54}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Skenario Uji Coba Fungsionalitas}{55}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Uji Mengelola Aplikasi Berbasis Docker}{55}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{57}{subsubsection.5.2.1.2}
+\contentsline {subsection}{\numberline {5.2.2}Skenario Uji Coba Performa}{59}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Uji Performa Kecepatan Menangani \textit {Request}}{60}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Uji Performa Penggunaan CPU}{60}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.3}Uji Performa Penggunaan \textit {Memory}}{61}{subsubsection.5.2.2.3}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Uji Performa Keberhasilan \textit {Request}}{61}{subsubsection.5.2.2.4}
+\contentsline {section}{\numberline {5.3}Hasil Uji Coba dan Evaluasi}{61}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Uji Fungsionalitas}{61}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Uji Mengelola Aplikasi Berbasis Docker}{62}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{62}{subsubsection.5.3.1.2}
+\contentsline {subsection}{\numberline {5.3.2}Hasil Uji Performa}{65}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Kecepatan Menangani \textit {Request}}{66}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Penggunaan CPU}{67}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.3.2.3}Penggunaan \textit {Memory}}{69}{subsubsection.5.3.2.3}
+\contentsline {subsubsection}{\numberline {5.3.2.4}Keberhasilan \textit {Request}}{70}{subsubsection.5.3.2.4}
+\contentsline {chapter}{\numberline {VI}PENUTUP}{73}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{73}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{74}{section.6.2}
+\contentsline {chapter}{DAFTAR PUSTAKA}{75}{chapter*.28}
+\contentsline {chapter}{\numberline {A}INSTALASI PERANGKAT LUNAK}{77}{appendix.A}
+\contentsline {chapter}{\numberline {B}KODE SUMBER}{89}{appendix.B}
+\contentsline {chapter}{BIODATA PENULIS}{91}{appendix*.29}

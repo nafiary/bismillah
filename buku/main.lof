@@ -2,34 +2,30 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Model Komunikasi \textit {Websocket}\relax }}{9}{figure.caption.7}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Model Komunikasi \textit {Websocket}\relax }}{7}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Contoh \textit {Object Identifier} (OID)\relax }}{10}{figure.caption.8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Kasus Penggunaan\relax }}{11}{figure.caption.8}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Desain Umum Sistem\relax }}{14}{figure.caption.9}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Desain Load Balancer\relax }}{15}{figure.caption.10}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Desain Docker Registry\relax }}{17}{figure.caption.11}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Desain Controller\relax }}{18}{figure.caption.12}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Diagram Alur Pengelolaan \textit {Notification} Docker \textit {Registry}\relax }}{19}{figure.caption.13}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Desain Master Host\relax }}{21}{figure.caption.14}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Diagram Alur Menjalankan \textit {Container}\relax }}{22}{figure.caption.15}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Diagram Alur Menghentikan \textit {Container}\relax }}{23}{figure.caption.16}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Desain Dasbor\relax }}{24}{figure.caption.17}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Desain Antar Muka Dasbor Beranda\relax }}{25}{figure.caption.18}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Desain Antar Muka Informasi Aplikasi\relax }}{25}{figure.caption.19}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Desain Antar Muka Daftar Container\relax }}{26}{figure.caption.20}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Desain Antar Muka Metrik Aplikasi\relax }}{27}{figure.caption.21}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Kasus Penggunaan\relax }}{13}{figure.caption.9}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Desain Umum Sistem\relax }}{16}{figure.caption.10}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Desain REST API\relax }}{18}{figure.caption.11}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Desain Publisher Server\relax }}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Desain Pub/Sub Server\relax }}{20}{figure.caption.13}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Desain Database\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Desain Antarmuka Menampilkan Daftar Perangkat Yang Tersedia\relax }}{22}{figure.caption.15}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Desain Antarmuka Menampilkan Rincian dari Perangkat Terkait\relax }}{23}{figure.caption.16}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Desain Antarmuka Pemantauan Perangkat\relax }}{24}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces DigitalOcean Control Panel\relax }}{40}{figure.caption.22}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Dasbor Daftar Aplikasi\relax }}{53}{figure.caption.23}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Dasbor Informasi Aplikasi\relax }}{53}{figure.caption.24}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Dasbor Daftar \textit {Container}\relax }}{54}{figure.caption.25}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Dasbor Matrik Aplikasi\relax }}{55}{figure.caption.26}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces DigitalOcean Control Panel\relax }}{36}{figure.caption.18}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Dasbor Daftar Aplikasi\relax }}{49}{figure.caption.19}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Dasbor Informasi Aplikasi\relax }}{49}{figure.caption.20}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Dasbor Daftar \textit {Container}\relax }}{50}{figure.caption.21}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Dasbor Matrik Aplikasi\relax }}{51}{figure.caption.22}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafik Jumlah \textit {Container}\relax }}{70}{figure.caption.27}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Grafik Kecepatan Menangani \textit {Request}\relax }}{71}{figure.caption.28}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Grafik Penggunaan CPU\relax }}{72}{figure.caption.29}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Grafik Penggunaan Memory\relax }}{73}{figure.caption.30}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Grafik Error Ratio\relax }}{74}{figure.caption.31}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafik Jumlah \textit {Container}\relax }}{66}{figure.caption.23}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Grafik Kecepatan Menangani \textit {Request}\relax }}{67}{figure.caption.24}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Grafik Penggunaan CPU\relax }}{68}{figure.caption.25}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Grafik Penggunaan Memory\relax }}{69}{figure.caption.26}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Grafik Error Ratio\relax }}{70}{figure.caption.27}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
