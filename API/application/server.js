@@ -60,9 +60,12 @@ io.on('connection', function (socket) {
           consumerChannel = ch
           var q;
               function allDone(notAborted, arr) {
-                ch.consume(q, logMessage, {noAck: true})
-                .then(() => {
-                  console.log(' [*] Waiting for '+msg['data']+'.');
+                var okok = ch.prefetch(1)
+                okok = okok.then(() => {
+                  return ch.consume(q, logMessage, {noAck: true})
+                  .then(() => {
+                    console.log(' [*] Waiting for '+msg['data']+'.');
+                  })
                 })
               }
               forEach(msg['data'], function (item, index, arr) {

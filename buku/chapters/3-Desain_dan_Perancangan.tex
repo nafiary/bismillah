@@ -45,44 +45,9 @@
 			\end{figure}
 
 		\subsection{Desain REST API}
-            	REST API bertujuan untuk menjadikan sistem yang memiliki performa yang baik, cepat dan mudah untuk di kembangkan (scale) terutama dalam pertukaran dan komunikasi data. REST API diakses menggunakan protokol HTTP. Penamaan dan struktur URL yang konsisten akan menghasilkan API yang baik dan mudah untuk dimengerti developer. URL API biasa disebut endpoint dalam pemanggilannya.
+            	REST API bertujuan untuk menjadikan sistem yang memiliki performa yang baik, cepat dan mudah untuk di kembangkan (scaleable) terutama dalam pertukaran dan komunikasi data. REST API diakses menggunakan protokol HTTP. Penamaan dan struktur URL yang konsisten akan menghasilkan API yang baik dan mudah untuk dimengerti developer. URL API biasa disebut endpoint dalam pemanggilannya.
             	
-            	Pada sistem ini terdapat beberapa endpoint, beberapa endpoint dibagi menjadi beberapa endpoint sesuai dengan perintah yang diajalankannya. misal: create, read, delete, update dan lain-lain. berikut ini adalah daftar endpoint yang dibutuhkan pada sistem ini:
-            	\begin{enumerate}
-            		\item "/"
-            		\item "/register"
-            		\item "/login"
-					\item "/logout"
-					\item "/users"
-					\begin{enumerate}
-						\item "/users/<id:string>"
-						\item "/users/edit"
-						\item "/users/delete"
-					\end{enumerate}
-					\item "/devices"
-					\begin{enumerate}
-						\item "/devices/<id:string>"
-						\item "/devices/create"
-						\item "/devices/edit"
-						\item "/devices/delete"
-					\end{enumerate}
-					\item "/oid"
-					\begin{enumerate}
-						\item "/oid/create"
-						\item "/oid/edit"
-						\item "/oid/delete"
-					\end{enumerate}
-					\item "/subscribe"
-					\begin{enumerate}
-						\item "/subscribe/devices"
-						\item "/subscribe/oid"
-					\end{enumerate}
-					\item "/unsubscribe"
-					\begin{enumerate}
-						\item "/unsubscribe/devices"
-						\item "/unsubscribe/oid"
-					\end{enumerate}           		
-            	\end{enumerate}
+            	Pada sistem ini terdapat beberapa endpoint, beberapa endpoint dibagi menjadi beberapa endpoint sesuai dengan perintah yang diajalankannya. misal: create, read, delete, update dan lain-lain.
             	
             	Server aplikasi mengirimkan HTTP request kepada REST API yang nantinya REST API akan melakukan trasaksi data pada database sesuai dengan endpointnya masing-masing. setelah itu REST API akan mengirimkan HTTP response kepada server aplikasi.
             	
@@ -109,9 +74,14 @@
 			\end{figure}
                 
 		\subsection{Desain Pub/Sub Server}
-			Publish/subscribe server atau bisa juga disebut pub/sub server. yaitu sebuah server untuk menampung seluruh pesan yang dikirimkan oleh publisher. didalamnya terpasang aplikasi message broker yaitu RabbitMQ. seluruh pesan yang dikirimkan oleh publisher dikirimkan ke pub/sub server melalui sebuah exchange yang diikat dengan sebuah queue setelah itu server akan menyimpan pesan queue tersebut hingga ada consumer yang meminta data tersebut untuk dikirimkan. dalam kasus ini yang bertindak sebagai consumer adalah websocket server.
+			Publish/subscribe server atau bisa juga disebut pub/sub server. yaitu sebuah server untuk menampung seluruh pesan yang dikirimkan oleh publisher. didalamnya terpasang aplikasi message broker yaitu \texttt{RabbitMQ}. seluruh pesan yang dikirimkan oleh publisher dikirimkan ke pub/sub server melalui sebuah exchange yang diikat dengan sebuah queue setelah itu server akan menyimpan pesan queue tersebut hingga ada consumer yang meminta data tersebut untuk dikirimkan. dalam kasus ini yang bertindak sebagai consumer adalah websocket server.
 			
-			Di sisi websocket dan server aplikasi, websocket menginisiasi sebuah exchange yang namanya dibuat berdasarkan uuid versi 4 dari tiap perangkat yang ingin dipantau dari database server, dengan syarat exchange dengan nama tersebut belum dibuat atau terdaftar sebelumnya. jika exchange dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada server maka websocket server tidak perlu membuat exchange tersebut. begitu juga dengan queue-nya. queue dibuat dengan nama uuid yang telah dibuat acak oleh client dengan algoritma uuid versi 4. setelah itu websocket baru mengambil data pereangkat sesuai dengan data apa saja yang dilanggani oleh client.
+			Di sisi websocket dan server aplikasi, websocket menginisiasi sebuah exchange yang namanya dibuat berdasarkan uuid versi 4 dari tiap perangkat yang ingin dipantau dari database server, dengan syarat exchange dengan nama tersebut belum dibuat atau terdaftar sebelumnya. jika exchange dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub server maka websocket server tidak perlu membuat exchange tersebut.
+			
+			Begitu juga dengan queue-nya. queue dibuat dengan nama uuid yang telah dibuat acak oleh client dengan algoritma uuid versi 4, dengan syarat queue dengan nama tersebut belum dibuat atau terdaftar sebelumnya. Jika queue dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub server maka websocket server tidak perlu membuat queue tersebut.
+			
+	 		Setelah menghadapi masalah pembuatan exchange dan queue, websocket baru mengambil data perangkat pada pub/sub server sesuai dengan data apa saja yang dilanggani oleh client.
+	 		
         	Secara umum, arsitektur rancangan dari \textit{Pub/Sub Server} dapat dilihat pada Gambar \ref{desain:desainpubsub}.
         	\begin{figure}[H]
 				\centering
@@ -119,17 +89,27 @@
 				\caption{Desain Pub/Sub Server}
 				\label{desain:desainpubsub}
 			\end{figure}
-            
+		
+		\subsection{Desain Consumer pada Application Server dan Websocket}
+			Consumer berfungsi untuk mengambil data yang dibutuhkan oleh client dari pub/sub server. Pada sistem ini, consumer didesain untuk diimplementasikan pada websocket agar data yang diterima oleh client adalah data yang paling terbaru (realtime). websocket ini nantinya akan disambungkan dengan sebuah endpoint (URL) pada aplikasi.
+			
+			Consumer ini nantinya akan membuat sebuah queue dengan nama yang ditentukan oleh client. nama dari queue tersebut ditentukan dengan membuat string UUID versi 4 secara acak. Setelah berhasil membuat queue, consumer membuat exchange yang banyaknya sejumlah perangkat yang terdaftar pada sistem dan exchange tersebut diberi nama sesuai dengan ID pada masing-masing perangkat yang dimana ID tersebut berformat UUID versi 4. Pembuatan queue dan exchange akan dilakukan jika queue dan exchange belum terdaftar pada pub/sub server. jika queue dan exchange sudah terdaftar, maka tidak akan ada queue dan exchange yang akan dibuat. Setelah queue dan exchange berhasil dibuat. queue tersebut akan diikat dengan satu atau lebih exchange. lewat queue tersebutlah data akan dikirim. ilustrasi cara kerja queue dan exchange dapat dilihat pada gambar \ref{desain:consumer}.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[height=3cm]{Images/C-3/pubsubillus.png}
+				\caption{Ilustrasi Cara Kerja Queue dan Exchange}
+				\label{desain:consumer}
+			\end{figure}
 
-        \subsection{Desain Database Server}
+        \subsection{Desain Database Server}        	
+        	Desain database pada sistem ini adalah seperti yang digambarkan pada gambar \ref{desain:desaindatabase}. Terdapat tiga tabel utama yang mewakili tiap entitas yang terlibat dalam sistem ini, yaitu: users, devices, dan oid. selain itu, terdapat dua table many-to-many untuk menyimpan data pengguna yang telah berlangganan kepada tiap perangkat dan pengguna yang berlangganan kepada tiap OID (untuk mengetahui informasi apa saja yang ada pada tiap perangkat. tiap OID memiliki informasi yang berbeda).
+        	
         	\begin{figure}[H]
         		\centering
         		\includegraphics[width=9cm]{Images/C-3/desaindb.png}
         		\caption{Desain Database}
         		\label{desain:desaindatabase}
         	\end{figure}
-        	
-        	Desain database pada sistem ini adalah seperti yang digambarkan pada gambar \ref{desain:desaindatabase}. Terdapat tiga tabel utama yang mewakili tiap entitas yang terlibat dalam sistem ini, yaitu: users, devices, dan oid. selain itu, terdapat dua table many-to-many untuk menyimpan data pengguna yang telah berlangganan kepada tiap perangkat dan pengguna yang berlangganan kepada tiap OID (untuk mengetahui informasi apa saja yang ada pada tiap perangkat. tiap OID memiliki informasi yang berbeda).
         	
 		\subsection{Desain Antarmuka}
 			Desain antarmuka adalah desain untuk halaman yang nantinya akan digunakan oleh client baik itu pengguna (user) ataupun pengelola (admin). Antarmuka yang nantinya dibuat berbasis web dan  menggunakan Bootstrap 3 dan HTML. terdapat beberapa perbedaan pada antarmuka yang digunakan oleh pengelola dan pengguna. Misal, pada antarmuka yang digunakan pengguna tidak ada tombol untuk menghapus data perangkat, sedangkan pada antarmuka yang digunakan oleh pengelola terdapat tombol untuk menghapus data perangkat yang telah terdaftar.
@@ -152,10 +132,11 @@
 	        	\label{desain:antarmuka2}
 	        \end{figure}
         
+	        \begin{figure}[H]
+	        	\centering
+	        	\includegraphics[width=9cm]{Images/C-3/antarmuka3.png}
+	        	\caption{Desain Antarmuka Pemantauan Perangkat}
+	        	\label{desain:antarmuka3}
+	        \end{figure}
+        
         	Desain antamuka pemantauan pernangkat dapat dilihat pada gambar \ref{desain:antarmuka3}. pada halaman ini, pengguna dan pengelola akan mendapatkan data dari seluruh perangkat yang sudah dilanggani. data yang ditampilkan pada halaman ini dipilih berdasarkan info yang dipilih pada antarmuka menampilkan rincian dari antarmuka terkait yang bisa dilihat pada gambar \ref{desain:antarmuka2}.
-		    \begin{figure}[H]
-		    	\centering
-		    	\includegraphics[width=9cm]{Images/C-3/antarmuka3.png}
-		    	\caption{Desain Antarmuka Pemantauan Perangkat}
-		    	\label{desain:antarmuka3}
-		    \end{figure}
