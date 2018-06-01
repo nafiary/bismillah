@@ -296,7 +296,7 @@
         Dosen Pembimbing II\\*%
     	\pembimbingDua
     }{} \\*[32pt]%
-    JURUSAN \MakeUppercase{\jurusan} \\*%
+    DEPARTEMEN \MakeUppercase{\jurusan} \\*%
     Fakultas \fakultas \\*%
     Institut Teknologi Sepuluh Nopember \\*%
     Surabaya, \tahun \\*%

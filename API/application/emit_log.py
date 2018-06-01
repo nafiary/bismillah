@@ -77,19 +77,20 @@ def rabbitMq(exchange, address):
             oid['snmpresult'] = 'SNMP CRITICAL - Error while checking related OID'
             message = json.dumps(oidList)
 
+    # print json.dumps({ 'msg' : message, 'sendtime' : time.time() })
     connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     channel = connection.channel()
 
     try:
         channel.basic_publish(exchange=str(exchange),
                               routing_key='',
-                              body=message)
+                              body=json.dumps({ 'msg' : message, 'sendtime' : time.time() }))
     except Exception as e:
         channel.exchange_declare(exchange=str(exchange),
                                  exchange_type='fanout')
         channel.basic_publish(exchange=str(exchange),
                               routing_key='',
-                              body=message)
+                              body=json.dumps({ 'msg' : message, 'sendtime' : time.time() }))
     print(" [x] Sent %r" % message)
     connection.close()
 

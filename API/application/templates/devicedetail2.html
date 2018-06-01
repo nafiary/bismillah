@@ -1,0 +1,266 @@
+{% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <h2 class="content-heading">Devices</h2>
+
+        <!-- Dynamic Table Full Pagination -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Device Detail</h3>
+                <div class="block-options">
+                    <div class="block-options-item">
+                        <a href="{{ request.url_root }}devices/edit/{{ devicedetail.id }}"><button type="button" class="btn btn-primary" name="button">Edit Devices</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                <table class="table table-borderless table-vcenter">
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>:</td>
+                            <td>{{ devicedetail.id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td>{{ devicedetail.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>:</td>
+                            <td>{{ devicedetail.type }}</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>:</td>
+                            <td>{{ devicedetail.location }}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>:</td>
+                            <td>{{ devicedetail.address }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Dynamic Table Full Pagination -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Subscriber</h3>
+                <div class="block-options">
+                    <div class="block-options-item">
+                      {% if session['userid'] not in subscriber %}
+                      <form action="{{ request.url_root }}subscribe/devices" method="POST">
+                        <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
+                        <button type="submit" class="btn btn-success">Subscribe</button>
+                      </form>
+                      {% else %}
+                      <form action="{{ request.url_root }}unsubscribe/devices" method="POST">
+                        <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
+                        {% for oid in devicedetail.oid %}
+                          {% if session['userid'] not in subscriber %}
+                          {% else %}
+                            {% if oid.subscribed_by %}
+                              {% for subs in oid.subscribed_by %}
+                                {% if session['userid'] == subs['id'] %}
+                                <input type="hidden" name="oid_id[]" value="{{ oid.id }}">
+                                {% else %}
+                                {% endif %}
+                              {% endfor %}
+                            {% else %}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                        <button type="submit" class="btn btn-danger">Unsubscribe</button>
+                      </form>
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                <table class="table table-borderless table-vcenter">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th>Name</th>
+                            <th class="text-center" style="width: 100px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if subscriber is not defined %}
+                          None
+                        {% else %}
+                        <tr>
+                            {% for user in devicedetail.subscribed_by %}
+                            <td>{{ loop.index }}</td>
+                            <td>{{ user.username }}</td>
+                            <td><a href="{{ request.url_root }}users/{{ user.username }}"><button type="button" class="btn btn-primary">Info</button></a></td>
+                            {% endfor %}
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">OID</h3>
+                <div class="block-options">
+                  <div>
+                    <button type="button" id="editoidbutton" class="editphase btn btn-primary">Edit OID</button>
+                    <button style="display: none" type="button" id="uneditoidbutton" class="editphase btn btn-danger">Cancel Edit</button>
+                  </div>
+                </div>
+            </div>
+            <div class="block-content">
+              <div class="oidlist">
+                <form id="oidform">
+                  <div class="container oidcontainer">
+                  {% if not devicedetail.oid %}
+                  {% else %}
+                    {% for oid in devicedetail.oid %}
+                    <div class="form-group row" data-oidname="{{ oid.id }}">
+                      <div class="col-4">
+                          <p class="inputoidname">{{ oid.oidname }}</p>
+                      </div>
+                      <div class="col-4">
+                          <p class="inputoid">{{ oid.oid }}</p>
+                      </div>
+                      <button class="deleteoid btn btn-danger" style="display: none" type="button">-</button>
+                      {% if session['userid'] not in subscriber %}
+                      {% else %}
+                        {% if oid.subscribed_by %}
+                          {% for subs in oid.subscribed_by %}
+                            {% if session['userid'] == subs['id'] %}
+                            <div class="col-4">
+                                <button class="unsubscribeoid btn btn-danger" type="button" data-oidid="{{ oid.id }}">Unsubscribe</button>
+                            </div>
+                            {% else %}
+                            {% endif %}
+                          {% endfor %}
+                        {% else %}
+                        <div class="col-2">
+                            <button class="subscribeoid btn btn-success" type="button" data-oidid="{{ oid.id }}">Subscribe</button>
+                        </div>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                    {% endfor %}
+                  {% endif %}
+                  </div>
+                  <button style="display: none" type="button" id="addoid" class="editphase btn btn-primary">Add OID</button>
+                  <button style="display: none" type="submit" id="submitedit" class="editphase btn btn-primary">Submit</button>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+  var currentState = $(".oidlist").children().find(".oidcontainer").html();
+
+  $("#editoidbutton").on('click',function() {
+    $('.inputoid').each(function(index, element){
+      $(this).html('<input required class="form-control" placeholder="Enter OID number" type="text" name="'+
+      'oid'+'[]'
+      +'" value="'+
+      $(this).html()
+      +'">'+
+      '<input required type="hidden" name="'+
+      'oidid'+'[]'
+      +'" value="'+
+      $(this).parent().parent().data('oidname')
+      +'">')
+    })
+
+    $('.inputoidname').each(function(index, element){
+      $(this).html('<input required placeholder="Enter OID name" class="form-control" type="text" name="'+
+      'oidname'+'[]'
+      +'" value="'+
+      $(this).html()
+      +'">')
+    })
+
+    $(this).closest("div").find("button").toggle();
+    $(".oidlist").find(".oidcontainer").find(".row").find("button").toggle();
+    $(".oidlist").children().children("button").toggle();
+  });
+
+  $(document.body).on('click', '.deleteoid', function() {
+    $(this).parent().remove();
+  });
+
+  $(document.body).on('click', '#addoid', function() {
+    $(this).parent().find(".oidcontainer").append('<div class="form-group row"><div class="col-4"><input type="text" placeholder="Enter OID name" class="form-control" name="oidname[]" required></div><div class="col-4"><input type="text" placeholder="Enter OID number" class="form-control" name="oid[]" required><input type="hidden" name="oidid[]" required></div><button class="deleteoid btn btn-danger" type="button">-</button></div>');
+  });
+
+  $(document.body).on('submit', '#oidform', function(e) {
+    e.preventDefault();
+    console.log($(this).serialize());
+    $.ajax({
+        url: '{{ request.url_root }}oid/edit',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: $(this).serialize()
+    });
+  });
+
+  $("#uneditoidbutton").on('click',function() {
+    $(this).closest("div").find("button").toggle();
+    $(".oidlist").find(".oidcontainer").find(".row").find("button").toggle();
+    $(".oidlist").children().children("button").toggle();
+
+    $(".oidlist").children().find(".oidcontainer").html(currentState);
+  });
+
+  $(document.body).on('click', '.subscribeoid', function() {
+    // console.log($(this).data('oidid'));
+    $.ajax({
+        url: '{{ request.url_root }}subscribe/oid',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: { data : $(this).data('oidid') }
+    });
+  });
+
+  $(document.body).on('click', '.unsubscribeoid', function() {
+    // console.log($(this).data('oidid'));
+    $.ajax({
+        url: '{{ request.url_root }}unsubscribe/oid',
+        type: 'post',
+        dataType: 'json',
+        success: function(response){
+                    location.href = window.location.href;
+                  },
+        data: { data : $(this).data('oidid') }
+    });
+  });
+</script>
+{% endblock %}

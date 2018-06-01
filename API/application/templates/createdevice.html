@@ -1,40 +1,89 @@
-<html>
-<head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    jQuery(function($){
-      $("#addoid").click(function() {
-        $("#oidsection").append('<div class="oidinputfield"><span>Name: </span><input required type="text" name="oidname[]">&nbsp<span>OID:</span><input required type="text" name="oid[]">&nbsp<button type="button" class="deleteoid">-</button><br></div>')
-        $(".deleteoid").click(function() {
-          $(this).parent().remove();
-        });
+{% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <!-- Bootstrap Design -->
+        <h2 class="content-heading">Devices</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Default Elements -->
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Create New Devices</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-wrench"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <form action="{{ request.url_root }}devices/create" method="post">
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Device Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Device Type</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="type" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="address" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Location</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="location" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">OID &nbsp<button class="btn btn-alt-default" type="button" name="button" id="addoid">+</button></label>
+                                <div class="form-group row container" id="oidsection">
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-alt-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- END Default Elements -->
+            </div>
+        </div>
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+<script type="text/javascript">
+  jQuery(function($){
+    $("#addoid").click(function() {
+      $("#oidsection").append('<div class="form-group row container"><div class="col-4 oidrow"><input type="text" class="form-control" name="oidname[]" placeholder="OID Name" required></div><div class="col-4 oidrow"><input type="text" class="form-control" name="oid[]" placeholder="OID" required></div><div class="col-1 oidrow"><button type="button" class="deleteoid btn btn-alt-primary">-</button></div></div>')
+      $(".deleteoid").click(function() {
+        $(this).parent().parent().remove();
       });
     });
-  </script>
-</head>
-<body>
-
-  <h2>Create Device</h2>
-
-  <form action="{{ request.url_root }}devices/create" method="POST">
-    Device Name:
-    <input id="devicename" type="text" name="name" required>
-    <br>
-    Device Type
-    <input type="text" name="type" required>
-    <br><br>
-    Location:
-    <input type="text" name="location" required>
-    <br><br>
-    Address:
-    <input type="text" name="address" required>
-    <br><br>
-    <span>OID</span>&nbsp<button type="button" name="button" id="addoid">+</button><br>
-    <div id="oidsection">
-    </div>
-    <br>
-    <input type="submit" value="Submit"><input type="reset" value="reset">
-  </form>
-
-</body>
-</html>
+  });
+</script>
+{% endblock %}

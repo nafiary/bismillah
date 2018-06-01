@@ -128,7 +128,7 @@ rabbitMq(exchange, address):
 		add Error Message into JSON		
 \end{lstlisting}
     			
-    			Untuk mengirimkan data menuju pub/sub server diperlukan library pika yang akan membuat koneksi dengan RabbitMQ yang berada di pub/sub server. potongan kode untuk mengirimkan data tersebut dapat dilihat pada kode sumber \ref{pseudo:pika}
+    			Untuk mengirimkan data menuju pub/sub server diperlukan library pika yang akan membuat koneksi dengan RabbitMQ yang berada di pub/sub server. Pseudocode untuk mengirimkan data tersebut dapat dilihat pada kode sumber \ref{pseudo:pika}
     			
 \begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Pengiriman Data Dengan Pika},label=pseudo:pika, captionpos=b]
 pika.openConnection()
@@ -157,14 +157,54 @@ while true:
 \end{lstlisting}
 
     \section{Implementasi Pub/Sub Server}
-    	Pada pub/sub server, dipasang aplikasi message broker \texttt{RabbitMQ}. pada kasus ini \texttt{RabbitMQ} menerima seluruh dapat yang dikirmkan oleh publisher. Setelah itu \texttt{RabbitMQ} menyimpannya dan menunggu hingga ada consumer yang meminta data pada \texttt{RabbitMQ}. kriteria data yang dikirimkan harus dispesifikkan sesuai dengan apa yang diminta oleh consumer.
+    	Pada pub/sub server, dipasang aplikasi message broker \texttt{RabbitMQ}. pada kasus ini \texttt{RabbitMQ} menerima seluruh data yang dikirmkan oleh publisher. Setelah itu, \texttt{RabbitMQ} menyimpannya dan menunggu hingga ada consumer yang meminta data pada \texttt{RabbitMQ}. kriteria data yang dikirimkan harus dispesifikkan sesuai dengan apa yang diminta oleh consumer.
     	
     	Pemasangan aplikasi \texttt{RabbitMQ} membutuhkan bahasa pemrograman \texttt{erlang}. untuk itu sebelum memasang \texttt{RabbitMQ}, harus terlebih dahulu memasang \texttt{erlang} pada sistem. Selain \texttt{erlang}, beberapa paket juga harus terpasang pada sistem, beberapa diantaranya adalah: \texttt{init-system-helpers, socat, adduser, logrotate}
     	
     	Setelah \texttt{RabbitMQ} server terpasang, selanjutnya dibutuhkan sebuah web admin untuk \texttt{RabbitMQ} agar mudah untuk melakukan manajemen data, user dan lain-lain pada web admin tersebut. \texttt{RabbitMQ} sudah menyediakan \textit{plugin} agar web admin dapat langsung digunakan. hanya dengan menjalankan perintah untuk mengaktifkan web admin dengan \texttt{rabbitmqctl}
     
-    \section{Implementasi Consumer pada Application Server dan Websocket}
-		Sebagai media penyimpn
+    \section{Implementasi Consumer pada Server Aplikasi dan Websocket}
+		Pada kasus ini, terdapat consumer yang diimplementasikan pada websocket. Websocket ini bertugas untuk meminta data pada pub/sub server yang telah dipasang \texttt{RabbitMQ}. Websocket ini disambungkan dengan suatu \textit{endpoint} pada server aplikasi, sehingga ketika \textit{client} mengakses endpoint pada aplikasi tersebut, javascript pada halaman tersebut akan menyambungkan halaman pada server websocket yang berada pada alamat dan port tertentu.
+		
+		Server websocket dibangun dengan menggunakan \texttt{node.js} dengan beberapa tambahan library. library yang digunakan pada websocket ini diataranya adalah: \texttt{Express.js} yang berperan sebagai kerangka kerja untuk membuat web dengan \texttt{node.js}, \texttt{http} untuk membuat webserver sederhana dengan \texttt{node.js}, \texttt{socket.io} unutk membuat komunikasi antara server dengan client menggunakan protokol websocket, dan \texttt{amqplib} untuk berkomunikasi dengan pub/sub server yang telah depasang \texttt{RabbitMQ}.
+		
+		implementasi inisiasi koneksi websocket dengan client dan pub/sub server dapat dilihat pada pseudocode yang terdapat pada kode sumber \ref{pseudo:initwebsocket}
+		
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Inisiasi Komunikasi Websokcet dengan Client dan Pub/Sub Server}, label=pseudo:initwebsocket, captionpos=b]
+connectToRabbitMQServer()
+createWebSocketConnection()
+if websocketConnected():
+	sendToClient('Connected')
+else if websocketDisconnected():
+	sendToClient('Disconnected') 
+\end{lstlisting}
+
+		Pada javascript yang terdapat pada client terdapat fungsi untuk menangkap pesan dari server bahwa websocket terlah berhasil tersambung. bersamaan saat websocket berhasil tersambung, \textit{client} mengirimkan seluruh id pada tabel \textit{devices} yang telah dilangggani oleh pengguna yang aktif untuk dijadikan nama pada exchange dan uuid versi 4 yang baru dibuat untuk memberi nama pada \textit{queue}.
+		Pseudocode untuk fungsi tersebut dapat dilihat pada kode sumber \ref{pseudo:clientconnected}
+		
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Client Saat Terkoneksi dengan Websocket},label=pseudo:clientconnected, captionpos=b]
+deviceID = getSubscribedDeviceIDbyUser()
+pushDeviceIDToArray()
+sendtoServer(deviceIDArray, uuid4())
+\end{lstlisting}
+
+		Setelah client mengirimkan id tiap perangkat dari tabel \textit{devices} untuk penamaan \textit{exchange} dan uuid versi 4 baru untuk penamaan queue, selanjutnya server akan memproses data tersebut untuk pembuatan queue dan exchange agar data pada pub/sub server dapat disalurkan lewat exchange dan queue tersebut. pseudocode aktivitas websocket server saat pembuatan queue dan exchange lalu menyalurkan data pada client dapat dilihat pada kode sumber \ref{pseudo:websocketrabbit}
+		
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Websocket Saat Pembuatan Queue dan Exchange Untuk Penyaluran Data ke Client},label=pseudo:websocketrabbit, captionpos=b]
+if exchange does not exist:
+	createExchage()
+	if queue does not exist:
+		createQueue()
+		bindExchangetoQueue()
+	else:
+		bindExchangetoQueue()
+else:
+	pass
+
+listenMessageFromRabbitMQServer()
+sendMessageToClient()
+\end{lstlisting}
+		
     \section{Implementasi Database Server}
     	Sebagai media penyimpanan, sebuah database diperlukan untuk menyimpan data pengguna, perangkat, dan data berlangganan. Terdapat tiga tabel utama yang mewakili tiap entitas yang terlibat dalam sistem ini, yaitu: \texttt{users}, \texttt{devices}, dan \texttt{oid}. selain itu, terdapat dua table \texttt{many-to-many} untuk menyimpan data pengguna yang telah berlangganan kepada tiap perangkat dan pengguna yang berlangganan kepada tiap OID (untuk mengetahui informasi apa saja yang ada pada tiap perangkat. tiap OID memiliki informasi yang berbeda).
     	
@@ -245,46 +285,37 @@ while true:
     	\end{longtable} 
 
     \section{Implementasi Antarmuka}
-    	Dasbor diimplementasikan menggunankan perangkat kerja React bagian \textit{frontend} dan Flask untuk \textit{backend}nya. Dasbor digunakan untuk mempermudah pengembang dalam mengelola aplikasi. Dasbor memiliki menu-menu sebagai berikut:
-        \begin{itemize}
-        \item Daftar Aplikasi
-        \item Infromasi Aplikasi
-        \item Daftar \textit{Container}
-        \item Matrik Aplikasi
-        \end{itemize}
-        \indent Masing-masing menu berikutnya akan dijelaskan secara rinci.
-		\subsection{Daftar Aplikasi}
-        	Daftar aplikasi, juga merupakan beranda dari dasbor, adalah menu yang digunakan untuk melihat daftar aplikasi atau \textit{image} yang ada pada \textit{server docker registry}. Pada halaman ini, bisa dilihat nama beserta versi terakhir dari aplikasi. Lalu juga terdapat status apakah aplikasi sedang berjalan atau tidak. Antar muka kelola daftar aplikasi ditunjukkan pada Gambar \ref{ddaftaraplikasi}.
+    	Antarmuka sistem dibangun dengan menggunakan \texttt{Bootstrap4} dan \texttt{Jquery} pada \textit{frontend} dan kerangka kerja \texttt{Flask} pada \textit{backendn}nya. Antarmuka yang utama digunakan pada tugas akhir ini digunakan untuk mempermudah pengelolaan data perangkat dan halaman pemantauan perangkat jaringan. Antarmuka yang diimplementasikan pada tugas akhir ini adalah sebagai berikut:
+    	\begin{itemize}
+    		\item Menampilkan seluruh data perangkat yang terdaftar pada sistem
+    		\item Menampilkan rincian data perangkat jaringan yang terdaftarpada sistem
+    		\item Menampilkan data yang ingin dipantau pengguna pada sistem
+    	\end{itemize}
+		\subsection{Menampilkan seluruh data perangkat yang terdaftar pada sistem}
+        	Halaman ini berfungsi untuk menampilkan seluruh data yang terdaftar pada sistem. Seluruh data disajikan dalam bentuk tabel data yang dibangun dengan menggunakan bootstrap4, sehingga memungkinkan pengguna untuk mencari dan mengurutkan dapat pada tabel. Antarmuka daftar perangkat pada sistem ditunjukkan pada Gambar \ref{antarmuka:daftarperangkat}.
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=11.2cm,height=3.7cm]{Images/C-4/dasberanda.PNG}
+				\includegraphics[width=11.2cm]{Images/C-4/antarmukadaftarperangkat.png}
 				\caption{Dasbor Daftar Aplikasi}
-				\label{ddaftaraplikasi}
+				\label{antarmuka:daftarperangkat}
 			\end{figure}
             
-         \subsection{Informasi Aplikasi}
+         \subsection{Menampilkan rincian data perangkat jaringan yang terdaftarpada sistem}
+         	Halaman ini berfungsi untuk menunjukkan informasi tiap perangkat. Informasi yang disajikan meliputi informasi umum tiap perangkat (nama perangkat, tipe perangkat, alamat perangkat dan lokasi perangkat), daftar pengguna yang berlangganan ke perangkat tersebut, dan daftar OID (informasi keadaan perangkat) yang tersedia pada perangkat tersebut.
+         	
+         	Pada halaman ini pengguna dapat berlangganan kepada perangkat dengan menekan tombol subscribe pada kolom "\textit{Subscriber}". setelah berhasil berlangganan kepada perangkat, sistem akan menampilkan tombol "\textit{subscribe}" pada kolom OID, dimana tombol tersebut berfungsi untuk memilih informasi apa saja yang ingin didapatkan oleh pengguna. Antarmuka informasi ditunjukkan pada Gambar \ref{antarmuka:rincianperangkat}.
          	\begin{figure}[H]
-				\centering
-				\includegraphics[width=11.2cm,height=9cm]{Images/C-4/dasinformasi.PNG}
-				\caption{Dasbor Informasi Aplikasi}
-				\label{dinformasiaplikasi}
-			\end{figure}
-         	Halaman ini menunjukkan infromasi lengkap dari sebuah aplikasi. Pada halaman ini bisa dilihat nama aplikasi, port yang digunakan, domain dari aplikasi, dan versi dari aplikasi. Pada halaman ini, pengguna bisa mengatur port dari aplikasi agar dapat berjalan dengan baik. Dari halaman ini juga aplikasi pertama kali akan dijalankan. Jadi pada halaman ini terdapat kontrol untuk menajalankan dan mematikan aplikasi. Antar muka informasi ditunjukkan pada Gambar \ref{dinformasiaplikasi}.
+         		\centering
+         		\includegraphics[width=11.2cm]{Images/C-4/antarmukarincianperangkat.png}
+         		\caption{Dasbor Informasi Aplikasi}
+         		\label{antarmuka:rincianperangkat}
+         	\end{figure}
             
-         \subsection{Daftar \textit{Container}}
-         	Pada halaman ini, pengguna dapat melihat daftar \textit{container} yang sedang berjalan untuk sebuah aplikasi. Informasi yang diberikan berupa ID dan port dari container. Antar muka halaman daftar \textit{container} ditunjukkan pada Gambar \ref{ddaftarcontainer}.
+         \subsection{Menampilkan data yang ingin dipantau pengguna pada sistem}
+         	Pada halaman ini, pengguna dapat memantau atau melihat kondisi dari tiap perangkat yang telah dilanggani oleh tiap pengguna. Informasi yang disajikan pada halaman ini tergantung dari banyaknya informasi pada tiap perangkat yang dilanggani oleh pengguna. pada halaman ini juga, websocket bekerja. jika \textit{client} (\textit{browser}) terkoneksi dengan websocket, maka akan terdapat kotak berwarna hijau pada bagian atas halaman, sedangkan jika \textit{client} tidak terhubung dengan websocket maka kotak tersebut akan berwarna merah. Antarmuka halaman daftar \textit{container} ditunjukkan pada Gambar \ref{antarmuka:pantau}.
             \begin{figure}[H]
 				\centering
-				\includegraphics[width=11.2cm,height=3cm]{Images/C-4/dasdafcont.PNG}
+				\includegraphics[width=11.2cm]{Images/C-4/antarmukapantau.png}
 				\caption{Dasbor Daftar \textit{Container}}
-				\label{ddaftarcontainer}
-			\end{figure}
-            
-         \subsection{Metrik Aplikasi}
-         	Halaman metrik aplikasi digunakan untuk memantau keadaan sekarang dari aplikasi. Metrik yang diberikan adalah jumlah \textit{request} pengguna ke aplikasi dan jumlah \textit{container} dari aplikasi. Data akan diperbarui sekitar lima detik sekali. Antar muka metrik aplikasi ditunjukkan pada Gambar \ref{dmatrikaplikasi}.
-            \begin{figure}[H]
-				\centering
-				\includegraphics[width=11.2cm,height=7.3cm]{Images/C-4/dasmatrik.PNG}
-				\caption{Dasbor Matrik Aplikasi}
-				\label{dmatrikaplikasi}
+				\label{antarmuka:pantau}
 			\end{figure}

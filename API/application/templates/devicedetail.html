@@ -27,6 +27,7 @@
         </ul>
       </li>
     {% endif %}
+    {{ subscriber }}
     {% if session['userid'] not in subscriber %}
     <form action="{{ request.url_root }}subscribe/devices" method="POST">
       <input type="hidden" name="deviceid" value="{{ devicedetail.id }}">
@@ -58,12 +59,11 @@
       <button type="button" id="editoidbutton" class="editphase">Edit OID</button>
       <button style="display: none" type="button" id="uneditoidbutton" class="editphase">Cancel Edit</button>
     </div>
-
     <div class="oidlist">
       <form>
-        {% if devicedetail.oid is not defined %}
-        {% else %}
         <ul>
+        {% if not devicedetail.oid %}
+        {% else %}
           {% for oid in devicedetail.oid %}
           <li data-oidname="{{ oid.id }}">
             <span class="inputoidname">{{ oid.oidname }}</span>:
@@ -84,10 +84,10 @@
             <button class="deleteoid" style="display: none" type="button">-</button>
           </li>
           {% endfor %}
+        {% endif %}
         </ul>
         <button style="display: none" type="button" id="addoid" class="editphase">Add OID</button><br>
         <button style="display: none" type="button" id="submitedit" class="editphase">Submit</button>
-        {% endif %}
       </form>
     </div>
   </li>
@@ -141,9 +141,9 @@
         url: '{{ request.url_root }}oid/edit',
         type: 'post',
         dataType: 'json',
-        success: function(response){
-                    location.href = window.location.href;
-                  },
+        // success: function(response){
+        //             location.href = window.location.href;
+        //           },
         data: $(this).parent().serialize()
     });
   });

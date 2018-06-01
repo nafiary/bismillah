@@ -71,7 +71,8 @@ class Subscribeoid(BaseModel):
 def add_claims_to_access_token(user):
     return {'role': user.role,
     'email': user.email,
-    'username': user.username}
+    'username': user.username,
+    'name': user.name}
 
 @jwt.user_identity_loader
 def user_identity_lookup(user):
@@ -99,7 +100,8 @@ def homepage():
         'current_identity': get_jwt_identity(),
         'current_username': get_jwt_claims()['username'],
         'current_email': get_jwt_claims()['email'],
-        'current_role': get_jwt_claims()['role']
+        'current_role': get_jwt_claims()['role'],
+        'current_name': get_jwt_claims()['name']
     })
     return ret, 200
 

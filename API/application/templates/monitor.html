@@ -1,68 +1,118 @@
-<title>User Detail</title>
-<head>
-    <title>Flask-SocketIO Test</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-            var socket = io.connect('http://0.0.0.0:8000');
+{% extends "layout/base.html" %}
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+      <div class="col-md-6 col-xl-3">
+          <a class="block block-link-shadow" href="javascript:void(0)">
+              <div class="block-content block-content-full bg-danger">
+                <div class="text-center">
+                  <div class="font-size-sm font-w700 text-white">Websocket</div>
+                  <div id="idlogs" class="font-size-md font-w600 text-uppercase text-white">Not Connected</div>
+                </div>
+              </div>
+          </a>
+      </div>
+      {% if monitor.subscribing %}
+      {% for subscribing in monitor.subscribing %}
+      <a href="{{ request.url_root }}devices/{{ subscribing.id }}"><h2 class="content-heading device" id="{{subscribing.id}}">{{subscribing.name}} <small>{{subscribing.type}}</small></h2></a>
+      <div class="row gutters-tiny snmpresult" id="{{ subscribing.id }}">
+      </div>
+      {% endfor %}
+      {% else %}
+      <p>No Device Subscribed</p>
+      {% endif %}
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 
-            function uuid4() {
-              var uuid = "", i, random;
-              for (i = 0; i < 32; i++) {
-                random = Math.random() * 16 | 0;
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
 
-                if (i == 8 || i == 12 || i == 16 || i == 20) {
-                  uuid += "-"
-                }
-                uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
-              }
-              return uuid;
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var socket = io.connect('http://0.0.0.0:8000');
+
+        function uuid4() {
+          var uuid = "", i, random;
+          for (i = 0; i < 32; i++) {
+            random = Math.random() * 16 | 0;
+
+            if (i == 8 || i == 12 || i == 16 || i == 20) {
+              uuid += "-"
             }
+            uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
+          }
+          return uuid;
+        }
 
-            socket.on('connect', function() {
-                $("#idlogs").text("Connected");
-                {% if monitor.subscribing %}
-                  var deviceid = [];
-                  $('.device').each(function( index ) {
-                    deviceid.push($( this ).attr('id'));
-                  });
-                  socket.emit('startRabbit', {'data': deviceid, 'id': uuid4() });
-                {% endif %}
-            });
+        socket.on('connect', function() {
+            $("#idlogs").text("Connected");
+            $("#idlogs").parent().parent().attr('class', 'block-content block-content-full bg-success');
+            {% if monitor.subscribing %}
+              var deviceid = [];
+              $('.device').each(function( index ) {
+                deviceid.push($( this ).attr('id'));
+              });
+              socket.emit('startRabbit', {'data': deviceid, 'id': uuid4() });
+            {% endif %}
+        });
 
-            socket.on('consume', function(data) {
-              json = JSON.parse(data)
-              hasil = ''
-              json.forEach(function(entry) {
-                {% for m in monitor.subscribingoid %}
-                if (entry.id === '{{ m.id }}' ) {
-                  hasil = hasil + '<li>' + entry.oidname + ' : ' + entry.snmpresult + '</li>'
-                }
-                {% endfor %}
-              });
-              console.log(json);
-              $('.snmpresult').each(function() {
-                if (this.id === json[0].deviceid) {
-                  $(this).html(hasil)
-                }
-              });
+        socket.on('disconnect', function() {
+            $("#idlogs").text("Disconnect");
+            $("#idlogs").parent().parent().attr('class', 'block-content block-content-full bg-danger');
+            $('.snmpresult').each(function() {
+              $(this).html("")
             });
         });
-    </script>
-</head>
-<p>Hello, {{ session['username'] }}!</p>
-<h1>Here come the detail!</h1>
-<p>Websocket: <span id="idlogs">Not Connected</span></p>
-<ul>
-  {% if monitor.subscribing %}
-  {% for subscribing in monitor.subscribing %}
-  <p class="device" id="{{subscribing.id}}">{{subscribing.name}} ({{subscribing.type}})</p>
-  <a href="{{ request.url_root }}devices/{{ subscribing.id }}">Info</a>
-  <ul class="snmpresult" id="{{ subscribing.id }}">
-  </ul>
-  {% endfor %}
-  {% else %}
-  <p>No Device Subscribed</p>
-  {% endif %}
-</ul>
+
+        socket.on('consume', function(data) {
+          json = JSON.parse(data)
+          hasil = ''
+          json.forEach(function(entry) {
+            {% for m in monitor.subscribingoid %}
+            if (entry.id === '{{ m.id }}' ) {
+              // console.log(entry.snmpresult.split(" ")[1]);
+              if (entry.snmpresult.split(" ")[1] == "CRITICAL") {
+                hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-danger"><div class="text-center"><div class="font-size-md font-w700">'+entry.oidname+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.snmpresult+'</div></div></div></a></div>'
+              }
+              else {
+                hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-success"><div class="text-center"><div class="font-size-md font-w700">'+entry.oidname+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.snmpresult+'</div></div></div></a></div>'
+              }
+            }
+            {% endfor %}
+          });
+          // console.log(json);
+          $('.snmpresult').each(function() {
+            if (this.id === json[0].deviceid) {
+              $(this).html(hasil)
+            }
+          });
+        });
+    });
+</script>
+<!-- Page JS Plugins -->
+<script src="assets/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="assets/js/plugins/easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="assets/js/plugins/chartjs/Chart.bundle.min.js"></script>
+
+<!-- Page JS Code -->
+<script src="assets/js/pages/be_blocks_widgets_stats.js"></script>
+<script>
+    jQuery(function () {
+        // Init page helpers (Easy Pie Chart plugin)
+        Codebase.helpers('easy-pie-chart');
+    });
+</script>
+{% endblock %}

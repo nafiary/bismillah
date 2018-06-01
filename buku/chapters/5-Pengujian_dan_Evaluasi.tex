@@ -1,7 +1,7 @@
 \chapter{PENGUJIAN DAN EVALUASI}
 
 \section{Lingkungan Uji Coba}
-	Lingkungan pengujian menggunakan komponen-komponen yang terdiri dari: satu \textit{server load balancer}, satu \textit{server master host}, satu \textit{server controller}, satu \textit{server docker registry}, dan enam komputer penguji. Semua \textit{server} menggunakan Virtual Private Server dari DigitalOcean. Lalu, untuk komputer penguji menggunakan lima buah desktop dan satu buah VPS sebagai \textit{docker} klien yang digunakan untuk membuat \textit{docker image}. Pengujian dilakukan di Laboratoriom Pemrograman Jurusan Teknik Informatika ITS. \\
+	Lingkungan pengujian menggunakan komponen-komponen yang terdiri dari: satu \textit{server publisher}, satu \textit{server publish/subscribe}, satu \textit{server aplikasi}, satu \textit{server API}, satu \textit{server database} dan satu komputer penguji. Semua \textit{server} menggunakan vitual machine yang dipasang pada Virtual Box. Lalu, untuk komputer penguji menggunakan satu buah desktop sebagai \textit{docker} klien yang digunakan untuk menerima data yang dikirim open publisher. Pengujian dilakukan di Laboratoriom Arsitektur dan Jaringan Komputer Jurusan Teknik Informatika ITS. \\
     \indent Spesifikasi untuk setiap komponen yang digunakan ditunjukkan pada Tabel \ref{spesifikasikomponen}.
     \begin{longtable}{|p{0.05\textwidth}|p{0.18\textwidth}|p{0.33\textwidth}|p{0.33\textwidth}|}					\caption{Spesifikasi Komponen} \label{spesifikasikomponen} \\
         \hline
@@ -14,15 +14,15 @@
         \endfoot
         \endlastfoot
 
-    	1 & Load balancer & 2 core processor, 4GB RAM, 20GB SSD & Ubuntu 14.04.5 LTS, HAProxy, Python 2.7 \\ \hline
-        2 & Master host & 8 core processor, 16GB RAM, 20GB SSD & Ubuntu 14.04.5 LTS, Docker 17.03.0-ce, Python 2.7 \\ \hline
-        3 & Controller & 2 core processor, 4GB RAM, 20GB SSD & Ubuntu 14.04.5 LTS, Redis, MySQL, Python 2.7 \\ \hline
-        4 & Docker registry & 1 core processor, 512MB RAM, 20GB SSD & Ubuntu 14.04.5 LTS, Docker 17.03.0-ce, Python 2.7 \\ \hline
-        5 & Komputer penguji & Processor Core2Duo E7300, 2GB RAM & Windows 8, JMeter 3.2 \\ \hline
-        6 & Docker klien & 1 core processor, 1GB RAM, 20GB SSD & Ubuntu 16.04 LTS, Docker 17.03.0-ce \\ \hline
+    	1 & Publisher & 2 core processor, 4GB RAM, 20GB SSD & Ubuntu 16.04 LTS, Python2.7, Nagios \\ \hline
+        2 & Pub/Sub & 8 core processor, 16GB RAM, 20GB SSD & Ubuntu 16.04 LTS, RabbitMQ \\ \hline
+        3 & Application & 2 core processor, 4GB RAM, 20GB SSD & Ubuntu 16.04 LTS, Node.JS, Python 2.7 \\ \hline
+        4 & REST API & 1 core processor, 512MB RAM, 20GB SSD & Ubuntu 16.04 LTS, Docker 17.03.0-ce, Python 2.7 \\ \hline
+        5 & Database & 1 core processor, 512MB RAM, 20GB SSD & Ubuntu 16.04 LTS, MySQL Server \\ \hline
+        6 & Komputer penguji & Processor Core2Duo E7300, 2GB RAM & Windows 8, JMeter 3.2 \\ \hline
     \end{longtable}
     
-    \indent Untuk akses ke masing-masing komponen, digunakan IP publik yang disediakan untuk masing-masing komponen tersebut. Selain menggunakan IP, ada sebagian \textit{server} yang bisa diakses melalui domain. Detailnya ditunjukkan pada Tabel \ref{ipdomainserver}.
+    \indent Untuk akses ke masing-masing komponen, digunakan IP private yang disediakan untuk masing-masing komponen tersebut. Detailnya ditunjukkan pada Tabel \ref{ipdomainserver}.
     			\begin{longtable}{|p{0.05\textwidth}|p{0.33\textwidth}|p{0.44\textwidth}|}					\caption{IP dan Domain Server} \label{ipdomainserver} \\
 					\hline
 					\textbf{No} & \textbf{Server} & \textbf{IP dan Domain} \\ \hline
@@ -34,72 +34,79 @@
 					\endfoot
 					\endlastfoot
 					
-                    1 & Load balancer & 128.199.160.188 \\ \hline
-                    2 & Master host & 128.199.182.29 \\ \hline
-                    3 & Controller & 128.199.250.137 http://controller.nota-no.life \\ \hline
-                    4 & Docker registry & 139.59.97.244 https://registry.nota-no.life \\ \hline
+                    1 & Publisher & 128.199.160.188 \\ \hline
+                    2 & Pub/Sub & 128.199.182.29 \\ \hline
+                    3 & Application & 128.199.250.137 \\ \hline
+                    4 & REST API & 139.59.97.244 \\ \hline
+                    5 & Database & 139.59.97.244 \\ \hline
 				\end{longtable}
     
 \section{Skenario Uji Coba} \label{skenarioujicoba}
 	Uji coba akan dilakukan untuk mengetahui keberhasilan sistem yang telah dibangun. Skenario pengujian dibedakan menjadi 2 bagian, yaitu:
     \begin{itemize}
     \item \textbf{Uji Fungsionalitas} \\
-    	Pengujian ini didasrkan pada fungsionalitas yang disajikan sistem.
+    	Pengujian ini didasarkan pada fungsionalitas yang disajikan sistem.
     \item \textbf{Uji Performa} \\
-    	Pengujian ini untuk menguji ketahanan sistem terhadap sejumlah permintaan ke aplikasi secara bersamaan. Pengujian dilakukan dengan melakukan \textit{benchmark} pada sistem.
+    	Pengujian ini untuk menguji kecepatan respon sistem terhadap sejumlah permintaan ke aplikasi secara bersamaan. Pengujian dilakukan dengan melakukan \textit{benchmark} pada sistem.
     \end{itemize}
     
     \subsection{Skenario Uji Coba Fungsionalitas}
-    	Uji fungsionalitas dibagi menjadi 2, yaitu uji mengelola aplikasi berbasis \textit{docker} dan uji fungsionalitas menu aplikasi Dasbor.
+    	Uji fungsionalitas dibagi menjadi 2, yaitu uji fungsionalitas antarmuka aplikasi dan uji fungsionalitas endpoint REST API.
         
-        \subsubsection{Uji Mengelola Aplikasi Berbasis Docker} \label{ujimengelolaaplikasiberbasisdocker}
-        	Pengujian ini dilakukan untuk mengetahui apakah sistem sudah bisa menyimpan dan mengelola data \textit{docker image} dari aplikasi yang dimasukkan oleh pengembang. Pengujian menggunakan VPS yang berperan sebagai \textit{docker} klien. Pengujian dilakukan dengan memasukkan data \textit{docker image} ke \textit{server docker registry} yang sudah disediakan. Dengan menggunakan sebuah komputer lain yang digunakan untuk membuat aplikasi web berbasis \textit{docker}, dari sana aplikasi tersebut akan ditaruh ke \textit{server docker registry}. \\
-            \indent Alamat dari Docker \textit{registry} yang digunakan adalah \texttt{https://registry.nota-no.life}. Setelah berhasil melakukan login pada \textit{server docker registry}, selanjutnya adalah memasukkan \textit{image} baru tersebut. \textit{Image} yang dibuat adalah sebuah aplikasi web berbasis PHP 7 dengan \textit{web server} Apache. Aplikasi web tersebut menyediakan sebuah halaman yang berisi sebuah teks yang dibuat melalui pemanggilan fungsi PHP. \\
-            \indent Pertama kali \textit{image} tersebut dimasukkan ke \textit{server docker registry}, kemudian data dari \textit{image} tersebut akan disimpan di \textit{server controller}. Setelah data tersimpan, selanjutnya adalah menjalankan aplikasi melalui dasbor yang disediakan. Sebelum menjalankan aplikasi, terlebih dahulu mengatur \textit{port} dari aplikasi yang akan berjalan. Setelah mengatur \textit{port} dengan benar, selanjutnya adalah menjalankan aplikasinya. Jika aplikasi berhasil dijalankan, maka aplikasi dapat diakses melalui domain yang disediakan. \\
-            \indent Setelah aplikasi berjalan, selanjutnya adalah memperbarui aplikasi dengan mengganti teks yang ditampilkan. Untuk itu, pada komputer yang digunakan untuk membuat \textit{image} sebelumnya, maka dibuatkan image baru dari aplikasi dengan versi terbaru. Image versi terbaru ini kemudian di \textit{push} ke \textit{docker registry}. Setelah selesai melakukan \textit{push}, harapannya aplikasi yang sebelumnya sudah berjalan, akan diperbarui secara otomatis oleh sistem. \\
-            \indent Terakhir, pengujian yang dilakukan adalah menghentikan aplikasi yang sudah berjalan. Fungsi untuk menghentikan aplikasi yang sedang berjalan ini terdapat pada dasbor. Jika proses ini berhasil, maka domain yang sebelumnya digunakan untuk mengakses aplikasi akan hilang dan pengguna tidak bisa lagi melakukan akses terhadap aplikasi. \\
-            \indent Daftar uji fungsionalitas menambahkan dan memperbarui aplikasi dijelaskan pada Tabel \ref{ujiaplikasi}.
-            \begin{longtable}{|p{0.05\textwidth}|p{0.38\textwidth}|p{0.39\textwidth}|}					\caption{Skenario Uji Mengelola Aplikasi Berbasis Docker} \label{ujiaplikasi} \\
+        \subsubsection{Uji Fungsionalitas Endpoint Antarmuka Aplikasi} \label{ujimengelolaaplikasiberbasisdocker}
+        	Pengujuian ini dilakukan untuk memeriksa apakah semua fungsi yang berada pada aplikasi dapat dijalankan dengan benar. Pengujian dilakukan dengan cara mengakses antarmuka yang berhubungan dengan tugas akhir ini lalu menjalankan fitur yang disediakan pada tiap-tiap antarmuka.
+        	
+        	Rancangan pengujian dan hasil yang diharapkan dapat dilihat pada tabel \ref{ujiaplikasi}.
+        	
+            \begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.30\textwidth}|p{0.27\textwidth}|}					\caption{Skenario Uji Fungsionalitas Antarmuka Aplikasi} \label{ujiaplikasi} \\
 					\hline
-					\textbf{No} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
+					\textbf{No} & \textbf{Fitur} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
 					\endfirsthead
-					\caption[]{Skenario Uji Mengelola Aplikasi Berbasis Docker} \\
+					\caption[]{Skenario Uji Fungsionalitas Antarmuka Aplikasi} \\
 					\hline
-					\textbf{No} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
+					\textbf{No} & \textbf{Fitur} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
 					\endhead
 					\endfoot
 					\endlastfoot
 					
-                    1 & Pengguna melakukan \textit{login} ke \textit{server docker registry} & Pengguna berhasil melakukan \textit{login} dengan menggunakan \textit{username} dan \textit{password} yang sudah ditentukan. \\ \hline
-                    2 & Pengguna menambahkan \textit{image} baru dari sebuah aplikasi ke \textit{server docker registry}. & Pengguna berhasil menambahkan \textit{image} baru dan data tersimpan pada \textit{server controller}. \\ \hline
-                    3 & Pengguna bisa mengatur \textit{port} dari aplikasi menggunakan dasbor yang disediakan & Data \textit{port} dari aplikasi yang tersimpan bisa diganti sesuai dengan kebutuhan pengguna. \\ \hline
-                    4 & Pengguna bisa menjalankan aplikasi melalui fitur yang ada pada dasbor & Aplikasi berhasil berjalan dan pengguna mendapatkan domain yang digunakan untuk mengakses aplikasi. \\ \hline
-					5 & Pengguna memperbarui aplikasi yang sedang berjalan dengan melakukan \textit{push} ke \textit{server docker registry}. & Aplikasi yang sedang berjalan akan diperbarui secara otomatis tanpa perlu perintah dari pengguna. \\ \hline
-                    6 & Penggua menghentikan aplikasi yang sedang berjalan. & Aplikasi berhasil dihentikan dan pengguna tidak bisa lagi melakukan akses aplikasi. \\ \hline
+                    1 & Autentikasi pengguna untuk masuk kedalam sistem. & Pengguna memasukkan username dan password masing-masing milik pengguna pada form yang telah disediakan. & Pengguna dapat masuk ke halaman utama aplikasi setelah menekan tombol "login"\\ \hline
+                    2 & Menampilkan seluruh data perangkat. & Pengguna menekan \textit{menu} "DEVICE MANAGEMENT" pada \textit{sidebar}. & Sistem menampilkan seluruh data perangkat yang terdaftar pada sistem. data yang ditampilkan meliputi: nama perangkat, tipe perangkat, alamat perangkat dan lokasi perangkat. serta terdapat tombol informasi untuk melihat data masing-masing perangkat secara rinci dan tombol hapus untuk menghapus data perangkat yang terdaftar pada sistem. \\ \hline
+                    3 & Menampilkan rincian data perangkat & Pengguna menekan tombol informasi yang tersedia pada tabel pada halaman menampilkan seluruh data perangkat. & Sistem menampilkan data perangkat terkait secara rinci. data yang ditampilkan meliputi: profil perangkat, pelanggan dari perangkat dan OID (Informasi yang disediakan pada perangkat terkait). \\ \hline
+                    4 & Menghapus data perangkat. & Pengguna menekan tombol hapus yang tersedia pada tabel pada halaman menampilkan seluruh data perangkat. & Sistem menghapus data perangkat terkait secara permanen. \\ \hline
+					5 & Menyunting data perangkat. & Pengguna menekan tombol ubah data pada halaman rincian data perangkat lalu mengubah data yang tersedia pada form yang berisi data sebelumnya. & Sistem mengubah data yang lama dengan data yang baru dimasukkan oleh pengguna. \\ \hline
+                    6 & Berlangganan Data Perangkat. & Pengguna menekan tombol "Subscribe" yang tersedia pada halaman rincian data perangkat. & Sistem menandai bahwa perangkat atau OID (Informasi pada perangkat) yang terkait telat dilanggani. tombol akan berubah menjadi "Unsubscribe"\\ \hline
+                    7 & Memantau kondisi perangkat yang telah dilanggani. & Pengguna menekan \textit{menu} "MONITOR" pada \textit{sidebar}. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
 				\end{longtable}
             
-        \subsubsection{Uji Fungsionalitas Menu Aplikasi Dasbor}
-        	Aplikasi Dasbor digunakan untuk mengelola dan memantau aplikasi. Aplikasi Dasbor terdiri dari 4 bagian utama, yaitu halaman beranda, informasi aplikasi, informasi \textit{container}, dan metrik dari aplikasi. Rancangan pengujian dan hasil yang diharapkan ditunjukkan dengan Tabel \ref{skenarioUjiDasboard}.
+        \subsubsection{Uji Fungsionalitas Endpoint REST API}
+        	Pengujian ini dilakukan untuk memeriksa apakah seluruh fungsi dan \textit{endpoint} yang berhubungan dengan tugas akhir ini dan tersedia pada sistem dapat bekerja dengan semestinya. Pengujian dilakukan dengan cara mengakses \textit{endpoint} dengan metode tertentu disertai dengan \textit{header} autentikasi JWT . Rancangan pengujian dan hasil yang diharapkan ditunjukkan dengan Tabel \ref{ujirestapi}.
             
-            \begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.30\textwidth}|p{0.27\textwidth}|}
-						\caption{Skenario Uji Fungsionalitas Aplikasi Dasbor} \label{skenarioUjiDasboard} \\
-						\hline
-						\textbf{No} & \textbf{Menu} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
-						\endfirsthead
-						\caption[]{Skenario Uji Fungsionalitas Aplikasi Dasbor}  \\
-						\hline
-						\textbf{No} & \textbf{Menu} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
-						\endhead
-						\endfoot
-						\endlastfoot
-						1 & Kelola aplikasi & Menambahkan aplikasi baru atau memperbarui aplikasi & Dasbor dapat menampilkan daftar aplikasi terbaru yang dimasukkan atau diperbarui oleh pengembang. \\ \cline{3-4}
-                        && Menjalankan aplikasi yang sudah masuk ke dalam sistem & Aplikasi dapat berjalan dan pengguna mendapatkan domain untuk mengakses aplikasi. \\ \cline{3-4}
-                        && Menghentikan aplikasi yang sedang berjalan & Aplikasi yang sedang berjalan dapat dihentikan dan pengguna tidak bisa lagi melakukan akses terhadap aplikasi. \\ \cline{3-4}
-                        && Mengganti \textit{port} aplikasi agar dapat berjalan dengan baik & Pengguna dapat mengganti \textit{port} aplikasi agar aplikasi dapat berjalan dengan benar. \\ \hline
-						2 & Lihat informasi aplikasi & Memilih salah satu aplikasi yang ada  & Pengguna dapat melihat infromasi secara lengkap tentang aplikasi. \\ \hline
-                        3 & Lihat informasi \textit{container} & Memilih salah satu aplikasi yang ada  & Pengguna dapat melihat infromasi secara lengkap tentang \textit{container} yang sedang berjalan untuk aplikasi tersebut. \\ \hline
-                        4 & Lihat metrik aplikasi & Memilih salah satu aplikasi yang ada  & Pengguna dapat melihat grafik penggunaan CPU dan \textit{memory} dari aplikasi . \\ \hline
-					\end{longtable}
+            \begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.30\textwidth}|p{0.27\textwidth}|}					\caption{Skenario Uji Fungsionalitas REST API} \label{ujirestapi} \\
+            	\hline
+            	\textbf{No} & \textbf{\textit{Endpoint}} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
+            	\endfirsthead
+            	\caption[]{Skenario Uji Fungsionalitas REST API} \\
+            	\hline
+            	\textbf{No} & \textbf{\textit{Endpoint}} & \textbf{Uji Coba} & \textbf{Hasil Harapan} \\ \hline
+            	\endhead
+            	\endfoot
+            	\endlastfoot
+            	
+            	1 & /login. & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: username dan password.\\ \hline
+            	2 & /devices. & Mengakses endpoint dengan header autentikasi JWT dan metode GET. & Sistem menampilkan seluruh data perangkat yang terdaftar pada sistem. data yang ditampilkan meliputi: nama perangkat, tipe perangkat, alamat perangkat dan lokasi perangkat. serta terdapat tombol informasi untuk melihat data masing-masing perangkat secara rinci dan tombol hapus untuk menghapus data perangkat yang terdaftar pada sistem. \\ \hline
+            	3 & /devices/ <string:id> & Mengakses endpoint dengan header autentikasi JWT, metode GET dan menyertakan ID perangkat pada endpoint. & Sistem menampilkan data perangkat terkait secara rinci. data yang ditampilkan meliputi: profil perangkat, pelanggan dari perangkat dan OID (Informasi yang disediakan pada perangkat terkait). \\ \hline
+            	4 & /devices /create. & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: \textit{name}, \textit{type}, \textit{address} dan \textit{location} & Sistem menampilkan seluruh data perangkat yang terdaftar pada sistem. data yang ditampilkan meliputi: nama perangkat, tipe perangkat, alamat perangkat dan lokasi perangkat. serta terdapat tombol informasi untuk melihat data masing-masing perangkat secara rinci dan tombol hapus untuk menghapus data perangkat yang terdaftar pada sistem. \\ \hline
+            	5 & /devices /edit /<string:id> & Mengakses endpoint dengan header autentikasi JWT, metode POST, menyertakan ID perangkat pada endpoint dan disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: \textit{name}, \textit{type}, \textit{address} dan \textit{location}. & Sistem menghapus data perangkat terkait secara permanen. \\ \hline
+            	6 & /devices /delete & Mengakses endpoint dengan header autentikasi JWT dan metode DELETE, disertai dengan body bertipe JSON yang dilengkapi dengan parameter ID perangkat. & Sistem mengubah data yang lama dengan data yang baru dimasukkan oleh pengguna. \\ \hline
+            	7 & /oid /create & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: oidname, oid dan devices\_id & Sistem menandai bahwa perangkat atau OID (Informasi pada perangkat) yang terkait telat dilanggani. tombol akan berubah menjadi "Unsubscribe"\\ \hline
+            	8 & /oid /edit & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: oidname, oid dan devices\_id & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            	9 & /oid /delete & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan parameter parameter ID perangkat. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            	10 & /subscribe /devices & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: device\_id dan users\_id. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            	11 & /unsubscribe /devices & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: device\_id dan users\_id. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            	12 & /subscribe /oid & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: device\_id dan users\_id. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            	13 & /unsubscribe /oid & Mengakses endpoint dengan header autentikasi JWT dan metode POST, disertai dengan body bertipe JSON yang dilengkapi dengan beberapa parameter seperti: device\_id dan users\_id. & Sistem menampilkan kondisi dari seluruh perangkat yang telah dilanggani informasinya oleh pengguna. \\ \hline
+            \end{longtable}
+            
         
     \subsection{Skenario Uji Coba Performa}
     	Uji performa dilakukan dengan menggunakan lima buah desktop untuk melakukan akses secara bersamaan ke aplikasi menggunakan aplikasi JMeter. Desktop akan mencoba mengaskses halaman dari aplikasi web yang sudah berjalan, dengan domain aplikasi.nota-no.life. Halaman yang akan diakses berisi sebuah teks yang dihasilkan dari pemanggilan fungsi PHP. \\

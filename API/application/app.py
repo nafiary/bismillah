@@ -40,11 +40,12 @@ def auth_user(object, token):
     session['username'] = object['current_username']
     session['email'] = object['current_email']
     session['role'] = object['current_role']
+    session['name'] = object['current_name']
     session['token'] = token
 
 @app.route('/')
 def index():
-    return render_template('index.html', data = session)
+    return render_template('layout/base.html', data = session)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -61,6 +62,7 @@ def login():
             auth_user(auth, jwtoken)
             return index()
         except Exception as e:
+            print e
             return redirect(url_for('login'))
 
 @app.route('/logout')
@@ -186,11 +188,11 @@ def devicedetail(id):
         print subscriber
         print '\n'
         print oidsubscriber
-        return render_template('devicedetail.html', devicedetail = devicedetail, subscriber = subscriber)
+        return render_template('devicedetail2.html', devicedetail = devicedetail, subscriber = subscriber)
         # return jsonify({'msg':'test'})
     except Exception as e:
         print e
-        return render_template('devicedetail.html', devicedetail = devicedetail)
+        return render_template('devicedetail2.html', devicedetail = devicedetail)
         # return jsonify({'msg':'test'})
 
 @app.route('/oid/edit', methods=['POST'])
@@ -224,6 +226,7 @@ def editoid():
         except Exception as e:
             pass
 
+    print dataDict
     for data in dataDict:
         if data['id'] == '':
             try:

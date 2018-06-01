@@ -38,37 +38,36 @@
 \contentsline {subsection}{\numberline {4.3.1}Pemasangan Nagios Sebagai Pemantau dan Pengumpul Data Perangkat}{33}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Pengumpulan Data dan Pembuatan Script Pengiriman}{33}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Implementasi Pub/Sub Server}{37}{section.4.4}
-\contentsline {section}{\numberline {4.5}Implementasi Consumer pada Application Server dan Websocket}{37}{section.4.5}
-\contentsline {section}{\numberline {4.6}Implementasi Database Server}{38}{section.4.6}
-\contentsline {section}{\numberline {4.7}Implementasi Antarmuka}{43}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Daftar Aplikasi}{43}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}Informasi Aplikasi}{44}{subsection.4.7.2}
-\contentsline {subsection}{\numberline {4.7.3}Daftar \textit {Container}}{45}{subsection.4.7.3}
-\contentsline {subsection}{\numberline {4.7.4}Metrik Aplikasi}{45}{subsection.4.7.4}
-\contentsline {chapter}{\numberline {V}PENGUJIAN DAN EVALUASI}{47}{chapter.5}
-\contentsline {section}{\numberline {5.1}Lingkungan Uji Coba}{47}{section.5.1}
-\contentsline {section}{\numberline {5.2}Skenario Uji Coba}{48}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Skenario Uji Coba Fungsionalitas}{49}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Uji Mengelola Aplikasi Berbasis Docker}{49}{subsubsection.5.2.1.1}
-\contentsline {subsubsection}{\numberline {5.2.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{51}{subsubsection.5.2.1.2}
-\contentsline {subsection}{\numberline {5.2.2}Skenario Uji Coba Performa}{53}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Uji Performa Kecepatan Menangani \textit {Request}}{54}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Uji Performa Penggunaan CPU}{54}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Uji Performa Penggunaan \textit {Memory}}{55}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Uji Performa Keberhasilan \textit {Request}}{55}{subsubsection.5.2.2.4}
-\contentsline {section}{\numberline {5.3}Hasil Uji Coba dan Evaluasi}{55}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Uji Fungsionalitas}{55}{subsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Uji Mengelola Aplikasi Berbasis Docker}{56}{subsubsection.5.3.1.1}
-\contentsline {subsubsection}{\numberline {5.3.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{56}{subsubsection.5.3.1.2}
-\contentsline {subsection}{\numberline {5.3.2}Hasil Uji Performa}{59}{subsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.2.1}Kecepatan Menangani \textit {Request}}{60}{subsubsection.5.3.2.1}
-\contentsline {subsubsection}{\numberline {5.3.2.2}Penggunaan CPU}{61}{subsubsection.5.3.2.2}
-\contentsline {subsubsection}{\numberline {5.3.2.3}Penggunaan \textit {Memory}}{63}{subsubsection.5.3.2.3}
-\contentsline {subsubsection}{\numberline {5.3.2.4}Keberhasilan \textit {Request}}{64}{subsubsection.5.3.2.4}
-\contentsline {chapter}{\numberline {VI}PENUTUP}{67}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{67}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{68}{section.6.2}
-\contentsline {chapter}{DAFTAR PUSTAKA}{69}{chapter*.28}
-\contentsline {chapter}{\numberline {A}INSTALASI PERANGKAT LUNAK}{71}{appendix.A}
-\contentsline {chapter}{\numberline {B}KODE SUMBER}{83}{appendix.B}
-\contentsline {chapter}{BIODATA PENULIS}{85}{appendix*.29}
+\contentsline {section}{\numberline {4.5}Implementasi Consumer pada Server Aplikasi dan Websocket}{37}{section.4.5}
+\contentsline {section}{\numberline {4.6}Implementasi Database Server}{39}{section.4.6}
+\contentsline {section}{\numberline {4.7}Implementasi Antarmuka}{45}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Menampilkan seluruh data perangkat yang terdaftar pada sistem}{45}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Menampilkan rincian data perangkat jaringan yang terdaftarpada sistem}{46}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.3}Menampilkan data yang ingin dipantau pengguna pada sistem}{47}{subsection.4.7.3}
+\contentsline {chapter}{\numberline {V}PENGUJIAN DAN EVALUASI}{49}{chapter.5}
+\contentsline {section}{\numberline {5.1}Lingkungan Uji Coba}{49}{section.5.1}
+\contentsline {section}{\numberline {5.2}Skenario Uji Coba}{50}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Skenario Uji Coba Fungsionalitas}{51}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Uji Fungsionalitas Endpoint Antarmuka Aplikasi}{51}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Uji Fungsionalitas Endpoint REST API}{54}{subsubsection.5.2.1.2}
+\contentsline {subsection}{\numberline {5.2.2}Skenario Uji Coba Performa}{63}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Uji Performa Kecepatan Menangani \textit {Request}}{64}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Uji Performa Penggunaan CPU}{64}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.3}Uji Performa Penggunaan \textit {Memory}}{65}{subsubsection.5.2.2.3}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Uji Performa Keberhasilan \textit {Request}}{65}{subsubsection.5.2.2.4}
+\contentsline {section}{\numberline {5.3}Hasil Uji Coba dan Evaluasi}{65}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Uji Fungsionalitas}{65}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Uji Mengelola Aplikasi Berbasis Docker}{65}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Uji Fungsionalitas Menu Aplikasi Dasbor}{66}{subsubsection.5.3.1.2}
+\contentsline {subsection}{\numberline {5.3.2}Hasil Uji Performa}{69}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Kecepatan Menangani \textit {Request}}{70}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Penggunaan CPU}{71}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.3.2.3}Penggunaan \textit {Memory}}{73}{subsubsection.5.3.2.3}
+\contentsline {subsubsection}{\numberline {5.3.2.4}Keberhasilan \textit {Request}}{74}{subsubsection.5.3.2.4}
+\contentsline {chapter}{\numberline {VI}PENUTUP}{77}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{77}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{78}{section.6.2}
+\contentsline {chapter}{DAFTAR PUSTAKA}{79}{chapter*.27}
+\contentsline {chapter}{\numberline {A}INSTALASI PERANGKAT LUNAK}{81}{appendix.A}
+\contentsline {chapter}{\numberline {B}KODE SUMBER}{93}{appendix.B}
+\contentsline {chapter}{BIODATA PENULIS}{95}{appendix*.28}
