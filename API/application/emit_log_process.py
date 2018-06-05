@@ -8,7 +8,7 @@ import subprocess
 import json
 import time
 
-database = MySQLDatabase('sysmondb', user='remote', password='password123!', host='10.151.36.101', port=3306)
+database = MySQLDatabase('mydb', user='remote', password='password123!', host='10.151.36.101', port=3306)
 
 class BaseModel(Model):
     class Meta:
@@ -29,57 +29,71 @@ class Devices(BaseModel):
     location = CharField()
     address = CharField()
 
-class Oid(BaseModel):
+class Services(BaseModel):
     id = UUIDField(primary_key=True)
-    oid = CharField()
-    oidname = CharField()
+    servicename = CharField()
+    command = CharField()
+    params = CharField()
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users, on_delete='CASCADE')
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
+class Subscribeservice(BaseModel):
+    users_id = ForeignKeyField(Users, on_delete='CASCADE')
+    services_id = ForeignKeyField(Services, on_delete='CASCADE')
+
 def rabbitMq(exchange, address):
+    # deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
+    # for service in deviceservice:
+    #     print service.command
     try:
-        deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == exchange)
-        oidList = []
-        for oid in deviceoid:
-            oidList.append({
-            'id' : str(oid.id),
-            'oidname' : oid.oidname,
-            'oid': oid.oid,
-            'snmpresult' : None,
+        deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
+        serviceList = []
+        for service in deviceservice:
+            serviceList.append({
+            'id' : str(service.id),
+            'servicename' : service.servicename,
+            'command': service.command,
+            'nrperesult' : None,
             'deviceid' : str(exchange)
             })
     except Exception as e:
-        oidList = []
-        for oid in deviceoid:
-            oidList.append({
+        serviceList = []
+        for service in deviceservice:
+            serviceList.append({
             'id' : None,
-            'oidname' : None,
-            'oid': None,
-            'snmpresult' : None,
+            'servicename' : None,
+            'command': None,
+            'nrperesult' : None,
             'deviceid' : str(exchange)
             })
+    # for service in serviceList:
+    #     print service
+    #     print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
 
     try:
-        for oid in oidList:
-            p = subprocess.Popen(["/usr/local/nagios/libexec/check_snmp", "-H", address, "-o", oid['oid'], "-t", "1"], stdout=subprocess.PIPE)
+        for service in serviceList:
+            p = subprocess.Popen(["/usr/local/nagios/libexec/check_nrpe", "-H", address, "-c", service['command']], stdout=subprocess.PIPE)
+            # print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
             output, err = p.communicate()
-            if not p.wait():
-                oid['snmpresult'] = output.split('|')[0]
-                message = json.dumps(oidList)
-            else:
-                oid['snmpresult'] = 'SNMP CRITICAL -Error while checking related OID'
-                message = json.dumps(oidList)
+            # print output.split('-')[1]
+            # print p.poll()
+            # if not p.wait():
+            service['nrperesult'] = output.split('-')[1]
+            message = json.dumps(serviceList)
+            # else:
+            #     service['nrperesult'] = 'NRPE CRITICAL -Error while checking related OID'
+            #     message = json.dumps(serviceList)
     except Exception as e:
-        for oid in oidList:
-            oid['snmpresult'] = 'SNMP CRITICAL - Error while checking related OID'
-            message = json.dumps(oidList)
+        # pass
+        for service in serviceList:
+            service['nrperesult'] = 'NRPE CRITICAL - Error while checking related OID'
+            message = json.dumps(serviceList)
 
-    # print json.dumps({ 'msg' : message, 'sendtime' : time.time() })
     credentials = pika.PlainCredentials('admin', 'admin')
-    parameters = pika.ConnectionParameters('10.151.36.70', 5672, '/', credentials)
+    parameters = pika.ConnectionParameters('10.151.36.70', '5672', '/', credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
@@ -106,9 +120,9 @@ if __name__ == '__main__':
              'id' : device.id,
              'address' : device.address
             })
-        print deviceInfo
+        # print deviceInfo
         for info in deviceInfo:
             threadRMQ = Process(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
             threadRMQ.start()
-            threadRMQ.join()
-	time.sleep(1)
+            #threadRMQ.join()
+        time.sleep(2)
