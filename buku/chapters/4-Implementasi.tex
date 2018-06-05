@@ -1,8 +1,8 @@
 \chapter{IMPLEMENTASI}
-	Bab ini membahas implementasi sistem Pengendali Elastisitas secara rinci. Pembahasan dilakukan secara rinci untuk setiap komponen yang ada, yaitu: \textit{docker registry}, \textit{master host}, \textit{controller}, \textit{load balancer}, dan dasbor.
+	Bab ini membahas implementasi sistem pemantauan perangkat jaringan secara rinci. Pembahasan dilakukan secara rinci untuk setiap komponen yang ada, yaitu: REST API, Publisher server, Pub/sub Server, Server aplikasi dan websocket, Database server dan Antarmuka.
     
     \section{Lingkungan Implementasi}
-    	Lingkungan implementasi dan pengembangan dilakukan menggunakan virtualisasi Proxmox dengan spesifikasi Host komputer adalah Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz dengan memori 8 GB di Laboratorium Arsitektur dan Jaringan Komputer, Teknik Informatika ITS. Perangkat lunak yang digunakan dalam pengembangan adalah sebagai berikut:
+    	Lingkungan implementasi dan pengembangan dilakukan menggunakan virtualisasi Proxmox dengan spesifikasi \textit{Host} komputer adalah Intel(R) Core(TM) i3-2120 CPU @ 3.30GHz dengan memori 8 GB di Laboratorium Arsitektur dan Jaringan Komputer, Teknik Informatika ITS. Perangkat lunak yang digunakan dalam pengembangan adalah sebagai berikut:
         \begin{itemize}
         \item Sistem Operasi Linux Ubuntu Server 16.04 LTS
         \item RabbitMQ 3.7.5-1
@@ -82,7 +82,7 @@ $ /usr/local/nagios/check_snmp -H <alamat_perangkat> -o <oid_perangkat>
     			
     			pertama-tama, masukkan library yang dibutuhkan untuk pembuatan script (termasuk pika), lalu dilanjutkan dengan potongan kode untuk menginisiasi database. Pseudocode untuk inisasi kelas database dapat dilihat pada kode sumber \ref{pseudo:dbclass}
     			
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode inisiasi Kelas Database},label=pseudo:dbclass, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode inisiasi Kelas Database},label=pseudo:dbclass, captionpos=b, language=json]
 class BaseModel(Model):
 class Meta:
 database = database
@@ -115,7 +115,7 @@ devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
     			
     			Setelah itu buat fungsi sebagai target menjalankan thread, nantinya tiap thread akan mengeksekusi kode yang ada didalam fungsi tersebut. didalam fungsi tersebut meliputi pegumpulan data dengan \texttt{check\_snmp}. Data perangkat jaringan yang dikumpulkan dengan \texttt{check\_snmp} dimasukkan kedalam sebuah \texttt{python dictionary} yang nantinya dictionary tersebut akan dikirimkan menuju pub/sub server. Pseudocode fungsi tersebut dapat dilihat pada kode sumber \ref{pseudo:threadtarget}
     			
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Target \textit{Thread} Untuk Mengambil Data Perangkat},label=pseudo:threadtarget, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Target \textit{Thread} Untuk Mengambil Data Perangkat},label=pseudo:threadtarget, captionpos=b, language=json]
 rabbitMq(exchange, address):
 	try:
 		add getOidData() into array of dictionary
@@ -130,7 +130,7 @@ rabbitMq(exchange, address):
     			
     			Untuk mengirimkan data menuju pub/sub server diperlukan library pika yang akan membuat koneksi dengan RabbitMQ yang berada di pub/sub server. Pseudocode untuk mengirimkan data tersebut dapat dilihat pada kode sumber \ref{pseudo:pika}
     			
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Pengiriman Data Dengan Pika},label=pseudo:pika, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Pengiriman Data Dengan Pika},label=pseudo:pika, captionpos=b, language=json]
 pika.openConnection()
 if exchange does not exist:
 	createExchage()
@@ -146,7 +146,7 @@ sendMessage()
     			
 				Setelah seluruh fungsi selesai dibuat, langkah terakhir adalah membuat thread agar tiap thread nantinya akan mejalankan fungsi yang telah dibuat dan menjalankannya secara berkala. Pseudocode untuk membuat thread dapat dilihat pada kode sumber \ref{pseudo:runthread}
 				
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Menjalankan Thread},label=pseudo:runthread, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Menjalankan Thread},label=pseudo:runthread, captionpos=b, language=json]
 Thread
 while true:
 	getDeviceId() as exchangename
@@ -170,7 +170,7 @@ while true:
 		
 		implementasi inisiasi koneksi websocket dengan client dan pub/sub server dapat dilihat pada pseudocode yang terdapat pada kode sumber \ref{pseudo:initwebsocket}
 		
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Inisiasi Komunikasi Websokcet dengan Client dan Pub/Sub Server}, label=pseudo:initwebsocket, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Inisiasi Komunikasi Websokcet dengan Client dan Pub/Sub Server}, label=pseudo:initwebsocket, captionpos=b, language=json]
 connectToRabbitMQServer()
 createWebSocketConnection()
 if websocketConnected():
@@ -182,7 +182,7 @@ else if websocketDisconnected():
 		Pada javascript yang terdapat pada client terdapat fungsi untuk menangkap pesan dari server bahwa websocket terlah berhasil tersambung. bersamaan saat websocket berhasil tersambung, \textit{client} mengirimkan seluruh id pada tabel \textit{devices} yang telah dilangggani oleh pengguna yang aktif untuk dijadikan nama pada exchange dan uuid versi 4 yang baru dibuat untuk memberi nama pada \textit{queue}.
 		Pseudocode untuk fungsi tersebut dapat dilihat pada kode sumber \ref{pseudo:clientconnected}
 		
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Client Saat Terkoneksi dengan Websocket},label=pseudo:clientconnected, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Client Saat Terkoneksi dengan Websocket},label=pseudo:clientconnected, captionpos=b, language=json]
 deviceID = getSubscribedDeviceIDbyUser()
 pushDeviceIDToArray()
 sendtoServer(deviceIDArray, uuid4())
@@ -190,7 +190,7 @@ sendtoServer(deviceIDArray, uuid4())
 
 		Setelah client mengirimkan id tiap perangkat dari tabel \textit{devices} untuk penamaan \textit{exchange} dan uuid versi 4 baru untuk penamaan queue, selanjutnya server akan memproses data tersebut untuk pembuatan queue dan exchange agar data pada pub/sub server dapat disalurkan lewat exchange dan queue tersebut. pseudocode aktivitas websocket server saat pembuatan queue dan exchange lalu menyalurkan data pada client dapat dilihat pada kode sumber \ref{pseudo:websocketrabbit}
 		
-\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Websocket Saat Pembuatan Queue dan Exchange Untuk Penyaluran Data ke Client},label=pseudo:websocketrabbit, captionpos=b]
+\begin{lstlisting}[frame=single,breaklines,caption={Pseudocode Aktivitas Websocket Saat Pembuatan Queue dan Exchange Untuk Penyaluran Data ke Client},label=pseudo:websocketrabbit, captionpos=b, language=json]
 if exchange does not exist:
 	createExchage()
 	if queue does not exist:
@@ -227,6 +227,8 @@ sendMessageToClient()
     		6 & role & varchar(255) & Data yang berbentuk string. Digunakan untuk kelengkapan profil pengguna dan pembeda peran agar setiap user memiliki hak istimewa masing-masing. \\ \hline
     	\end{longtable}
     	
+    	Terdapat juga tabel \texttt{devices} yang digunakan untuk menyimpan seluruh data perangkat. pada tabel ini terdapat lima kolom. rincian tabel \texttt{devices} dapat dilihat pada tabel \ref{tabeldbdevices}
+    	
     	\begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.22\textwidth}|p{0.35\textwidth}|} % L = Rata kiri untuk setiap kolom, | = garis batas vertikal.
     		
     		% Kepala tabel, berulang di setiap halaman
@@ -242,7 +244,9 @@ sendMessageToClient()
     		4 & location & varchar(255) & Data yang berbentuk string. Digunakan untuk kelengkapan profil dari perangkat jaringan. \\ \hline
     		5 & address & varchar(255) & Data yang berbentuk string, implementasinya barbentuk alamat IP dari tiap perangkat jaringan. Digunakan untuk mengkoleksi data pada publisher server. \\ \hline
     	\end{longtable}
-    
+    	
+    	lalu terdapat juga tabel \texttt{OID} yang digunakan untuk menyimpan seluruh data informasi yang tersedia pada tiap perangkat. Pada tabel ini terdapat tiga kolom utama dan satu kolom \textit{foreign key} yang terhubung dengan tabel \texttt{devices}. Rincian tabel \texttt{OID} dapat dilihat pada tabel \ref{tabeldboid}
+    	
     	\begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.22\textwidth}|p{0.35\textwidth}|} % L = Rata kiri untuk setiap kolom, | = garis batas vertikal.
     		
     		% Kepala tabel, berulang di setiap halaman
@@ -258,6 +262,8 @@ sendMessageToClient()
     		4 & devices\_id & varchar(255) & Merupakan foreign key dari id pata tabel \texttt{devices}. Data ini berbentuk string, nilai pada kolom ini berformat UUID versi 4. \\ \hline
     	\end{longtable}
     
+    	lalu terdapat juga tabel \texttt{subscribe} yang digunakan untuk menyimpan seluruh data pengguna (\textit{user}) yang berlangganan informasi pada tiap perangkat. Tabel ini bersifat \textit{many-to-many}, pada tabel ini terdapat dua kolom \textit{foreign key} yang terhubung dengan tabel \texttt{devices} dan \texttt{users}. Rincian tabel \texttt{subscribe} dapat dilihat pada tabel \ref{tabeldboid}
+    
     	\begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.22\textwidth}|p{0.35\textwidth}|} % L = Rata kiri untuk setiap kolom, | = garis batas vertikal.
     		
     		% Kepala tabel, berulang di setiap halaman
@@ -270,7 +276,9 @@ sendMessageToClient()
     		1 & users\_id & varchar(255) & Sebagai primary key pada tabel juga sebagai foreign key dari id pada tabel \texttt{users}, nilai pada kolom ini berformat UUID versi 4 \\ \hline
     		2 & devices\_id & varchar(255) & Sebagai primary key pada tabel juga sebagai foreign key dari id pada tabel \texttt{devices}, nilai pada kolom ini berformat UUID versi 4. \\ \hline
     	\end{longtable}
-    
+    	
+    	terakhir, terdapat tabel \texttt{subscribeoid} yang digunakan untuk menyimpan seluruh data pengguna (\textit{user}) yang berlangganan informasi pada tiap perangkat. Tabel ini bersifat \textit{many-to-many}, pada tabel ini terdapat dua kolom \textit{foreign key} yang terhubung dengan tabel \texttt{OID} dan \texttt{users}. Rincian tabel \texttt{subscribe}oid dapat dilihat pada tabel \ref{tabeldbsubscribeoid}
+    	
     	\begin{longtable}{|p{0.05\textwidth}|p{0.20\textwidth}|p{0.22\textwidth}|p{0.35\textwidth}|} % L = Rata kiri untuk setiap kolom, | = garis batas vertikal.
     		
     		% Kepala tabel, berulang di setiap halaman

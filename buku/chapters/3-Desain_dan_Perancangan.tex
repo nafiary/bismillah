@@ -20,11 +20,11 @@
 		    	\endhead
 		    	\endfoot
 		    	\endlastfoot
-		    	UC-0001 & Manajemen Akun Pengguna. & Pengembang (Admin) dapat membuat, melihat, mengubah dan menghapus data akun pengguna. \\ \hline
-		    	UC-0002 & Manajemen Perangkat Jaringan.  & Pengembang (Admin) dapat membuat, melihat, mengubah dan menghapus data perangkat jaringan.\\ \hline
-		    	UC-0003 & Memantau Perangkat Jaringan. & Pengembang (Admin) dan Pengguna (User) dapat memantau seluruh perangkat jaringan yang sudah ia langgani. \\ \hline
-		    	UC-0004 & Berlangganan Informasi Perangkat. & Pengembang (Admin) dan Pengguna (User) dapat berlangganan informasi perangkat jaringan yang diinginkan. \\ \hline
-		    	UC-0005 & Berhenti Berlangganan Informasi Perangkat. & Pengembang (Admin) dan Pengguna (User) dapat berhenti berlangganan informasi perangkat jaringan yang diinginkan. \\ \hline	
+		    	UC-0001 & Manajemen Akun Pengguna. & Pengelola (Admin) dapat membuat, melihat, mengubah dan menghapus data akun pengguna. \\ \hline
+		    	UC-0002 & Manajemen Perangkat Jaringan.  & Pengelola (Admin) dapat membuat, melihat, mengubah dan menghapus data perangkat jaringan.\\ \hline
+		    	UC-0003 & Memantau Perangkat Jaringan. & Pengelola (Admin) dan Pengguna (\textit{User}) dapat memantau seluruh perangkat jaringan yang sudah ia langgani. \\ \hline
+		    	UC-0004 & Berlangganan Informasi Perangkat. & Pengelola (Admin) dan Pengguna (\textit{User}) dapat berlangganan informasi perangkat jaringan yang diinginkan. \\ \hline
+		    	UC-0005 & Berhenti Berlangganan Informasi Perangkat. & Pengelola (Admin) dan Pengguna (\textit{User}) dapat berhenti berlangganan informasi perangkat jaringan yang diinginkan. \\ \hline	
 		    \end{longtable}
 
 	\section{Arsitektur Sistem}
@@ -33,9 +33,9 @@
 		\subsection{Desain Umum Sistem}
 			Sistem yang akan dibuat yaitu sistem yang dapat melakukan pemantauan pada perangkat jaringan yang berbasis \textit{web} dengan metode \textit{pusblish/subscribe}, dimana pengguna (\textit{user}) harus berlangganan kepada suatu informasi untuk mendapatkan informasi yang diinginkan.
 			
-			Sistem ini melibatkan 3 (Tiga) server yang berfungsi sebagai web server dan 1 (satu) server yang berfungsi sebagai database server. Server aplikasi dan websocket server berada pada satu server, sehingga pada implementasinya webserver aplikasi dan websocket dijalankan pada port yang berbeda. Pada sistem ini \textit{client} yaitu pengguna (\textit{user}) dan pengelola (\textit{admin}) akan mengakses aplikasi menggunakan web browser. yang nantinya jika mengakses fitur selain memantau perangkat jaringan, aplikasi akan mengirimkan \textit{request} HTTP kepada REST API, dimana REST API tersebut melakukan transaksi data kepada database server. setelah itu REST API akan mengirimkan \textit{response} kepada aplikasi.
+			Sistem ini melibatkan 3 (Tiga) \textit{server} yang berfungsi sebagai \textit{Webserver} dan 1 (satu) \textit{server} yang berfungsi sebagai \textit{database server}. \textit{Server} aplikasi dan \textit{Websocket} \textit{server} berada pada satu \textit{server}, sehingga pada implementasinya \textit{Webserver} aplikasi dan \textit{Websocket} dijalankan pada \textit{port} yang berbeda. Pada sistem ini \textit{client} yaitu pengguna (\textit{user}) dan pengelola (\textit{admin}) akan mengakses aplikasi menggunakan \textit{web} \textit{browser}. yang nantinya jika mengakses fitur selain memantau perangkat jaringan, aplikasi akan mengirimkan \textit{request} HTTP kepada REST API, dimana REST API tersebut melakukan transaksi data kepada database \textit{server}. setelah itu REST API akan mengirimkan \textit{response} kepada aplikasi.
 			
-			jika client mengakses fitur memantau jaringan, maka aplikasi akan terhubung dengan websocket yang tugasnya mengakses data yang berada pada pub/sub server, dimana pubsub server menyimpan data yang diterbitkan oleh nagios, data tersebut adalah hasil response SNMP nagios kepada tiap perangkat jaringan terkait.
+			jika \textit{client} mengakses fitur memantau jaringan, maka aplikasi akan terhubung dengan websocket yang tugasnya mengakses data yang berada pada pub/sub \textit{server}, dimana pub/sub \textit{server} menyimpan data yang diterbitkan oleh nagios, data tersebut adalah hasil response SNMP nagios kepada tiap perangkat jaringan terkait.
 			Penjelasan secara umum arsitektur sistem akan diuraikan pada Gambar \ref{DesainUmumSistem}.
             \begin{figure}[H]
 				\centering
@@ -45,11 +45,11 @@
 			\end{figure}
 
 		\subsection{Desain REST API}
-            	REST API bertujuan untuk menjadikan sistem yang memiliki performa yang baik, cepat dan mudah untuk di kembangkan (scaleable) terutama dalam pertukaran dan komunikasi data. REST API diakses menggunakan protokol HTTP. Penamaan dan struktur URL yang konsisten akan menghasilkan API yang baik dan mudah untuk dimengerti developer. URL API biasa disebut endpoint dalam pemanggilannya.
+            	REST API bertujuan untuk menjadikan sistem yang memiliki performa yang baik, cepat dan mudah untuk di kembangkan (\textit{scalable}) terutama dalam pertukaran dan komunikasi data. REST API diakses menggunakan protokol HTTP. Penamaan dan struktur URL yang konsisten akan menghasilkan API yang baik dan mudah untuk dimengerti \textit{developer}. URL API biasa disebut \textit{endpoint} dalam pemanggilannya.
             	
-            	Pada sistem ini terdapat beberapa endpoint, beberapa endpoint dibagi menjadi beberapa endpoint sesuai dengan perintah yang diajalankannya. misal: create, read, delete, update dan lain-lain.
+            	Pada sistem ini terdapat beberapa \textit{endpoint}, beberapa \textit{endpoint} dibagi menjadi beberapa \textit{endpoint} sesuai dengan perintah yang diajalankannya. misal: \textit{create}, \textit{read}, \textit{delete}, \textit{update} dan lain-lain.
             	
-            	Server aplikasi mengirimkan HTTP request kepada REST API yang nantinya REST API akan melakukan trasaksi data pada database sesuai dengan endpointnya masing-masing. setelah itu REST API akan mengirimkan HTTP response kepada server aplikasi.
+            	Server aplikasi mengirimkan HTTP \textit{request} kepada REST API yang nantinya REST API akan melakukan trasaksi data pada database sesuai dengan \textit{endpoint}nya masing-masing. setelah itu REST API akan mengirimkan HTTP \textit{response} kepada server aplikasi.
             	
             	Secara umum, arsitektur dari REST API dapat dilihat pada Gambar \ref{desain:desainrestapi}\\
                 \begin{figure}[H]
@@ -60,11 +60,11 @@
 				\end{figure}
             
 		\subsection{Desain Publisher Server}
-			Pada publisher server, dipasang aplikasi untuk memantau kinerja jaringan, yaitu Nagios. Pada nagios, perdapat plugin untuk memantau kinerja jaringan dengan protokol SNMP yaitu check-snmp. plugin ini membutuhkan beberapa parameter, diantaranya: alamat perangkat yang ingin dipantau dan oid dari apa yang ingin dipantau.
+			Pada \textit{publisher server}, dipasang aplikasi untuk memantau kinerja jaringan, yaitu Nagios. Pada nagios, perdapat plugin untuk memantau kinerja jaringan dengan protokol SNMP yaitu \texttt{check-snmp}. plugin ini membutuhkan beberapa parameter, diantaranya: alamat perangkat yang ingin dipantau dan OID dari apa yang ingin dipantau.
 			
-			Sebuah script dibuat untuk mengambil data dan mengirimkannya menuju pub/sub server. setiap perangkat yang dipantau dimasukkan ke sebuah thread baru agar dapat berjalan secara paralel. didalam thread tersebut, setiap perangkat terkait diperiksa kinerjanya dengan protokol SNMP dan hasilnya dikirimkan kepada pub/sub server melalui sebuah exchange yang telah diikat dengan sebuah message queue yang sebelumnya telah diinisiasi. Rancangan umum dari \textit{Publisher Server} seperti yang digambarkan pada Gambar \ref{desain:desainpublisher}.
+			Sebuah \textit{script} dibuat untuk mengambil data dan mengirimkannya menuju pub/sub \textit{server}. setiap perangkat yang dipantau dimasukkan ke sebuah \textit{thread} baru agar dapat berjalan secara paralel. didalam \textit{thread} tersebut, setiap perangkat terkait diperiksa kinerjanya dengan protokol SNMP dan hasilnya dikirimkan kepada pub/sub server melalui sebuah \textit{exchange} yang telah diikat dengan sebuah \textit{message queue} yang sebelumnya telah diinisiasi. Rancangan umum dari \textit{Publisher Server} seperti yang digambarkan pada Gambar \ref{desain:desainpublisher}.
 			
-			Exchange yang dibuat oleh script tersebut namanya dibuat berdasarkan uuid versi 4 dari tiap device yang diambil dari database dan nama queue dibuat berdasarkan uuid versi 4 yang dibuat baru.
+			\textit{Exchange} yang dibuat oleh \textit{script} tersebut namanya dibuat berdasarkan uuid versi 4 dari tiap perangkat yang diambil dari \textit{database} dan nama \textit{queue} dibuat berdasarkan uuid versi 4 yang dibuat baru.
 			
 			\begin{figure}[H]
 				\centering
@@ -74,13 +74,13 @@
 			\end{figure}
                 
 		\subsection{Desain Pub/Sub Server}
-			Publish/subscribe server atau bisa juga disebut pub/sub server. yaitu sebuah server untuk menampung seluruh pesan yang dikirimkan oleh publisher. didalamnya terpasang aplikasi message broker yaitu \texttt{RabbitMQ}. seluruh pesan yang dikirimkan oleh publisher dikirimkan ke pub/sub server melalui sebuah exchange yang diikat dengan sebuah queue setelah itu server akan menyimpan pesan queue tersebut hingga ada consumer yang meminta data tersebut untuk dikirimkan. dalam kasus ini yang bertindak sebagai consumer adalah websocket server.
+			\textit{Publish/subscribe} \textit{server} atau bisa juga disebut pub/sub \textit{server}. yaitu sebuah \textit{server} untuk menampung seluruh pesan yang dikirimkan oleh \textit{publisher}. didalamnya terpasang aplikasi \textit{message broker} yaitu \texttt{RabbitMQ}. seluruh pesan yang dikirimkan oleh \textit{publisher} dikirimkan ke pub/sub \textit{server} melalui sebuah \textit{exchange} yang diikat dengan sebuah \textit{queue} setelah itu \textit{server} akan menyimpan pesan \textit{queue} tersebut hingga ada \textit{consumer} yang meminta data tersebut untuk dikirimkan. dalam kasus ini yang bertindak sebagai \textit{consumer} adalah \textit{websocket server}.
 			
-			Di sisi websocket dan server aplikasi, websocket menginisiasi sebuah exchange yang namanya dibuat berdasarkan uuid versi 4 dari tiap perangkat yang ingin dipantau dari database server, dengan syarat exchange dengan nama tersebut belum dibuat atau terdaftar sebelumnya. jika exchange dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub server maka websocket server tidak perlu membuat exchange tersebut.
+			Di sisi \textit{websocket} dan \textit{server} aplikasi, \textit{websocket} menginisiasi sebuah \textit{exchange} yang namanya dibuat berdasarkan uuid versi 4 dari tiap perangkat yang ingin dipantau dari \textit{database server}, dengan syarat \textit{exchange} dengan nama tersebut belum dibuat atau terdaftar sebelumnya. jika exchange dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub \textit{server} maka \textit{websocket} \textit{server} tidak perlu membuat \textit{exchange} tersebut.
 			
-			Begitu juga dengan queue-nya. queue dibuat dengan nama uuid yang telah dibuat acak oleh client dengan algoritma uuid versi 4, dengan syarat queue dengan nama tersebut belum dibuat atau terdaftar sebelumnya. Jika queue dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub server maka websocket server tidak perlu membuat queue tersebut.
+			Begitu juga dengan \textit{queue}-nya. \textit{queue} dibuat dengan nama UUID yang telah dibuat acak oleh \textit{client} dengan algoritma UUID versi 4, dengan syarat queue dengan nama tersebut belum dibuat atau terdaftar sebelumnya. Jika \textit{queue} dengan nama tersebut sudah dibuat atau terdaftar sebelumnya pada pub/sub \textit{server} maka \textit{websocket} \textit{server} tidak perlu membuat \textit{queue} tersebut.
 			
-	 		Setelah menghadapi masalah pembuatan exchange dan queue, websocket baru mengambil data perangkat pada pub/sub server sesuai dengan data apa saja yang dilanggani oleh client.
+	 		Setelah menghadapi masalah pembuatan \textit{exchange} dan \textit{queue}, \textit{websocket} baru mengambil data perangkat pada pub/sub \textit{server} sesuai dengan data apa saja yang dilanggani oleh \textit{client}.
 	 		
         	Secara umum, arsitektur rancangan dari \textit{Pub/Sub Server} dapat dilihat pada Gambar \ref{desain:desainpubsub}.
         	\begin{figure}[H]
@@ -91,30 +91,30 @@
 			\end{figure}
 		
 		\subsection{Desain Consumer pada Application Server dan Websocket}
-			Consumer berfungsi untuk mengambil data yang dibutuhkan oleh client dari pub/sub server. Pada sistem ini, consumer didesain untuk diimplementasikan pada websocket agar data yang diterima oleh client adalah data yang paling terbaru (realtime). websocket ini nantinya akan disambungkan dengan sebuah endpoint (URL) pada aplikasi.
+			\textit{Consumer} berfungsi untuk mengambil data yang dibutuhkan oleh \textit{client} dari pub/sub \textit{server}. Pada sistem ini, \textit{consumer} didesain untuk diimplementasikan pada \textit{websocket} agar data yang diterima oleh \textit{client} adalah data yang paling terbaru (\textit{realtime}). \textit{websocket} ini nantinya akan disambungkan dengan sebuah \textit{endpoint} (URL) pada aplikasi.
 			
-			Consumer ini nantinya akan membuat sebuah queue dengan nama yang ditentukan oleh client. nama dari queue tersebut ditentukan dengan membuat string UUID versi 4 secara acak. Setelah berhasil membuat queue, consumer membuat exchange yang banyaknya sejumlah perangkat yang terdaftar pada sistem dan exchange tersebut diberi nama sesuai dengan ID pada masing-masing perangkat yang dimana ID tersebut berformat UUID versi 4. Pembuatan queue dan exchange akan dilakukan jika queue dan exchange belum terdaftar pada pub/sub server. jika queue dan exchange sudah terdaftar, maka tidak akan ada queue dan exchange yang akan dibuat. Setelah queue dan exchange berhasil dibuat. queue tersebut akan diikat dengan satu atau lebih exchange. lewat queue tersebutlah data akan dikirim. ilustrasi cara kerja queue dan exchange dapat dilihat pada gambar \ref{desain:consumer}.
+			\textit{Consumer} ini nantinya akan membuat sebuah \textit{queue} dengan nama yang ditentukan oleh \textit{client}. nama dari queue tersebut ditentukan dengan membuat \textit{string} UUID versi 4 secara acak. Setelah berhasil membuat \textit{queue}, \textit{consumer} membuat \textit{exchange} yang banyaknya sejumlah perangkat yang terdaftar pada sistem dan \textit{exchange} tersebut diberi nama sesuai dengan ID pada masing-masing perangkat yang dimana ID tersebut berformat UUID versi 4. Pembuatan \textit{queue} dan \textit{exchange} akan dilakukan jika \textit{queue} dan \textit{exchange} belum terdaftar pada pub/sub \textit{server}. jika \textit{queue} dan \textit{exchange} sudah terdaftar, maka tidak akan ada \textit{queue} dan \textit{exchange} yang akan dibuat. Setelah \textit{queue} dan \textit{exchange} berhasil dibuat. \textit{queue} tersebut akan diikat dengan satu atau lebih \textit{exchange}. lewat \textit{queue} tersebutlah data akan dikirim. ilustrasi cara kerja \textit{queue} dan \textit{exchange} dapat dilihat pada gambar \ref{desain:consumer}.
 			\begin{figure}[H]
 				\centering
 				\includegraphics[height=3cm]{Images/C-3/pubsubillus.png}
-				\caption{Ilustrasi Cara Kerja Queue dan Exchange}
+				\caption{Ilustrasi Cara Kerja \textit{Queue} dan \textit{Exchange}}
 				\label{desain:consumer}
 			\end{figure}
 
         \subsection{Desain Database Server}        	
-        	Desain database pada sistem ini adalah seperti yang digambarkan pada gambar \ref{desain:desaindatabase}. Terdapat tiga tabel utama yang mewakili tiap entitas yang terlibat dalam sistem ini, yaitu: users, devices, dan oid. selain itu, terdapat dua table many-to-many untuk menyimpan data pengguna yang telah berlangganan kepada tiap perangkat dan pengguna yang berlangganan kepada tiap OID (untuk mengetahui informasi apa saja yang ada pada tiap perangkat. tiap OID memiliki informasi yang berbeda).
+        	Desain \textit{database} pada sistem ini adalah seperti yang digambarkan pada gambar \ref{desain:desaindatabase}. Terdapat tiga tabel utama yang mewakili tiap entitas yang terlibat dalam sistem ini, yaitu: \textit{users}, \textit{devices}, dan oid. selain itu, terdapat dua \textit{table many-to-many} untuk menyimpan data pengguna yang telah berlangganan kepada tiap perangkat dan pengguna yang berlangganan kepada tiap OID (untuk mengetahui informasi apa saja yang ada pada tiap perangkat. tiap OID memiliki informasi yang berbeda).
         	
         	\begin{figure}[H]
         		\centering
         		\includegraphics[width=9cm]{Images/C-3/desaindb.png}
-        		\caption{Desain Database}
+        		\caption{Desain \textit{Database}}
         		\label{desain:desaindatabase}
         	\end{figure}
         	
 		\subsection{Desain Antarmuka}
-			Desain antarmuka adalah desain untuk halaman yang nantinya akan digunakan oleh client baik itu pengguna (user) ataupun pengelola (admin). Antarmuka yang nantinya dibuat berbasis web dan  menggunakan Bootstrap 3 dan HTML. terdapat beberapa perbedaan pada antarmuka yang digunakan oleh pengelola dan pengguna. Misal, pada antarmuka yang digunakan pengguna tidak ada tombol untuk menghapus data perangkat, sedangkan pada antarmuka yang digunakan oleh pengelola terdapat tombol untuk menghapus data perangkat yang telah terdaftar.
+			Desain antarmuka adalah desain untuk halaman yang nantinya akan digunakan oleh \textit{client} baik itu pengguna (\textit{user}) ataupun pengelola (admin). Antarmuka yang nantinya dibuat berbasis web dan  menggunakan Bootstrap 3 dan HTML. terdapat beberapa perbedaan pada antarmuka yang digunakan oleh pengelola dan pengguna. Misal, pada antarmuka yang digunakan pengguna tidak ada tombol untuk menghapus data perangkat, sedangkan pada antarmuka yang digunakan oleh pengelola terdapat tombol untuk menghapus data perangkat yang telah terdaftar.
 			
-			Desain antarmuka untuk menampilkan daftar seluruh perangkat yang tersedia pada sistem dapat dilihat pada gambar \ref{desain:antarmuka1}. pada halaman ini pengguna dan pengelola dapat meliahat daftar perangkat yang tersedia dan beberapa infonya, seperti: nama perangkat, alamat, dan lokasi dari perangkat tersebut. pada halaman in ipengguna dan pengolola juga bisa langsung berlangganan atau berhenti berlangganan dengan menekan sebuah tombol yang ada pada halaman ini.
+			Desain antarmuka untuk menampilkan daftar seluruh perangkat yang tersedia pada sistem dapat dilihat pada gambar \ref{desain:antarmuka1}. pada halaman ini pengguna dan pengelola dapat meliahat daftar perangkat yang tersedia dan beberapa infonya, seperti: nama perangkat, alamat, dan lokasi dari perangkat tersebut. pada halaman ini pengguna dan pengelola juga bisa langsung berlangganan atau berhenti berlangganan dengan menekan sebuah tombol yang ada pada halaman ini.
         	\begin{figure}[H]
         		\centering
         		\includegraphics[width=9cm]{Images/C-3/antarmuka1.png}

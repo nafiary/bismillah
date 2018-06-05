@@ -280,7 +280,7 @@ def createdevice():
                 createdevice.rollback()
                 return jsonify({"msg": "Error while creating OID data"}), 401
 
-            res = jsonify({"msg": "Device data created"}), 200
+            res = jsonify({"msg": "Device data created", "deviceid" : uuiddevices}), 200
 
         except Exception as e:
             res = jsonify({"msg": "Error while creating device data"}), 401

@@ -1,0 +1,2105 @@
+2018-06-04 22:21:47,417 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2018-06-04 22:21:47,458 INFO o.a.j.JMeter: Loading user properties from: /home/afifridho/Downloads/apache-jmeter-4.0/bin/user.properties
+2018-06-04 22:21:47,460 INFO o.a.j.JMeter: Loading system properties from: /home/afifridho/Downloads/apache-jmeter-4.0/bin/system.properties
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: Copyright (c) 1998-2018 The Apache Software Foundation
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: Version 4.0 r1823414
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: java.version=1.8.0_171
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: os.name=Linux
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: os.arch=amd64
+2018-06-04 22:21:47,485 INFO o.a.j.JMeter: os.version=4.13.0-43-generic
+2018-06-04 22:21:47,486 INFO o.a.j.JMeter: file.encoding=UTF-8
+2018-06-04 22:21:47,486 INFO o.a.j.JMeter: Max memory     =1073741824
+2018-06-04 22:21:47,486 INFO o.a.j.JMeter: Available Processors =4
+2018-06-04 22:21:47,492 INFO o.a.j.JMeter: Default Locale=English (EN)
+2018-06-04 22:21:47,493 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2018-06-04 22:21:47,493 INFO o.a.j.JMeter: JMeterHome=/home/afifridho/Downloads/apache-jmeter-4.0
+2018-06-04 22:21:47,493 INFO o.a.j.JMeter: user.dir  =/home/afifridho/Documents/development/tugasakhir
+2018-06-04 22:21:47,494 INFO o.a.j.JMeter: PWD       =/home/afifridho/Documents/development/tugasakhir
+2018-06-04 22:21:47,494 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: vaio FullName: vaio
+2018-06-04 22:21:47,955 INFO o.a.j.g.a.LookAndFeelCommand: Installing Darcula LAF
+2018-06-04 22:21:48,033 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: com.bulenkov.darcula.DarculaLaf [Darcula]
+2018-06-04 22:21:48,033 INFO o.a.j.JMeter: Setting LAF to: com.bulenkov.darcula.DarculaLaf
+2018-06-04 22:21:48,126 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2018-06-04 22:21:49,006 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2018-06-04 22:21:49,010 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2018-06-04 22:21:52,054 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-06-04 22:21:52,055 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-06-04 22:21:52,056 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-06-04 22:21:52,056 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2018-06-04 22:21:52,056 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2018-06-04 22:21:52,056 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2018-06-04 22:21:52,482 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2018-06-04 22:21:52,482 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /home/afifridho/Downloads/apache-jmeter-4.0/bin/proxyserver.jks
+2018-06-04 22:21:52,684 INFO o.a.j.s.FileServer: Default base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:21:53,293 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2018-06-04 22:21:53,294 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2018-06-04 22:21:53,294 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2018-06-04 22:21:53,296 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2018-06-04 22:21:53,329 WARN o.a.j.v.ViewResultsFullVisualizer: Error loading result renderer: org.apache.jmeter.visualizers.RenderInBrowser
+java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Class.java:264) ~[?:1.8.0_171]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createComboRender(ViewResultsFullVisualizer.java:462) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createLeftPanel(ViewResultsFullVisualizer.java:430) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.init(ViewResultsFullVisualizer.java:342) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.<init>(ViewResultsFullVisualizer.java:147) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_171]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Class.java:442) ~[?:1.8.0_171]
+	at org.apache.jmeter.gui.util.MenuFactory.getGUIComponent(MenuFactory.java:174) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.util.MenuFactory.initializeMenus(MenuFactory.java:141) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.util.MenuFactory.<clinit>(MenuFactory.java:106) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.control.gui.TestPlanGui.createPopupMenu(TestPlanGui.java:92) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeNode.createPopupMenu(JMeterTreeNode.java:155) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.EditCommand.doAction(EditCommand.java:46) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.performAction(ActionRouter.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.lambda$actionPerformed$0(ActionRouter.java:70) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758) [?:1.8.0_171]
+	at java.awt.EventQueue.access$500(EventQueue.java:97) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:709) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:703) [?:1.8.0_171]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.8.0_171]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82) [?:1.8.0_171]
+Caused by: java.lang.ClassNotFoundException: javafx.embed.swing.JFXPanel
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_171]
+	... 33 more
+2018-06-04 22:22:00,337 INFO o.a.j.g.a.Load: Loading file: /home/afifridho/Documents/development/tugasakhir/websocket.jmx
+2018-06-04 22:22:00,338 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:22:00,504 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2018-06-04 22:22:00,529 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2018-06-04 22:22:00,532 INFO o.a.j.s.SaveService: Using SaveService properties version 4.0
+2018-06-04 22:22:00,538 INFO o.a.j.s.SaveService: Loading file: /home/afifridho/Documents/development/tugasakhir/websocket.jmx
+2018-06-04 22:22:00,635 WARN o.a.j.v.ViewResultsFullVisualizer: Error loading result renderer: org.apache.jmeter.visualizers.RenderInBrowser
+java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Class.java:264) ~[?:1.8.0_171]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createComboRender(ViewResultsFullVisualizer.java:462) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createLeftPanel(ViewResultsFullVisualizer.java:430) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.init(ViewResultsFullVisualizer.java:342) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.<init>(ViewResultsFullVisualizer.java:147) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_171]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Class.java:442) ~[?:1.8.0_171]
+	at org.apache.jmeter.gui.GuiPackage.getGuiFromCache(GuiPackage.java:405) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:251) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:222) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addComponent(JMeterTreeModel.java:157) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:125) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.addSubTree(GuiPackage.java:522) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.insertLoadedTree(Load.java:193) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:130) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:101) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.doActionAfterCheck(Load.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.AbstractActionWithNoRunningTest.doAction(AbstractActionWithNoRunningTest.java:45) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.performAction(ActionRouter.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.lambda$actionPerformed$0(ActionRouter.java:70) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758) [?:1.8.0_171]
+	at java.awt.EventQueue.access$500(EventQueue.java:97) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:709) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:703) [?:1.8.0_171]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.8.0_171]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82) [?:1.8.0_171]
+Caused by: java.lang.ClassNotFoundException: javafx.embed.swing.JFXPanel
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_171]
+	... 40 more
+2018-06-04 22:22:00,672 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:22:18,131 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2018-06-04 22:22:18,133 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2018-06-04 22:22:18,133 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2018-06-04 22:22:18,138 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2018-06-04 22:22:18,311 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : websocket
+2018-06-04 22:22:18,311 INFO o.a.j.e.StandardJMeterEngine: Starting 300 threads for group websocket.
+2018-06-04 22:22:18,311 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2018-06-04 22:22:18,312 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=300 ramp-up=1 perThread=3.3333333 delayedStart=false
+2018-06-04 22:22:18,336 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-1
+2018-06-04 22:22:18,341 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-2
+2018-06-04 22:22:18,348 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-3
+2018-06-04 22:22:18,349 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-4
+2018-06-04 22:22:18,354 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-5
+2018-06-04 22:22:18,357 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-6
+2018-06-04 22:22:18,363 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-7
+2018-06-04 22:22:18,365 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-8
+2018-06-04 22:22:18,367 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-9
+2018-06-04 22:22:18,373 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-10
+2018-06-04 22:22:18,375 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-11
+2018-06-04 22:22:18,384 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-4
+2018-06-04 22:22:18,384 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-4
+2018-06-04 22:22:18,388 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-12
+2018-06-04 22:22:18,390 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-5
+2018-06-04 22:22:18,390 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-5
+2018-06-04 22:22:18,390 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-8
+2018-06-04 22:22:18,390 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-8
+2018-06-04 22:22:18,391 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-7
+2018-06-04 22:22:18,391 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-7
+2018-06-04 22:22:18,391 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-13
+2018-06-04 22:22:18,392 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-6
+2018-06-04 22:22:18,392 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-6
+2018-06-04 22:22:18,392 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-2
+2018-06-04 22:22:18,392 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-2
+2018-06-04 22:22:18,393 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-3
+2018-06-04 22:22:18,394 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-3
+2018-06-04 22:22:18,396 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-12
+2018-06-04 22:22:18,396 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-10
+2018-06-04 22:22:18,396 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-12
+2018-06-04 22:22:18,396 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-10
+2018-06-04 22:22:18,394 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-14
+2018-06-04 22:22:18,400 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-15
+2018-06-04 22:22:18,402 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-16
+2018-06-04 22:22:18,404 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-17
+2018-06-04 22:22:18,410 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-17
+2018-06-04 22:22:18,410 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-17
+2018-06-04 22:22:18,413 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-15
+2018-06-04 22:22:18,414 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-15
+2018-06-04 22:22:18,415 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-16
+2018-06-04 22:22:18,415 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-16
+2018-06-04 22:22:18,419 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-9
+2018-06-04 22:22:18,419 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-9
+2018-06-04 22:22:18,422 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-1
+2018-06-04 22:22:18,422 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-1
+2018-06-04 22:22:18,422 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-13
+2018-06-04 22:22:18,422 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-13
+2018-06-04 22:22:18,396 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-11
+2018-06-04 22:22:18,425 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-11
+2018-06-04 22:22:18,427 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-18
+2018-06-04 22:22:18,434 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-18
+2018-06-04 22:22:18,434 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-18
+2018-06-04 22:22:18,437 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-20
+2018-06-04 22:22:18,441 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-19
+2018-06-04 22:22:18,443 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-20
+2018-06-04 22:22:18,443 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-20
+2018-06-04 22:22:18,444 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-22
+2018-06-04 22:22:18,446 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-23
+2018-06-04 22:22:18,447 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-21
+2018-06-04 22:22:18,450 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-24
+2018-06-04 22:22:18,460 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-24
+2018-06-04 22:22:18,461 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-24
+2018-06-04 22:22:18,463 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-22
+2018-06-04 22:22:18,463 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-23
+2018-06-04 22:22:18,463 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-23
+2018-06-04 22:22:18,461 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-25
+2018-06-04 22:22:18,466 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-22
+2018-06-04 22:22:18,466 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-26
+2018-06-04 22:22:18,467 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-21
+2018-06-04 22:22:18,467 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-21
+2018-06-04 22:22:18,469 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-19
+2018-06-04 22:22:18,469 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-19
+2018-06-04 22:22:18,470 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-27
+2018-06-04 22:22:18,473 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-14
+2018-06-04 22:22:18,473 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-14
+2018-06-04 22:22:18,475 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-28
+2018-06-04 22:22:18,475 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-25
+2018-06-04 22:22:18,475 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-25
+2018-06-04 22:22:18,476 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-26
+2018-06-04 22:22:18,476 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-26
+2018-06-04 22:22:18,477 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-27
+2018-06-04 22:22:18,477 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-27
+2018-06-04 22:22:18,477 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-29
+2018-06-04 22:22:18,481 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-28
+2018-06-04 22:22:18,481 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-28
+2018-06-04 22:22:18,483 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-30
+2018-06-04 22:22:18,485 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-29
+2018-06-04 22:22:18,485 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-29
+2018-06-04 22:22:18,485 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-31
+2018-06-04 22:22:18,488 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-32
+2018-06-04 22:22:18,491 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-31
+2018-06-04 22:22:18,492 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-31
+2018-06-04 22:22:18,492 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-33
+2018-06-04 22:22:18,493 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-30
+2018-06-04 22:22:18,493 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-30
+2018-06-04 22:22:18,495 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-32
+2018-06-04 22:22:18,495 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-32
+2018-06-04 22:22:18,496 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-34
+2018-06-04 22:22:18,499 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-35
+2018-06-04 22:22:18,498 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-33
+2018-06-04 22:22:18,500 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-33
+2018-06-04 22:22:18,502 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-36
+2018-06-04 22:22:18,506 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-34
+2018-06-04 22:22:18,507 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-34
+2018-06-04 22:22:18,507 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-37
+2018-06-04 22:22:18,508 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-35
+2018-06-04 22:22:18,508 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-35
+2018-06-04 22:22:18,510 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-36
+2018-06-04 22:22:18,510 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-36
+2018-06-04 22:22:18,510 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-38
+2018-06-04 22:22:18,514 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-37
+2018-06-04 22:22:18,514 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-37
+2018-06-04 22:22:18,516 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-38
+2018-06-04 22:22:18,518 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-38
+2018-06-04 22:22:18,527 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-39
+2018-06-04 22:22:18,531 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-40
+2018-06-04 22:22:18,533 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-39
+2018-06-04 22:22:18,533 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-39
+2018-06-04 22:22:18,535 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-41
+2018-06-04 22:22:18,538 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-40
+2018-06-04 22:22:18,540 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-40
+2018-06-04 22:22:18,543 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-41
+2018-06-04 22:22:18,544 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-41
+2018-06-04 22:22:18,555 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-42
+2018-06-04 22:22:18,560 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-43
+2018-06-04 22:22:18,562 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-42
+2018-06-04 22:22:18,562 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-42
+2018-06-04 22:22:18,566 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-44
+2018-06-04 22:22:18,572 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-45
+2018-06-04 22:22:18,575 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-43
+2018-06-04 22:22:18,575 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-43
+2018-06-04 22:22:18,576 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-46
+2018-06-04 22:22:18,578 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-45
+2018-06-04 22:22:18,578 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-45
+2018-06-04 22:22:18,580 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-44
+2018-06-04 22:22:18,579 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-47
+2018-06-04 22:22:18,580 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-44
+2018-06-04 22:22:18,582 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-46
+2018-06-04 22:22:18,582 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-46
+2018-06-04 22:22:18,583 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-48
+2018-06-04 22:22:18,587 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-49
+2018-06-04 22:22:18,588 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-48
+2018-06-04 22:22:18,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-48
+2018-06-04 22:22:18,598 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-47
+2018-06-04 22:22:18,598 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-49
+2018-06-04 22:22:18,599 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-47
+2018-06-04 22:22:18,599 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-49
+2018-06-04 22:22:18,603 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-50
+2018-06-04 22:22:18,606 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-51
+2018-06-04 22:22:18,610 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-50
+2018-06-04 22:22:18,610 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-50
+2018-06-04 22:22:18,610 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-52
+2018-06-04 22:22:18,613 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-53
+2018-06-04 22:22:18,615 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-51
+2018-06-04 22:22:18,615 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-51
+2018-06-04 22:22:18,618 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-54
+2018-06-04 22:22:18,620 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-52
+2018-06-04 22:22:18,621 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-52
+2018-06-04 22:22:18,621 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-53
+2018-06-04 22:22:18,621 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-53
+2018-06-04 22:22:18,622 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-55
+2018-06-04 22:22:18,624 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-54
+2018-06-04 22:22:18,624 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-54
+2018-06-04 22:22:18,624 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-56
+2018-06-04 22:22:18,627 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-55
+2018-06-04 22:22:18,628 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-55
+2018-06-04 22:22:18,629 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-56
+2018-06-04 22:22:18,629 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-56
+2018-06-04 22:22:18,640 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-57
+2018-06-04 22:22:18,647 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-57
+2018-06-04 22:22:18,647 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-57
+2018-06-04 22:22:18,652 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-58
+2018-06-04 22:22:18,659 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-58
+2018-06-04 22:22:18,659 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-58
+2018-06-04 22:22:18,664 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-59
+2018-06-04 22:22:18,670 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-59
+2018-06-04 22:22:18,673 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-59
+2018-06-04 22:22:18,684 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-60
+2018-06-04 22:22:18,690 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-60
+2018-06-04 22:22:18,690 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-60
+2018-06-04 22:22:18,695 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-61
+2018-06-04 22:22:18,702 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2018-06-04 22:22:18,702 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2018-06-04 22:22:18,703 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-62
+2018-06-04 22:22:18,706 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-61
+2018-06-04 22:22:18,706 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-61
+2018-06-04 22:22:18,714 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-62
+2018-06-04 22:22:18,714 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-62
+2018-06-04 22:22:18,726 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-63
+2018-06-04 22:22:18,731 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-63
+2018-06-04 22:22:18,731 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-63
+2018-06-04 22:22:18,732 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-64
+2018-06-04 22:22:18,736 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-65
+2018-06-04 22:22:18,740 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-64
+2018-06-04 22:22:18,740 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-64
+2018-06-04 22:22:18,742 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-66
+2018-06-04 22:22:18,744 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-67
+2018-06-04 22:22:18,745 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-65
+2018-06-04 22:22:18,745 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-65
+2018-06-04 22:22:18,751 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-68
+2018-06-04 22:22:18,753 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-66
+2018-06-04 22:22:18,753 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-66
+2018-06-04 22:22:18,755 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-67
+2018-06-04 22:22:18,756 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-67
+2018-06-04 22:22:18,758 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-68
+2018-06-04 22:22:18,758 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-68
+2018-06-04 22:22:18,765 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-69
+2018-06-04 22:22:18,770 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-70
+2018-06-04 22:22:18,770 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-69
+2018-06-04 22:22:18,770 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-69
+2018-06-04 22:22:18,774 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-71
+2018-06-04 22:22:18,775 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-70
+2018-06-04 22:22:18,775 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-70
+2018-06-04 22:22:18,778 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-72
+2018-06-04 22:22:18,779 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-71
+2018-06-04 22:22:18,780 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-71
+2018-06-04 22:22:18,784 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-72
+2018-06-04 22:22:18,784 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-72
+2018-06-04 22:22:18,784 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-73
+2018-06-04 22:22:18,790 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-73
+2018-06-04 22:22:18,790 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-73
+2018-06-04 22:22:18,790 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-74
+2018-06-04 22:22:18,793 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-75
+2018-06-04 22:22:18,796 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-74
+2018-06-04 22:22:18,796 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-74
+2018-06-04 22:22:18,797 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-76
+2018-06-04 22:22:18,803 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-76
+2018-06-04 22:22:18,803 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-76
+2018-06-04 22:22:18,803 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-77
+2018-06-04 22:22:18,807 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-78
+2018-06-04 22:22:18,811 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-79
+2018-06-04 22:22:18,814 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-80
+2018-06-04 22:22:18,817 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-81
+2018-06-04 22:22:18,821 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-82
+2018-06-04 22:22:18,825 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-83
+2018-06-04 22:22:18,827 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-75
+2018-06-04 22:22:18,827 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-75
+2018-06-04 22:22:18,828 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-84
+2018-06-04 22:22:18,832 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-85
+2018-06-04 22:22:18,833 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-77
+2018-06-04 22:22:18,833 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-77
+2018-06-04 22:22:18,835 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-86
+2018-06-04 22:22:18,839 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-87
+2018-06-04 22:22:18,841 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-86
+2018-06-04 22:22:18,842 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-86
+2018-06-04 22:22:18,844 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-88
+2018-06-04 22:22:18,844 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-82
+2018-06-04 22:22:18,844 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-78
+2018-06-04 22:22:18,844 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-78
+2018-06-04 22:22:18,845 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-80
+2018-06-04 22:22:18,845 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-80
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-81
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-81
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-79
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-79
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-82
+2018-06-04 22:22:18,846 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-89
+2018-06-04 22:22:18,847 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-83
+2018-06-04 22:22:18,847 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-83
+2018-06-04 22:22:18,848 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-84
+2018-06-04 22:22:18,849 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-84
+2018-06-04 22:22:18,850 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-90
+2018-06-04 22:22:18,852 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-87
+2018-06-04 22:22:18,854 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-91
+2018-06-04 22:22:18,854 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-85
+2018-06-04 22:22:18,854 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-85
+2018-06-04 22:22:18,856 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-87
+2018-06-04 22:22:18,857 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-92
+2018-06-04 22:22:18,860 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-93
+2018-06-04 22:22:18,862 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-89
+2018-06-04 22:22:18,863 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-89
+2018-06-04 22:22:18,864 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-92
+2018-06-04 22:22:18,864 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-92
+2018-06-04 22:22:18,864 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-94
+2018-06-04 22:22:18,865 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-91
+2018-06-04 22:22:18,865 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-88
+2018-06-04 22:22:18,866 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-90
+2018-06-04 22:22:18,867 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-93
+2018-06-04 22:22:18,867 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-91
+2018-06-04 22:22:18,868 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-95
+2018-06-04 22:22:18,868 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-93
+2018-06-04 22:22:18,869 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-90
+2018-06-04 22:22:18,869 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-88
+2018-06-04 22:22:18,870 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-94
+2018-06-04 22:22:18,871 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-94
+2018-06-04 22:22:18,871 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-96
+2018-06-04 22:22:18,874 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-95
+2018-06-04 22:22:18,874 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-95
+2018-06-04 22:22:18,875 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-97
+2018-06-04 22:22:18,876 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-96
+2018-06-04 22:22:18,877 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-96
+2018-06-04 22:22:18,878 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-98
+2018-06-04 22:22:18,881 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-97
+2018-06-04 22:22:18,881 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-97
+2018-06-04 22:22:18,885 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-98
+2018-06-04 22:22:18,885 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-98
+2018-06-04 22:22:18,885 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-99
+2018-06-04 22:22:18,889 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-100
+2018-06-04 22:22:18,890 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-99
+2018-06-04 22:22:18,890 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-99
+2018-06-04 22:22:18,892 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-101
+2018-06-04 22:22:18,893 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-100
+2018-06-04 22:22:18,894 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-100
+2018-06-04 22:22:18,896 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-102
+2018-06-04 22:22:18,899 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-101
+2018-06-04 22:22:18,899 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-101
+2018-06-04 22:22:18,899 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-103
+2018-06-04 22:22:18,902 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-102
+2018-06-04 22:22:18,902 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-102
+2018-06-04 22:22:18,903 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-104
+2018-06-04 22:22:18,906 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-103
+2018-06-04 22:22:18,906 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-103
+2018-06-04 22:22:18,906 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-105
+2018-06-04 22:22:18,910 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-104
+2018-06-04 22:22:18,911 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-104
+2018-06-04 22:22:18,911 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-106
+2018-06-04 22:22:18,913 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-105
+2018-06-04 22:22:18,913 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-105
+2018-06-04 22:22:18,916 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-107
+2018-06-04 22:22:18,918 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-106
+2018-06-04 22:22:18,918 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-106
+2018-06-04 22:22:18,922 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-107
+2018-06-04 22:22:18,922 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-107
+2018-06-04 22:22:18,929 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-108
+2018-06-04 22:22:18,937 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-108
+2018-06-04 22:22:18,937 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-108
+2018-06-04 22:22:18,941 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-109
+2018-06-04 22:22:18,946 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-109
+2018-06-04 22:22:18,947 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-109
+2018-06-04 22:22:18,951 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-110
+2018-06-04 22:22:18,956 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-110
+2018-06-04 22:22:18,957 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-110
+2018-06-04 22:22:18,957 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-111
+2018-06-04 22:22:18,962 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-112
+2018-06-04 22:22:18,964 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-111
+2018-06-04 22:22:18,965 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-111
+2018-06-04 22:22:18,964 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-113
+2018-06-04 22:22:18,968 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-114
+2018-06-04 22:22:18,969 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-112
+2018-06-04 22:22:18,969 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-112
+2018-06-04 22:22:18,972 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-115
+2018-06-04 22:22:18,972 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-113
+2018-06-04 22:22:18,972 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-113
+2018-06-04 22:22:18,974 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-114
+2018-06-04 22:22:18,975 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-116
+2018-06-04 22:22:18,979 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-115
+2018-06-04 22:22:18,979 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-117
+2018-06-04 22:22:18,979 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-115
+2018-06-04 22:22:18,980 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-114
+2018-06-04 22:22:18,982 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-116
+2018-06-04 22:22:18,983 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-116
+2018-06-04 22:22:18,983 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-118
+2018-06-04 22:22:18,984 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-117
+2018-06-04 22:22:18,984 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-117
+2018-06-04 22:22:18,986 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-119
+2018-06-04 22:22:18,988 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-118
+2018-06-04 22:22:18,989 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-118
+2018-06-04 22:22:18,989 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-120
+2018-06-04 22:22:18,992 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-119
+2018-06-04 22:22:18,992 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-119
+2018-06-04 22:22:18,993 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-121
+2018-06-04 22:22:18,995 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-120
+2018-06-04 22:22:18,995 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-120
+2018-06-04 22:22:18,997 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-122
+2018-06-04 22:22:19,000 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-123
+2018-06-04 22:22:19,001 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-121
+2018-06-04 22:22:19,001 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-121
+2018-06-04 22:22:19,002 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-122
+2018-06-04 22:22:19,003 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-122
+2018-06-04 22:22:19,004 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-124
+2018-06-04 22:22:19,005 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-123
+2018-06-04 22:22:19,005 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-123
+2018-06-04 22:22:19,007 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-125
+2018-06-04 22:22:19,009 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-124
+2018-06-04 22:22:19,010 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-124
+2018-06-04 22:22:19,011 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-126
+2018-06-04 22:22:19,013 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-125
+2018-06-04 22:22:19,013 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-125
+2018-06-04 22:22:19,015 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-127
+2018-06-04 22:22:19,018 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-126
+2018-06-04 22:22:19,018 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-128
+2018-06-04 22:22:19,018 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-126
+2018-06-04 22:22:19,021 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-127
+2018-06-04 22:22:19,021 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-129
+2018-06-04 22:22:19,021 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-127
+2018-06-04 22:22:19,023 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-128
+2018-06-04 22:22:19,023 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-128
+2018-06-04 22:22:19,025 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-130
+2018-06-04 22:22:19,026 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-129
+2018-06-04 22:22:19,026 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-129
+2018-06-04 22:22:19,033 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-130
+2018-06-04 22:22:19,033 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-130
+2018-06-04 22:22:19,040 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-131
+2018-06-04 22:22:19,045 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-131
+2018-06-04 22:22:19,045 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-131
+2018-06-04 22:22:19,073 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-132
+2018-06-04 22:22:19,077 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-133
+2018-06-04 22:22:19,078 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-132
+2018-06-04 22:22:19,078 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-132
+2018-06-04 22:22:19,080 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-134
+2018-06-04 22:22:19,083 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-133
+2018-06-04 22:22:19,083 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-133
+2018-06-04 22:22:19,083 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-135
+2018-06-04 22:22:19,087 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-134
+2018-06-04 22:22:19,087 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-134
+2018-06-04 22:22:19,088 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-136
+2018-06-04 22:22:19,089 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-135
+2018-06-04 22:22:19,089 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-135
+2018-06-04 22:22:19,090 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-137
+2018-06-04 22:22:19,093 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-136
+2018-06-04 22:22:19,093 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-136
+2018-06-04 22:22:19,094 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-138
+2018-06-04 22:22:19,096 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-137
+2018-06-04 22:22:19,096 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-137
+2018-06-04 22:22:19,098 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-139
+2018-06-04 22:22:19,101 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-140
+2018-06-04 22:22:19,102 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-138
+2018-06-04 22:22:19,102 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-138
+2018-06-04 22:22:19,104 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-141
+2018-06-04 22:22:19,105 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-139
+2018-06-04 22:22:19,105 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-139
+2018-06-04 22:22:19,107 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-140
+2018-06-04 22:22:19,107 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-140
+2018-06-04 22:22:19,108 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-142
+2018-06-04 22:22:19,111 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-141
+2018-06-04 22:22:19,111 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-141
+2018-06-04 22:22:19,112 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-143
+2018-06-04 22:22:19,115 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-144
+2018-06-04 22:22:19,117 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-142
+2018-06-04 22:22:19,117 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-142
+2018-06-04 22:22:19,119 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-143
+2018-06-04 22:22:19,120 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-143
+2018-06-04 22:22:19,120 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-145
+2018-06-04 22:22:19,121 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-144
+2018-06-04 22:22:19,121 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-144
+2018-06-04 22:22:19,123 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-146
+2018-06-04 22:22:19,125 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-145
+2018-06-04 22:22:19,125 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-145
+2018-06-04 22:22:19,126 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-147
+2018-06-04 22:22:19,128 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-146
+2018-06-04 22:22:19,129 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-146
+2018-06-04 22:22:19,130 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-148
+2018-06-04 22:22:19,132 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-147
+2018-06-04 22:22:19,132 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-147
+2018-06-04 22:22:19,133 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-149
+2018-06-04 22:22:19,136 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-148
+2018-06-04 22:22:19,136 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-148
+2018-06-04 22:22:19,139 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-149
+2018-06-04 22:22:19,139 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-149
+2018-06-04 22:22:19,137 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-150
+2018-06-04 22:22:19,141 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-151
+2018-06-04 22:22:19,144 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-152
+2018-06-04 22:22:19,145 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-150
+2018-06-04 22:22:19,145 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-150
+2018-06-04 22:22:19,147 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-151
+2018-06-04 22:22:19,147 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-153
+2018-06-04 22:22:19,147 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-151
+2018-06-04 22:22:19,152 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-152
+2018-06-04 22:22:19,152 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-152
+2018-06-04 22:22:19,152 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-154
+2018-06-04 22:22:19,153 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-153
+2018-06-04 22:22:19,153 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-153
+2018-06-04 22:22:19,155 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-155
+2018-06-04 22:22:19,158 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-154
+2018-06-04 22:22:19,159 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-154
+2018-06-04 22:22:19,160 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-155
+2018-06-04 22:22:19,160 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-155
+2018-06-04 22:22:19,169 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-156
+2018-06-04 22:22:19,174 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-157
+2018-06-04 22:22:19,175 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-156
+2018-06-04 22:22:19,175 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-156
+2018-06-04 22:22:19,179 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-157
+2018-06-04 22:22:19,179 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-158
+2018-06-04 22:22:19,179 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-157
+2018-06-04 22:22:19,183 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-159
+2018-06-04 22:22:19,186 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-158
+2018-06-04 22:22:19,186 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-158
+2018-06-04 22:22:19,187 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-160
+2018-06-04 22:22:19,189 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-159
+2018-06-04 22:22:19,189 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-159
+2018-06-04 22:22:19,190 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-161
+2018-06-04 22:22:19,193 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-160
+2018-06-04 22:22:19,193 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-160
+2018-06-04 22:22:19,193 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-162
+2018-06-04 22:22:19,196 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-161
+2018-06-04 22:22:19,196 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-161
+2018-06-04 22:22:19,197 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-163
+2018-06-04 22:22:19,198 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-162
+2018-06-04 22:22:19,198 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-162
+2018-06-04 22:22:19,200 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-164
+2018-06-04 22:22:19,203 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-163
+2018-06-04 22:22:19,203 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-163
+2018-06-04 22:22:19,203 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-165
+2018-06-04 22:22:19,205 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-164
+2018-06-04 22:22:19,205 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-164
+2018-06-04 22:22:19,207 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-166
+2018-06-04 22:22:19,209 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-165
+2018-06-04 22:22:19,209 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-165
+2018-06-04 22:22:19,211 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-167
+2018-06-04 22:22:19,215 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-168
+2018-06-04 22:22:19,215 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-166
+2018-06-04 22:22:19,215 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-166
+2018-06-04 22:22:19,217 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-167
+2018-06-04 22:22:19,218 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-169
+2018-06-04 22:22:19,219 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-167
+2018-06-04 22:22:19,220 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-168
+2018-06-04 22:22:19,221 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-168
+2018-06-04 22:22:19,221 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-170
+2018-06-04 22:22:19,224 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-169
+2018-06-04 22:22:19,224 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-169
+2018-06-04 22:22:19,224 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-171
+2018-06-04 22:22:19,226 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-170
+2018-06-04 22:22:19,226 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-170
+2018-06-04 22:22:19,229 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-172
+2018-06-04 22:22:19,231 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-171
+2018-06-04 22:22:19,231 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-171
+2018-06-04 22:22:19,232 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-173
+2018-06-04 22:22:19,235 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-172
+2018-06-04 22:22:19,235 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-174
+2018-06-04 22:22:19,235 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-172
+2018-06-04 22:22:19,237 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-173
+2018-06-04 22:22:19,237 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-173
+2018-06-04 22:22:19,240 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-174
+2018-06-04 22:22:19,240 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-174
+2018-06-04 22:22:19,244 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-175
+2018-06-04 22:22:19,247 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-176
+2018-06-04 22:22:19,249 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-175
+2018-06-04 22:22:19,249 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-175
+2018-06-04 22:22:19,252 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-176
+2018-06-04 22:22:19,252 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-176
+2018-06-04 22:22:19,255 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-177
+2018-06-04 22:22:19,256 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-178
+2018-06-04 22:22:19,261 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-177
+2018-06-04 22:22:19,261 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-177
+2018-06-04 22:22:19,262 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-178
+2018-06-04 22:22:19,262 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-178
+2018-06-04 22:22:19,263 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-179
+2018-06-04 22:22:19,266 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-180
+2018-06-04 22:22:19,268 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-179
+2018-06-04 22:22:19,268 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-179
+2018-06-04 22:22:19,270 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-181
+2018-06-04 22:22:19,271 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-180
+2018-06-04 22:22:19,271 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-180
+2018-06-04 22:22:19,273 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-182
+2018-06-04 22:22:19,275 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-181
+2018-06-04 22:22:19,275 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-181
+2018-06-04 22:22:19,276 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-183
+2018-06-04 22:22:19,278 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-182
+2018-06-04 22:22:19,278 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-182
+2018-06-04 22:22:19,281 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-184
+2018-06-04 22:22:19,282 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-183
+2018-06-04 22:22:19,283 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-183
+2018-06-04 22:22:19,284 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-185
+2018-06-04 22:22:19,287 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-186
+2018-06-04 22:22:19,289 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-184
+2018-06-04 22:22:19,289 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-184
+2018-06-04 22:22:19,290 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-185
+2018-06-04 22:22:19,290 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-185
+2018-06-04 22:22:19,291 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-187
+2018-06-04 22:22:19,293 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-186
+2018-06-04 22:22:19,293 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-186
+2018-06-04 22:22:19,295 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-188
+2018-06-04 22:22:19,296 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-187
+2018-06-04 22:22:19,296 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-187
+2018-06-04 22:22:19,298 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-189
+2018-06-04 22:22:19,301 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-188
+2018-06-04 22:22:19,301 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-188
+2018-06-04 22:22:19,302 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-190
+2018-06-04 22:22:19,303 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-189
+2018-06-04 22:22:19,303 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-189
+2018-06-04 22:22:19,305 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-191
+2018-06-04 22:22:19,308 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-192
+2018-06-04 22:22:19,312 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-193
+2018-06-04 22:22:19,315 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-194
+2018-06-04 22:22:19,318 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-195
+2018-06-04 22:22:19,323 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-196
+2018-06-04 22:22:19,326 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-197
+2018-06-04 22:22:19,329 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-198
+2018-06-04 22:22:19,333 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-199
+2018-06-04 22:22:19,336 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-200
+2018-06-04 22:22:19,342 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-201
+2018-06-04 22:22:19,346 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-202
+2018-06-04 22:22:19,349 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-203
+2018-06-04 22:22:19,353 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-204
+2018-06-04 22:22:19,357 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-205
+2018-06-04 22:22:19,360 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-206
+2018-06-04 22:22:19,363 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-207
+2018-06-04 22:22:19,367 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-208
+2018-06-04 22:22:19,371 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-209
+2018-06-04 22:22:19,374 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-210
+2018-06-04 22:22:19,378 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-211
+2018-06-04 22:22:19,381 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-212
+2018-06-04 22:22:19,384 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-213
+2018-06-04 22:22:19,388 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-214
+2018-06-04 22:22:19,391 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-215
+2018-06-04 22:22:19,394 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-216
+2018-06-04 22:22:19,399 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-217
+2018-06-04 22:22:19,402 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-218
+2018-06-04 22:22:19,405 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-219
+2018-06-04 22:22:19,409 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-220
+2018-06-04 22:22:19,412 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-221
+2018-06-04 22:22:19,415 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-222
+2018-06-04 22:22:19,419 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-223
+2018-06-04 22:22:19,422 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-224
+2018-06-04 22:22:19,426 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-225
+2018-06-04 22:22:19,430 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-226
+2018-06-04 22:22:19,436 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-227
+2018-06-04 22:22:19,439 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-228
+2018-06-04 22:22:19,443 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-229
+2018-06-04 22:22:19,447 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-230
+2018-06-04 22:22:19,450 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-231
+2018-06-04 22:22:19,454 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-232
+2018-06-04 22:22:19,459 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-233
+2018-06-04 22:22:19,461 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-234
+2018-06-04 22:22:19,465 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-235
+2018-06-04 22:22:19,468 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-236
+2018-06-04 22:22:19,472 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-237
+2018-06-04 22:22:19,476 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-238
+2018-06-04 22:22:19,479 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-239
+2018-06-04 22:22:19,482 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-240
+2018-06-04 22:22:19,486 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-241
+2018-06-04 22:22:19,489 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-242
+2018-06-04 22:22:19,493 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-243
+2018-06-04 22:22:19,497 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-244
+2018-06-04 22:22:19,500 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-245
+2018-06-04 22:22:19,503 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-246
+2018-06-04 22:22:19,508 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-247
+2018-06-04 22:22:19,511 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-248
+2018-06-04 22:22:19,514 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-249
+2018-06-04 22:22:19,518 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-250
+2018-06-04 22:22:19,521 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-251
+2018-06-04 22:22:19,524 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-190
+2018-06-04 22:22:19,524 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-190
+2018-06-04 22:22:19,525 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-252
+2018-06-04 22:22:19,529 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-253
+2018-06-04 22:22:19,532 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-254
+2018-06-04 22:22:19,535 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-255
+2018-06-04 22:22:19,540 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-256
+2018-06-04 22:22:19,543 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-257
+2018-06-04 22:22:19,546 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-258
+2018-06-04 22:22:19,550 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-259
+2018-06-04 22:22:19,554 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-260
+2018-06-04 22:22:19,556 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-261
+2018-06-04 22:22:19,561 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-262
+2018-06-04 22:22:19,563 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-213
+2018-06-04 22:22:19,563 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-213
+2018-06-04 22:22:19,564 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-263
+2018-06-04 22:22:19,565 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-205
+2018-06-04 22:22:19,565 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-205
+2018-06-04 22:22:19,567 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-264
+2018-06-04 22:22:19,570 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-198
+2018-06-04 22:22:19,570 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-198
+2018-06-04 22:22:19,570 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-200
+2018-06-04 22:22:19,571 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-200
+2018-06-04 22:22:19,571 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-242
+2018-06-04 22:22:19,571 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-265
+2018-06-04 22:22:19,571 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-242
+2018-06-04 22:22:19,572 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-204
+2018-06-04 22:22:19,572 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-204
+2018-06-04 22:22:19,573 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-203
+2018-06-04 22:22:19,573 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-203
+2018-06-04 22:22:19,574 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-199
+2018-06-04 22:22:19,574 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-199
+2018-06-04 22:22:19,574 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-266
+2018-06-04 22:22:19,575 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-192
+2018-06-04 22:22:19,575 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-192
+2018-06-04 22:22:19,576 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-195
+2018-06-04 22:22:19,576 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-195
+2018-06-04 22:22:19,576 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-215
+2018-06-04 22:22:19,577 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-215
+2018-06-04 22:22:19,577 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-208
+2018-06-04 22:22:19,577 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-208
+2018-06-04 22:22:19,577 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-211
+2018-06-04 22:22:19,577 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-211
+2018-06-04 22:22:19,578 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-193
+2018-06-04 22:22:19,578 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-193
+2018-06-04 22:22:19,579 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-202
+2018-06-04 22:22:19,579 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-202
+2018-06-04 22:22:19,580 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-234
+2018-06-04 22:22:19,580 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-234
+2018-06-04 22:22:19,580 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-210
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-229
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-243
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-229
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-233
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-233
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-230
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-230
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-232
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-232
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-218
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-218
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-221
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-221
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-226
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-226
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-224
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-224
+2018-06-04 22:22:19,587 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-263
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-235
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-263
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-197
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-197
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-201
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-201
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-245
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-245
+2018-06-04 22:22:19,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-244
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-244
+2018-06-04 22:22:19,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-219
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-219
+2018-06-04 22:22:19,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-236
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-236
+2018-06-04 22:22:19,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-231
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-231
+2018-06-04 22:22:19,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-194
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-194
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-212
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-212
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-238
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-238
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-269
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-216
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-216
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-191
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-191
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-209
+2018-06-04 22:22:19,589 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-209
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-239
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-239
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-227
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-227
+2018-06-04 22:22:19,584 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-214
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-214
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-207
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-207
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-220
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-220
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-217
+2018-06-04 22:22:19,590 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-217
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-228
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-237
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-223
+2018-06-04 22:22:19,583 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-206
+2018-06-04 22:22:19,582 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-222
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-222
+2018-06-04 22:22:19,582 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-240
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-240
+2018-06-04 22:22:19,581 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-267
+2018-06-04 22:22:19,581 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-196
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-196
+2018-06-04 22:22:19,580 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-241
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-241
+2018-06-04 22:22:19,580 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-225
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-225
+2018-06-04 22:22:19,588 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-235
+2018-06-04 22:22:19,586 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-210
+2018-06-04 22:22:19,592 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-243
+2018-06-04 22:22:19,593 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-260
+2018-06-04 22:22:19,593 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-260
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-265
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-249
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-265
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-259
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-259
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-261
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-261
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-264
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-247
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-264
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-255
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-255
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-250
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-252
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-252
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-257
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-257
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-248
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-248
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-258
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-258
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-262
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-262
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-256
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-256
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-246
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-253
+2018-06-04 22:22:19,597 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-253
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-266
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-266
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-251
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-251
+2018-06-04 22:22:19,594 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-249
+2018-06-04 22:22:19,591 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-270
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-206
+2018-06-04 22:22:19,595 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-271
+2018-06-04 22:22:19,598 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-223
+2018-06-04 22:22:19,599 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-237
+2018-06-04 22:22:19,599 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-228
+2018-06-04 22:22:19,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-250
+2018-06-04 22:22:19,599 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-254
+2018-06-04 22:22:19,599 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-254
+2018-06-04 22:22:19,600 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-246
+2018-06-04 22:22:19,600 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-247
+2018-06-04 22:22:19,599 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-272
+2018-06-04 22:22:19,602 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-273
+2018-06-04 22:22:19,600 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-268
+2018-06-04 22:22:19,606 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-267
+2018-06-04 22:22:19,606 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-267
+2018-06-04 22:22:19,606 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-269
+2018-06-04 22:22:19,606 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-269
+2018-06-04 22:22:19,606 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-274
+2018-06-04 22:22:19,608 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-273
+2018-06-04 22:22:19,608 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-272
+2018-06-04 22:22:19,608 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-272
+2018-06-04 22:22:19,609 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-273
+2018-06-04 22:22:19,609 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-271
+2018-06-04 22:22:19,609 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-275
+2018-06-04 22:22:19,610 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-271
+2018-06-04 22:22:19,611 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-274
+2018-06-04 22:22:19,611 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-270
+2018-06-04 22:22:19,612 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-274
+2018-06-04 22:22:19,612 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-270
+2018-06-04 22:22:19,612 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-276
+2018-06-04 22:22:19,615 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-275
+2018-06-04 22:22:19,615 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-275
+2018-06-04 22:22:19,616 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-277
+2018-06-04 22:22:19,619 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-268
+2018-06-04 22:22:19,619 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-268
+2018-06-04 22:22:19,621 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-276
+2018-06-04 22:22:19,621 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-276
+2018-06-04 22:22:19,621 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-277
+2018-06-04 22:22:19,621 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-277
+2018-06-04 22:22:19,623 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-278
+2018-06-04 22:22:19,623 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-279
+2018-06-04 22:22:19,627 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-278
+2018-06-04 22:22:19,627 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-278
+2018-06-04 22:22:19,627 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-280
+2018-06-04 22:22:19,627 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-279
+2018-06-04 22:22:19,627 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-279
+2018-06-04 22:22:19,630 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-281
+2018-06-04 22:22:19,631 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-280
+2018-06-04 22:22:19,631 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-280
+2018-06-04 22:22:19,633 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-282
+2018-06-04 22:22:19,635 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-281
+2018-06-04 22:22:19,635 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-281
+2018-06-04 22:22:19,638 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-283
+2018-06-04 22:22:19,638 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-282
+2018-06-04 22:22:19,638 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-282
+2018-06-04 22:22:19,641 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-284
+2018-06-04 22:22:19,642 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-283
+2018-06-04 22:22:19,642 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-283
+2018-06-04 22:22:19,644 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-285
+2018-06-04 22:22:19,646 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-284
+2018-06-04 22:22:19,646 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-284
+2018-06-04 22:22:19,649 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-286
+2018-06-04 22:22:19,649 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-285
+2018-06-04 22:22:19,649 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-285
+2018-06-04 22:22:19,652 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-287
+2018-06-04 22:22:19,653 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-286
+2018-06-04 22:22:19,653 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-286
+2018-06-04 22:22:19,655 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-288
+2018-06-04 22:22:19,657 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-287
+2018-06-04 22:22:19,657 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-287
+2018-06-04 22:22:19,660 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-289
+2018-06-04 22:22:19,660 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-288
+2018-06-04 22:22:19,661 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-288
+2018-06-04 22:22:19,663 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-290
+2018-06-04 22:22:19,664 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-289
+2018-06-04 22:22:19,664 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-289
+2018-06-04 22:22:19,666 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-291
+2018-06-04 22:22:19,668 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-290
+2018-06-04 22:22:19,668 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-290
+2018-06-04 22:22:19,670 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-292
+2018-06-04 22:22:19,671 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-291
+2018-06-04 22:22:19,671 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-291
+2018-06-04 22:22:19,674 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-293
+2018-06-04 22:22:19,676 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-292
+2018-06-04 22:22:19,676 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-292
+2018-06-04 22:22:19,677 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-294
+2018-06-04 22:22:19,680 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-293
+2018-06-04 22:22:19,680 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-293
+2018-06-04 22:22:19,683 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-294
+2018-06-04 22:22:19,683 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-294
+2018-06-04 22:22:19,684 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-295
+2018-06-04 22:22:19,684 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-296
+2018-06-04 22:22:19,688 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-297
+2018-06-04 22:22:19,692 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-296
+2018-06-04 22:22:19,692 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-296
+2018-06-04 22:22:19,692 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-298
+2018-06-04 22:22:19,693 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-295
+2018-06-04 22:22:19,693 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-295
+2018-06-04 22:22:19,693 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-297
+2018-06-04 22:22:19,693 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-297
+2018-06-04 22:22:19,695 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-299
+2018-06-04 22:22:19,696 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-298
+2018-06-04 22:22:19,697 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-298
+2018-06-04 22:22:19,698 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-300
+2018-06-04 22:22:19,701 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-299
+2018-06-04 22:22:19,701 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-299
+2018-06-04 22:22:19,703 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-300
+2018-06-04 22:22:19,703 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-300
+2018-06-04 22:22:19,704 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2018-06-04 22:22:19,704 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2018-06-04 22:22:39,757 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2018-06-04 22:22:39,758 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2018-06-04 22:22:39,763 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2018-06-04 22:22:39,915 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : websocket
+2018-06-04 22:22:39,915 INFO o.a.j.e.StandardJMeterEngine: Starting 300 threads for group websocket.
+2018-06-04 22:22:39,915 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2018-06-04 22:22:39,915 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=300 ramp-up=1 perThread=3.3333333 delayedStart=false
+2018-06-04 22:22:39,920 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-1
+2018-06-04 22:22:39,931 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-2
+2018-06-04 22:22:39,949 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-4
+2018-06-04 22:22:39,950 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-5
+2018-06-04 22:22:39,954 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-3
+2018-06-04 22:22:39,955 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-6
+2018-06-04 22:22:39,965 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-7
+2018-06-04 22:22:39,975 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-8
+2018-06-04 22:22:39,988 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-9
+2018-06-04 22:22:39,998 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-10
+2018-06-04 22:22:40,001 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-11
+2018-06-04 22:22:40,004 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-12
+2018-06-04 22:22:40,009 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-2
+2018-06-04 22:22:40,011 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-5
+2018-06-04 22:22:40,011 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-5
+2018-06-04 22:22:40,009 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-13
+2018-06-04 22:22:40,013 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-14
+2018-06-04 22:22:40,014 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-7
+2018-06-04 22:22:40,014 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-7
+2018-06-04 22:22:40,014 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-2
+2018-06-04 22:22:40,014 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-1
+2018-06-04 22:22:40,014 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-1
+2018-06-04 22:22:40,016 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-15
+2018-06-04 22:22:40,023 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-4
+2018-06-04 22:22:40,023 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-4
+2018-06-04 22:22:40,021 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-16
+2018-06-04 22:22:40,028 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-17
+2018-06-04 22:22:40,032 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-3
+2018-06-04 22:22:40,032 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-3
+2018-06-04 22:22:40,033 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-18
+2018-06-04 22:22:40,034 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-8
+2018-06-04 22:22:40,034 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-8
+2018-06-04 22:22:40,036 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-19
+2018-06-04 22:22:40,040 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-20
+2018-06-04 22:22:40,043 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-21
+2018-06-04 22:22:40,057 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-10
+2018-06-04 22:22:40,057 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-10
+2018-06-04 22:22:40,060 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-9
+2018-06-04 22:22:40,060 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-9
+2018-06-04 22:22:40,061 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-11
+2018-06-04 22:22:40,061 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-6
+2018-06-04 22:22:40,061 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-6
+2018-06-04 22:22:40,063 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-22
+2018-06-04 22:22:40,064 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-12
+2018-06-04 22:22:40,064 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-12
+2018-06-04 22:22:40,061 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-11
+2018-06-04 22:22:40,071 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-23
+2018-06-04 22:22:40,078 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-24
+2018-06-04 22:22:40,082 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-25
+2018-06-04 22:22:40,085 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-26
+2018-06-04 22:22:40,088 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-13
+2018-06-04 22:22:40,088 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-13
+2018-06-04 22:22:40,089 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-27
+2018-06-04 22:22:40,090 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-14
+2018-06-04 22:22:40,090 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-14
+2018-06-04 22:22:40,093 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-28
+2018-06-04 22:22:40,101 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-29
+2018-06-04 22:22:40,119 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-16
+2018-06-04 22:22:40,119 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-16
+2018-06-04 22:22:40,120 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-15
+2018-06-04 22:22:40,120 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-15
+2018-06-04 22:22:40,121 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-30
+2018-06-04 22:22:40,125 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-31
+2018-06-04 22:22:40,129 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-32
+2018-06-04 22:22:40,132 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-33
+2018-06-04 22:22:40,136 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-34
+2018-06-04 22:22:40,138 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-20
+2018-06-04 22:22:40,139 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-20
+2018-06-04 22:22:40,140 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-19
+2018-06-04 22:22:40,141 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-19
+2018-06-04 22:22:40,144 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-17
+2018-06-04 22:22:40,144 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-17
+2018-06-04 22:22:40,146 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-36
+2018-06-04 22:22:40,147 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-35
+2018-06-04 22:22:40,147 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-21
+2018-06-04 22:22:40,148 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-21
+2018-06-04 22:22:40,151 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-18
+2018-06-04 22:22:40,151 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-18
+2018-06-04 22:22:40,154 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-37
+2018-06-04 22:22:40,157 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-22
+2018-06-04 22:22:40,157 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-22
+2018-06-04 22:22:40,158 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-38
+2018-06-04 22:22:40,171 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-39
+2018-06-04 22:22:40,179 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-40
+2018-06-04 22:22:40,181 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-24
+2018-06-04 22:22:40,181 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-24
+2018-06-04 22:22:40,182 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-25
+2018-06-04 22:22:40,182 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-25
+2018-06-04 22:22:40,184 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-26
+2018-06-04 22:22:40,185 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-26
+2018-06-04 22:22:40,185 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-41
+2018-06-04 22:22:40,187 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-27
+2018-06-04 22:22:40,187 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-27
+2018-06-04 22:22:40,189 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-42
+2018-06-04 22:22:40,191 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-28
+2018-06-04 22:22:40,191 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-28
+2018-06-04 22:22:40,192 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-43
+2018-06-04 22:22:40,193 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-23
+2018-06-04 22:22:40,193 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-23
+2018-06-04 22:22:40,197 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-44
+2018-06-04 22:22:40,199 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-45
+2018-06-04 22:22:40,203 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-46
+2018-06-04 22:22:40,209 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-47
+2018-06-04 22:22:40,215 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-48
+2018-06-04 22:22:40,218 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-49
+2018-06-04 22:22:40,230 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-29
+2018-06-04 22:22:40,231 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-29
+2018-06-04 22:22:40,234 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-50
+2018-06-04 22:22:40,239 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-51
+2018-06-04 22:22:40,246 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-52
+2018-06-04 22:22:40,249 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-34
+2018-06-04 22:22:40,249 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-34
+2018-06-04 22:22:40,250 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-53
+2018-06-04 22:22:40,251 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-32
+2018-06-04 22:22:40,251 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-32
+2018-06-04 22:22:40,253 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-54
+2018-06-04 22:22:40,257 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-33
+2018-06-04 22:22:40,257 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-33
+2018-06-04 22:22:40,257 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-55
+2018-06-04 22:22:40,259 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-31
+2018-06-04 22:22:40,259 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-31
+2018-06-04 22:22:40,260 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-56
+2018-06-04 22:22:40,264 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-57
+2018-06-04 22:22:40,268 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-58
+2018-06-04 22:22:40,272 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-59
+2018-06-04 22:22:40,274 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-60
+2018-06-04 22:22:40,277 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-30
+2018-06-04 22:22:40,277 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-30
+2018-06-04 22:22:40,280 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-36
+2018-06-04 22:22:40,281 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-36
+2018-06-04 22:22:40,284 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-62
+2018-06-04 22:22:40,284 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-61
+2018-06-04 22:22:40,287 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-63
+2018-06-04 22:22:40,291 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-64
+2018-06-04 22:22:40,292 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-39
+2018-06-04 22:22:40,292 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-39
+2018-06-04 22:22:40,295 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-65
+2018-06-04 22:22:40,298 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-66
+2018-06-04 22:22:40,302 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-67
+2018-06-04 22:22:40,305 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-68
+2018-06-04 22:22:40,308 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-69
+2018-06-04 22:22:40,312 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-70
+2018-06-04 22:22:40,316 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-40
+2018-06-04 22:22:40,316 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-40
+2018-06-04 22:22:40,317 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-41
+2018-06-04 22:22:40,317 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-41
+2018-06-04 22:22:40,318 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-44
+2018-06-04 22:22:40,318 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-71
+2018-06-04 22:22:40,318 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-44
+2018-06-04 22:22:40,321 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-72
+2018-06-04 22:22:40,325 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-73
+2018-06-04 22:22:40,329 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-74
+2018-06-04 22:22:40,330 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-46
+2018-06-04 22:22:40,330 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-46
+2018-06-04 22:22:40,338 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-75
+2018-06-04 22:22:40,343 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-76
+2018-06-04 22:22:40,346 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-77
+2018-06-04 22:22:40,351 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-49
+2018-06-04 22:22:40,351 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-49
+2018-06-04 22:22:40,354 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-35
+2018-06-04 22:22:40,354 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-35
+2018-06-04 22:22:40,361 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-54
+2018-06-04 22:22:40,361 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-54
+2018-06-04 22:22:40,384 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-78
+2018-06-04 22:22:40,391 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-38
+2018-06-04 22:22:40,391 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-38
+2018-06-04 22:22:40,394 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-79
+2018-06-04 22:22:40,397 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-59
+2018-06-04 22:22:40,397 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-59
+2018-06-04 22:22:40,397 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-57
+2018-06-04 22:22:40,397 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-57
+2018-06-04 22:22:40,405 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-45
+2018-06-04 22:22:40,405 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-45
+2018-06-04 22:22:40,407 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-80
+2018-06-04 22:22:40,409 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-37
+2018-06-04 22:22:40,409 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-37
+2018-06-04 22:22:40,410 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-81
+2018-06-04 22:22:40,415 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-58
+2018-06-04 22:22:40,415 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-58
+2018-06-04 22:22:40,419 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-62
+2018-06-04 22:22:40,419 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-62
+2018-06-04 22:22:40,424 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-63
+2018-06-04 22:22:40,425 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-63
+2018-06-04 22:22:40,427 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-52
+2018-06-04 22:22:40,428 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-52
+2018-06-04 22:22:40,429 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-42
+2018-06-04 22:22:40,429 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-42
+2018-06-04 22:22:40,431 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-43
+2018-06-04 22:22:40,431 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-43
+2018-06-04 22:22:40,433 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-53
+2018-06-04 22:22:40,433 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-53
+2018-06-04 22:22:40,434 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-47
+2018-06-04 22:22:40,434 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-47
+2018-06-04 22:22:40,443 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-51
+2018-06-04 22:22:40,443 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-51
+2018-06-04 22:22:40,443 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-64
+2018-06-04 22:22:40,443 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-64
+2018-06-04 22:22:40,443 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-65
+2018-06-04 22:22:40,444 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-60
+2018-06-04 22:22:40,444 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-65
+2018-06-04 22:22:40,444 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-60
+2018-06-04 22:22:40,445 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-61
+2018-06-04 22:22:40,445 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-61
+2018-06-04 22:22:40,446 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-71
+2018-06-04 22:22:40,446 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-71
+2018-06-04 22:22:40,447 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-48
+2018-06-04 22:22:40,447 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-48
+2018-06-04 22:22:40,448 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-82
+2018-06-04 22:22:40,449 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-74
+2018-06-04 22:22:40,449 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-74
+2018-06-04 22:22:40,450 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-73
+2018-06-04 22:22:40,450 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-73
+2018-06-04 22:22:40,450 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-55
+2018-06-04 22:22:40,450 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-55
+2018-06-04 22:22:40,452 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-50
+2018-06-04 22:22:40,452 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-50
+2018-06-04 22:22:40,453 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-70
+2018-06-04 22:22:40,453 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-70
+2018-06-04 22:22:40,455 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-75
+2018-06-04 22:22:40,455 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-75
+2018-06-04 22:22:40,462 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-83
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-76
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-76
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-72
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-72
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-56
+2018-06-04 22:22:40,464 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-56
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-68
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-68
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-67
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-67
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-66
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-66
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-69
+2018-06-04 22:22:40,465 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-69
+2018-06-04 22:22:40,466 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-77
+2018-06-04 22:22:40,466 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-77
+2018-06-04 22:22:40,474 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-79
+2018-06-04 22:22:40,474 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-79
+2018-06-04 22:22:40,476 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-78
+2018-06-04 22:22:40,476 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-78
+2018-06-04 22:22:40,477 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-80
+2018-06-04 22:22:40,477 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-80
+2018-06-04 22:22:40,480 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-84
+2018-06-04 22:22:40,487 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-85
+2018-06-04 22:22:40,489 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-82
+2018-06-04 22:22:40,489 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-82
+2018-06-04 22:22:40,493 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-81
+2018-06-04 22:22:40,494 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-81
+2018-06-04 22:22:40,500 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-86
+2018-06-04 22:22:40,504 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-87
+2018-06-04 22:22:40,509 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-84
+2018-06-04 22:22:40,512 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-83
+2018-06-04 22:22:40,512 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-83
+2018-06-04 22:22:40,514 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-88
+2018-06-04 22:22:40,515 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-85
+2018-06-04 22:22:40,515 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-85
+2018-06-04 22:22:40,518 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-84
+2018-06-04 22:22:40,518 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-89
+2018-06-04 22:22:40,521 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-90
+2018-06-04 22:22:40,525 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-91
+2018-06-04 22:22:40,525 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-86
+2018-06-04 22:22:40,526 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-86
+2018-06-04 22:22:40,528 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-92
+2018-06-04 22:22:40,531 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-93
+2018-06-04 22:22:40,540 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-87
+2018-06-04 22:22:40,540 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-87
+2018-06-04 22:22:40,545 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-89
+2018-06-04 22:22:40,545 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-88
+2018-06-04 22:22:40,545 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-89
+2018-06-04 22:22:40,546 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-94
+2018-06-04 22:22:40,548 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-90
+2018-06-04 22:22:40,548 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-90
+2018-06-04 22:22:40,548 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-88
+2018-06-04 22:22:40,557 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-91
+2018-06-04 22:22:40,557 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-91
+2018-06-04 22:22:40,559 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-93
+2018-06-04 22:22:40,559 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-93
+2018-06-04 22:22:40,561 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-92
+2018-06-04 22:22:40,561 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-92
+2018-06-04 22:22:40,562 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-95
+2018-06-04 22:22:40,566 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-94
+2018-06-04 22:22:40,566 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-94
+2018-06-04 22:22:40,568 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-96
+2018-06-04 22:22:40,576 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-95
+2018-06-04 22:22:40,576 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-95
+2018-06-04 22:22:40,579 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-97
+2018-06-04 22:22:40,585 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-96
+2018-06-04 22:22:40,585 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-96
+2018-06-04 22:22:40,586 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-98
+2018-06-04 22:22:40,594 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-99
+2018-06-04 22:22:40,605 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-100
+2018-06-04 22:22:40,607 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-97
+2018-06-04 22:22:40,607 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-98
+2018-06-04 22:22:40,607 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-97
+2018-06-04 22:22:40,607 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-98
+2018-06-04 22:22:40,609 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-101
+2018-06-04 22:22:40,614 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-99
+2018-06-04 22:22:40,614 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-99
+2018-06-04 22:22:40,616 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-102
+2018-06-04 22:22:40,624 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-103
+2018-06-04 22:22:40,626 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-100
+2018-06-04 22:22:40,626 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-100
+2018-06-04 22:22:40,639 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-103
+2018-06-04 22:22:40,639 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-103
+2018-06-04 22:22:40,641 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-101
+2018-06-04 22:22:40,641 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-101
+2018-06-04 22:22:40,644 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-102
+2018-06-04 22:22:40,644 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-102
+2018-06-04 22:22:40,679 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2018-06-04 22:22:40,679 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2018-06-04 22:22:40,723 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-104
+2018-06-04 22:22:40,735 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-105
+2018-06-04 22:22:40,735 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-106
+2018-06-04 22:22:40,738 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-107
+2018-06-04 22:22:40,742 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-108
+2018-06-04 22:22:40,746 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-109
+2018-06-04 22:22:40,749 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-110
+2018-06-04 22:22:40,753 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-111
+2018-06-04 22:22:40,755 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-104
+2018-06-04 22:22:40,755 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-104
+2018-06-04 22:22:40,757 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-112
+2018-06-04 22:22:40,761 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-113
+2018-06-04 22:22:40,764 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-114
+2018-06-04 22:22:40,765 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-105
+2018-06-04 22:22:40,765 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-107
+2018-06-04 22:22:40,765 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-105
+2018-06-04 22:22:40,765 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-107
+2018-06-04 22:22:40,766 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-106
+2018-06-04 22:22:40,766 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-106
+2018-06-04 22:22:40,768 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-115
+2018-06-04 22:22:40,771 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-116
+2018-06-04 22:22:40,775 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-117
+2018-06-04 22:22:40,779 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-109
+2018-06-04 22:22:40,779 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-109
+2018-06-04 22:22:40,785 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-108
+2018-06-04 22:22:40,786 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-108
+2018-06-04 22:22:40,787 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-111
+2018-06-04 22:22:40,788 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-111
+2018-06-04 22:22:40,789 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-110
+2018-06-04 22:22:40,789 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-110
+2018-06-04 22:22:40,793 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-112
+2018-06-04 22:22:40,793 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-112
+2018-06-04 22:22:40,796 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-113
+2018-06-04 22:22:40,797 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-113
+2018-06-04 22:22:40,797 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-114
+2018-06-04 22:22:40,797 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-114
+2018-06-04 22:22:40,797 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-118
+2018-06-04 22:22:40,802 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-115
+2018-06-04 22:22:40,802 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-115
+2018-06-04 22:22:40,804 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-117
+2018-06-04 22:22:40,804 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-117
+2018-06-04 22:22:40,804 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-116
+2018-06-04 22:22:40,804 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-116
+2018-06-04 22:22:40,805 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-119
+2018-06-04 22:22:40,813 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-118
+2018-06-04 22:22:40,813 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-118
+2018-06-04 22:22:40,814 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-120
+2018-06-04 22:22:40,816 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-119
+2018-06-04 22:22:40,816 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-119
+2018-06-04 22:22:40,818 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-121
+2018-06-04 22:22:40,821 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-122
+2018-06-04 22:22:40,825 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-123
+2018-06-04 22:22:40,829 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-124
+2018-06-04 22:22:40,832 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-125
+2018-06-04 22:22:40,836 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-126
+2018-06-04 22:22:40,837 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-120
+2018-06-04 22:22:40,837 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-120
+2018-06-04 22:22:40,839 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-121
+2018-06-04 22:22:40,839 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-121
+2018-06-04 22:22:40,840 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-127
+2018-06-04 22:22:40,844 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-122
+2018-06-04 22:22:40,844 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-122
+2018-06-04 22:22:40,846 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-128
+2018-06-04 22:22:40,849 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-129
+2018-06-04 22:22:40,853 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-130
+2018-06-04 22:22:40,873 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-131
+2018-06-04 22:22:40,874 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-132
+2018-06-04 22:22:40,879 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-133
+2018-06-04 22:22:40,881 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-123
+2018-06-04 22:22:40,881 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-123
+2018-06-04 22:22:40,883 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-134
+2018-06-04 22:22:40,887 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-135
+2018-06-04 22:22:40,891 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-136
+2018-06-04 22:22:40,893 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-124
+2018-06-04 22:22:40,893 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-124
+2018-06-04 22:22:40,895 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-137
+2018-06-04 22:22:40,897 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-138
+2018-06-04 22:22:40,902 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-139
+2018-06-04 22:22:40,904 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-140
+2018-06-04 22:22:40,908 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-125
+2018-06-04 22:22:40,908 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-125
+2018-06-04 22:22:40,908 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-141
+2018-06-04 22:22:40,910 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-126
+2018-06-04 22:22:40,910 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-126
+2018-06-04 22:22:40,919 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-142
+2018-06-04 22:22:40,922 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-143
+2018-06-04 22:22:40,925 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-144
+2018-06-04 22:22:40,929 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-145
+2018-06-04 22:22:40,933 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-146
+2018-06-04 22:22:40,936 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-147
+2018-06-04 22:22:40,942 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-148
+2018-06-04 22:22:40,972 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-150
+2018-06-04 22:22:40,983 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-129
+2018-06-04 22:22:40,983 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-129
+2018-06-04 22:22:40,984 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-130
+2018-06-04 22:22:40,984 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-130
+2018-06-04 22:22:40,984 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-131
+2018-06-04 22:22:40,985 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-131
+2018-06-04 22:22:40,982 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-128
+2018-06-04 22:22:40,986 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-128
+2018-06-04 22:22:40,986 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-151
+2018-06-04 22:22:40,992 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-152
+2018-06-04 22:22:40,999 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-153
+2018-06-04 22:22:41,002 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-127
+2018-06-04 22:22:41,003 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-127
+2018-06-04 22:22:41,004 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-132
+2018-06-04 22:22:41,004 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-132
+2018-06-04 22:22:41,009 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-154
+2018-06-04 22:22:41,015 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-135
+2018-06-04 22:22:41,015 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-135
+2018-06-04 22:22:41,016 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-155
+2018-06-04 22:22:41,016 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-134
+2018-06-04 22:22:41,016 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-134
+2018-06-04 22:22:41,017 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-133
+2018-06-04 22:22:41,017 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-133
+2018-06-04 22:22:41,018 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-136
+2018-06-04 22:22:41,018 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-136
+2018-06-04 22:22:41,019 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-149
+2018-06-04 22:22:41,020 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-137
+2018-06-04 22:22:41,020 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-137
+2018-06-04 22:22:41,022 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-139
+2018-06-04 22:22:41,022 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-139
+2018-06-04 22:22:41,025 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-156
+2018-06-04 22:22:41,027 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-138
+2018-06-04 22:22:41,027 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-138
+2018-06-04 22:22:41,034 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-140
+2018-06-04 22:22:41,034 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-140
+2018-06-04 22:22:41,039 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-148
+2018-06-04 22:22:41,039 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-150
+2018-06-04 22:22:41,039 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-148
+2018-06-04 22:22:41,039 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-157
+2018-06-04 22:22:41,040 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-150
+2018-06-04 22:22:41,043 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-144
+2018-06-04 22:22:41,043 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-144
+2018-06-04 22:22:41,043 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-147
+2018-06-04 22:22:41,043 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-147
+2018-06-04 22:22:41,044 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-146
+2018-06-04 22:22:41,045 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-146
+2018-06-04 22:22:41,048 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-145
+2018-06-04 22:22:41,048 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-145
+2018-06-04 22:22:41,050 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-158
+2018-06-04 22:22:41,053 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-142
+2018-06-04 22:22:41,053 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-142
+2018-06-04 22:22:41,055 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-151
+2018-06-04 22:22:41,056 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-151
+2018-06-04 22:22:41,059 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-143
+2018-06-04 22:22:41,059 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-143
+2018-06-04 22:22:41,063 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-141
+2018-06-04 22:22:41,063 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-141
+2018-06-04 22:22:41,067 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-159
+2018-06-04 22:22:41,072 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-160
+2018-06-04 22:22:41,079 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-155
+2018-06-04 22:22:41,079 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-155
+2018-06-04 22:22:41,081 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-161
+2018-06-04 22:22:41,085 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-152
+2018-06-04 22:22:41,085 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-152
+2018-06-04 22:22:41,087 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-162
+2018-06-04 22:22:41,089 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-156
+2018-06-04 22:22:41,089 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-156
+2018-06-04 22:22:41,090 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-153
+2018-06-04 22:22:41,090 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-153
+2018-06-04 22:22:41,091 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-154
+2018-06-04 22:22:41,091 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-154
+2018-06-04 22:22:41,091 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-163
+2018-06-04 22:22:41,093 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-149
+2018-06-04 22:22:41,093 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-149
+2018-06-04 22:22:41,095 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-164
+2018-06-04 22:22:41,096 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-157
+2018-06-04 22:22:41,096 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-157
+2018-06-04 22:22:41,098 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-158
+2018-06-04 22:22:41,098 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-158
+2018-06-04 22:22:41,099 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-165
+2018-06-04 22:22:41,103 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-166
+2018-06-04 22:22:41,107 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-167
+2018-06-04 22:22:41,110 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-168
+2018-06-04 22:22:41,114 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-169
+2018-06-04 22:22:41,118 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-170
+2018-06-04 22:22:41,121 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-171
+2018-06-04 22:22:41,124 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-159
+2018-06-04 22:22:41,124 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-159
+2018-06-04 22:22:41,128 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-172
+2018-06-04 22:22:41,131 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-160
+2018-06-04 22:22:41,131 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-160
+2018-06-04 22:22:41,131 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-173
+2018-06-04 22:22:41,132 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-161
+2018-06-04 22:22:41,132 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-161
+2018-06-04 22:22:41,134 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-174
+2018-06-04 22:22:41,141 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-175
+2018-06-04 22:22:41,144 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-176
+2018-06-04 22:22:41,148 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-177
+2018-06-04 22:22:41,148 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-165
+2018-06-04 22:22:41,148 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-165
+2018-06-04 22:22:41,151 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-164
+2018-06-04 22:22:41,151 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-164
+2018-06-04 22:22:41,153 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-178
+2018-06-04 22:22:41,158 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-179
+2018-06-04 22:22:41,161 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-163
+2018-06-04 22:22:41,161 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-163
+2018-06-04 22:22:41,162 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-162
+2018-06-04 22:22:41,162 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-162
+2018-06-04 22:22:41,163 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-180
+2018-06-04 22:22:41,166 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-181
+2018-06-04 22:22:41,168 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-182
+2018-06-04 22:22:41,173 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-183
+2018-06-04 22:22:41,179 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-184
+2018-06-04 22:22:41,184 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-166
+2018-06-04 22:22:41,184 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-166
+2018-06-04 22:22:41,185 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-186
+2018-06-04 22:22:41,186 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-185
+2018-06-04 22:22:41,186 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-171
+2018-06-04 22:22:41,186 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-171
+2018-06-04 22:22:41,190 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-187
+2018-06-04 22:22:41,192 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-167
+2018-06-04 22:22:41,192 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-167
+2018-06-04 22:22:41,198 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-189
+2018-06-04 22:22:41,200 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-188
+2018-06-04 22:22:41,202 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-190
+2018-06-04 22:22:41,206 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-191
+2018-06-04 22:22:41,208 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-170
+2018-06-04 22:22:41,208 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-170
+2018-06-04 22:22:41,209 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-192
+2018-06-04 22:22:41,209 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-168
+2018-06-04 22:22:41,210 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-168
+2018-06-04 22:22:41,213 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-172
+2018-06-04 22:22:41,213 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-172
+2018-06-04 22:22:41,213 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-193
+2018-06-04 22:22:41,216 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-169
+2018-06-04 22:22:41,216 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-194
+2018-06-04 22:22:41,216 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-169
+2018-06-04 22:22:41,219 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-195
+2018-06-04 22:22:41,223 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-196
+2018-06-04 22:22:41,225 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-179
+2018-06-04 22:22:41,225 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-179
+2018-06-04 22:22:41,227 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-197
+2018-06-04 22:22:41,229 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-198
+2018-06-04 22:22:41,231 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-178
+2018-06-04 22:22:41,232 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-178
+2018-06-04 22:22:41,233 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-177
+2018-06-04 22:22:41,233 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-177
+2018-06-04 22:22:41,234 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-175
+2018-06-04 22:22:41,234 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-199
+2018-06-04 22:22:41,234 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-175
+2018-06-04 22:22:41,234 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-174
+2018-06-04 22:22:41,234 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-174
+2018-06-04 22:22:41,235 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-173
+2018-06-04 22:22:41,235 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-173
+2018-06-04 22:22:41,237 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-200
+2018-06-04 22:22:41,240 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-201
+2018-06-04 22:22:41,244 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-202
+2018-06-04 22:22:41,246 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-180
+2018-06-04 22:22:41,247 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-180
+2018-06-04 22:22:41,247 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-203
+2018-06-04 22:22:41,249 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-181
+2018-06-04 22:22:41,249 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-181
+2018-06-04 22:22:41,250 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-204
+2018-06-04 22:22:41,255 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-205
+2018-06-04 22:22:41,256 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-182
+2018-06-04 22:22:41,256 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-182
+2018-06-04 22:22:41,257 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-176
+2018-06-04 22:22:41,257 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-176
+2018-06-04 22:22:41,257 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-206
+2018-06-04 22:22:41,261 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-207
+2018-06-04 22:22:41,265 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-208
+2018-06-04 22:22:41,268 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-209
+2018-06-04 22:22:41,276 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-210
+2018-06-04 22:22:41,281 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-211
+2018-06-04 22:22:41,284 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-183
+2018-06-04 22:22:41,284 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-183
+2018-06-04 22:22:41,287 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-212
+2018-06-04 22:22:41,289 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-186
+2018-06-04 22:22:41,289 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-186
+2018-06-04 22:22:41,290 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-213
+2018-06-04 22:22:41,294 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-214
+2018-06-04 22:22:41,296 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-184
+2018-06-04 22:22:41,296 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-184
+2018-06-04 22:22:41,301 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-215
+2018-06-04 22:22:41,304 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-187
+2018-06-04 22:22:41,304 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-216
+2018-06-04 22:22:41,304 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-187
+2018-06-04 22:22:41,308 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-185
+2018-06-04 22:22:41,309 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-185
+2018-06-04 22:22:41,312 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-218
+2018-06-04 22:22:41,314 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-192
+2018-06-04 22:22:41,314 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-192
+2018-06-04 22:22:41,315 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-217
+2018-06-04 22:22:41,318 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-219
+2018-06-04 22:22:41,318 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-189
+2018-06-04 22:22:41,319 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-189
+2018-06-04 22:22:41,321 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-193
+2018-06-04 22:22:41,321 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-193
+2018-06-04 22:22:41,322 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-188
+2018-06-04 22:22:41,322 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-188
+2018-06-04 22:22:41,329 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-220
+2018-06-04 22:22:41,332 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-190
+2018-06-04 22:22:41,332 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-190
+2018-06-04 22:22:41,333 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-221
+2018-06-04 22:22:41,336 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-222
+2018-06-04 22:22:41,342 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-223
+2018-06-04 22:22:41,345 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-197
+2018-06-04 22:22:41,346 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-197
+2018-06-04 22:22:41,346 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-195
+2018-06-04 22:22:41,346 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-195
+2018-06-04 22:22:41,347 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-196
+2018-06-04 22:22:41,347 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-196
+2018-06-04 22:22:41,348 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-191
+2018-06-04 22:22:41,348 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-191
+2018-06-04 22:22:41,349 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-224
+2018-06-04 22:22:41,354 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-225
+2018-06-04 22:22:41,356 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-194
+2018-06-04 22:22:41,357 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-194
+2018-06-04 22:22:41,359 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-200
+2018-06-04 22:22:41,359 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-200
+2018-06-04 22:22:41,360 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-199
+2018-06-04 22:22:41,360 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-199
+2018-06-04 22:22:41,360 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-226
+2018-06-04 22:22:41,364 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-227
+2018-06-04 22:22:41,364 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-201
+2018-06-04 22:22:41,365 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-198
+2018-06-04 22:22:41,365 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-198
+2018-06-04 22:22:41,367 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-228
+2018-06-04 22:22:41,368 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-201
+2018-06-04 22:22:41,371 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-229
+2018-06-04 22:22:41,374 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-203
+2018-06-04 22:22:41,374 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-203
+2018-06-04 22:22:41,376 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-230
+2018-06-04 22:22:41,381 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-204
+2018-06-04 22:22:41,381 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-204
+2018-06-04 22:22:41,383 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-202
+2018-06-04 22:22:41,383 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-202
+2018-06-04 22:22:41,386 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-231
+2018-06-04 22:22:41,386 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-205
+2018-06-04 22:22:41,386 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-205
+2018-06-04 22:22:41,390 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-232
+2018-06-04 22:22:41,401 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-233
+2018-06-04 22:22:41,403 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-206
+2018-06-04 22:22:41,403 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-206
+2018-06-04 22:22:41,407 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-210
+2018-06-04 22:22:41,407 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-210
+2018-06-04 22:22:41,407 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-234
+2018-06-04 22:22:41,408 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-209
+2018-06-04 22:22:41,408 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-209
+2018-06-04 22:22:41,408 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-208
+2018-06-04 22:22:41,409 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-208
+2018-06-04 22:22:41,409 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-207
+2018-06-04 22:22:41,409 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-207
+2018-06-04 22:22:41,412 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-235
+2018-06-04 22:22:41,417 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-236
+2018-06-04 22:22:41,420 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-237
+2018-06-04 22:22:41,424 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-238
+2018-06-04 22:22:41,427 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-239
+2018-06-04 22:22:41,431 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-240
+2018-06-04 22:22:41,435 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-241
+2018-06-04 22:22:41,438 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-242
+2018-06-04 22:22:41,442 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-243
+2018-06-04 22:22:41,447 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-244
+2018-06-04 22:22:41,450 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-245
+2018-06-04 22:22:41,454 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-246
+2018-06-04 22:22:41,458 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-247
+2018-06-04 22:22:41,461 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-248
+2018-06-04 22:22:41,464 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-249
+2018-06-04 22:22:41,468 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-250
+2018-06-04 22:22:41,473 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-251
+2018-06-04 22:22:41,474 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-214
+2018-06-04 22:22:41,474 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-214
+2018-06-04 22:22:41,475 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-213
+2018-06-04 22:22:41,475 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-213
+2018-06-04 22:22:41,476 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-252
+2018-06-04 22:22:41,476 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-212
+2018-06-04 22:22:41,477 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-212
+2018-06-04 22:22:41,477 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-211
+2018-06-04 22:22:41,477 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-211
+2018-06-04 22:22:41,483 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-253
+2018-06-04 22:22:41,487 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-255
+2018-06-04 22:22:41,496 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-254
+2018-06-04 22:22:41,499 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-256
+2018-06-04 22:22:41,502 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-258
+2018-06-04 22:22:41,500 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-257
+2018-06-04 22:22:41,504 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-259
+2018-06-04 22:22:41,508 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-217
+2018-06-04 22:22:41,508 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-217
+2018-06-04 22:22:41,508 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-218
+2018-06-04 22:22:41,508 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-218
+2018-06-04 22:22:41,509 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-219
+2018-06-04 22:22:41,509 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-219
+2018-06-04 22:22:41,510 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-221
+2018-06-04 22:22:41,510 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-221
+2018-06-04 22:22:41,510 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-260
+2018-06-04 22:22:41,512 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-220
+2018-06-04 22:22:41,512 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-220
+2018-06-04 22:22:41,514 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-261
+2018-06-04 22:22:41,517 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-216
+2018-06-04 22:22:41,517 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-216
+2018-06-04 22:22:41,518 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-222
+2018-06-04 22:22:41,518 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-222
+2018-06-04 22:22:41,519 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-262
+2018-06-04 22:22:41,520 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-215
+2018-06-04 22:22:41,520 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-215
+2018-06-04 22:22:41,521 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-263
+2018-06-04 22:22:41,524 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-264
+2018-06-04 22:22:41,531 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-265
+2018-06-04 22:22:41,532 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-266
+2018-06-04 22:22:41,535 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-267
+2018-06-04 22:22:41,545 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-268
+2018-06-04 22:22:41,546 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-223
+2018-06-04 22:22:41,546 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-223
+2018-06-04 22:22:41,548 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-269
+2018-06-04 22:22:41,552 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-270
+2018-06-04 22:22:41,556 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-271
+2018-06-04 22:22:41,558 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-225
+2018-06-04 22:22:41,558 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-225
+2018-06-04 22:22:41,559 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-224
+2018-06-04 22:22:41,559 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-224
+2018-06-04 22:22:41,559 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-272
+2018-06-04 22:22:41,559 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-226
+2018-06-04 22:22:41,560 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-226
+2018-06-04 22:22:41,561 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-227
+2018-06-04 22:22:41,561 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-227
+2018-06-04 22:22:41,562 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-273
+2018-06-04 22:22:41,566 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-274
+2018-06-04 22:22:41,570 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-275
+2018-06-04 22:22:41,573 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-276
+2018-06-04 22:22:41,577 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-277
+2018-06-04 22:22:41,581 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-278
+2018-06-04 22:22:41,583 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-279
+2018-06-04 22:22:41,587 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-280
+2018-06-04 22:22:41,591 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-281
+2018-06-04 22:22:41,594 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-282
+2018-06-04 22:22:41,596 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-232
+2018-06-04 22:22:41,596 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-232
+2018-06-04 22:22:41,598 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-283
+2018-06-04 22:22:41,601 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-284
+2018-06-04 22:22:41,604 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-285
+2018-06-04 22:22:41,608 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-230
+2018-06-04 22:22:41,608 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-230
+2018-06-04 22:22:41,608 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-286
+2018-06-04 22:22:41,612 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-287
+2018-06-04 22:22:41,621 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-288
+2018-06-04 22:22:41,625 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-289
+2018-06-04 22:22:41,628 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-290
+2018-06-04 22:22:41,635 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-291
+2018-06-04 22:22:41,635 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-292
+2018-06-04 22:22:41,638 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-293
+2018-06-04 22:22:41,643 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-231
+2018-06-04 22:22:41,643 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-231
+2018-06-04 22:22:41,643 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-294
+2018-06-04 22:22:41,648 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-295
+2018-06-04 22:22:41,654 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-296
+2018-06-04 22:22:41,660 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-236
+2018-06-04 22:22:41,661 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-236
+2018-06-04 22:22:41,661 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-229
+2018-06-04 22:22:41,661 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-297
+2018-06-04 22:22:41,661 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-229
+2018-06-04 22:22:41,668 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-228
+2018-06-04 22:22:41,669 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-228
+2018-06-04 22:22:41,669 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-298
+2018-06-04 22:22:41,670 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-244
+2018-06-04 22:22:41,670 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-244
+2018-06-04 22:22:41,670 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-243
+2018-06-04 22:22:41,670 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-243
+2018-06-04 22:22:41,672 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-241
+2018-06-04 22:22:41,672 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-299
+2018-06-04 22:22:41,672 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-241
+2018-06-04 22:22:41,674 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-240
+2018-06-04 22:22:41,674 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-240
+2018-06-04 22:22:41,674 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-237
+2018-06-04 22:22:41,675 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-237
+2018-06-04 22:22:41,675 INFO o.a.j.t.JMeterThread: Thread started: websocket 1-300
+2018-06-04 22:22:41,676 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-247
+2018-06-04 22:22:41,677 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-238
+2018-06-04 22:22:41,677 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-238
+2018-06-04 22:22:41,677 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-245
+2018-06-04 22:22:41,677 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-245
+2018-06-04 22:22:41,682 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-242
+2018-06-04 22:22:41,682 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-242
+2018-06-04 22:22:41,684 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-246
+2018-06-04 22:22:41,684 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-246
+2018-06-04 22:22:41,668 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-239
+2018-06-04 22:22:41,686 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-239
+2018-06-04 22:22:41,677 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-247
+2018-06-04 22:22:41,669 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-248
+2018-06-04 22:22:41,688 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-248
+2018-06-04 22:22:41,702 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-233
+2018-06-04 22:22:41,702 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-233
+2018-06-04 22:22:41,708 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-234
+2018-06-04 22:22:41,708 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-234
+2018-06-04 22:22:41,710 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-250
+2018-06-04 22:22:41,710 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-250
+2018-06-04 22:22:41,717 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-249
+2018-06-04 22:22:41,717 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-249
+2018-06-04 22:22:41,724 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-235
+2018-06-04 22:22:41,724 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-235
+2018-06-04 22:22:41,732 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-252
+2018-06-04 22:22:41,733 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-252
+2018-06-04 22:22:41,755 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-251
+2018-06-04 22:22:41,755 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-251
+2018-06-04 22:22:41,759 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-257
+2018-06-04 22:22:41,759 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-257
+2018-06-04 22:22:41,765 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-259
+2018-06-04 22:22:41,765 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-259
+2018-06-04 22:22:41,771 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-256
+2018-06-04 22:22:41,771 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-256
+2018-06-04 22:22:41,776 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-254
+2018-06-04 22:22:41,777 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-254
+2018-06-04 22:22:41,777 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-253
+2018-06-04 22:22:41,778 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-253
+2018-06-04 22:22:41,779 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-255
+2018-06-04 22:22:41,780 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-255
+2018-06-04 22:22:41,782 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-260
+2018-06-04 22:22:41,782 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-260
+2018-06-04 22:22:41,792 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-261
+2018-06-04 22:22:41,792 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-261
+2018-06-04 22:22:41,793 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-258
+2018-06-04 22:22:41,793 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-258
+2018-06-04 22:22:41,796 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-262
+2018-06-04 22:22:41,796 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-262
+2018-06-04 22:22:41,808 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-266
+2018-06-04 22:22:41,808 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-266
+2018-06-04 22:22:41,812 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-268
+2018-06-04 22:22:41,812 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-268
+2018-06-04 22:22:41,813 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-264
+2018-06-04 22:22:41,813 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-264
+2018-06-04 22:22:41,821 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-271
+2018-06-04 22:22:41,821 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-271
+2018-06-04 22:22:41,821 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-270
+2018-06-04 22:22:41,821 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-270
+2018-06-04 22:22:41,825 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-267
+2018-06-04 22:22:41,825 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-267
+2018-06-04 22:22:41,838 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-273
+2018-06-04 22:22:41,838 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-273
+2018-06-04 22:22:41,839 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-263
+2018-06-04 22:22:41,839 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-263
+2018-06-04 22:22:41,840 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-269
+2018-06-04 22:22:41,840 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-269
+2018-06-04 22:22:41,841 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-265
+2018-06-04 22:22:41,841 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-265
+2018-06-04 22:22:41,841 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-272
+2018-06-04 22:22:41,842 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-272
+2018-06-04 22:22:41,842 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-276
+2018-06-04 22:22:41,843 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-276
+2018-06-04 22:22:41,844 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-277
+2018-06-04 22:22:41,844 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-277
+2018-06-04 22:22:41,845 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-274
+2018-06-04 22:22:41,845 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-274
+2018-06-04 22:22:41,848 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-279
+2018-06-04 22:22:41,849 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-279
+2018-06-04 22:22:41,850 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-285
+2018-06-04 22:22:41,850 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-285
+2018-06-04 22:22:41,855 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-286
+2018-06-04 22:22:41,855 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-286
+2018-06-04 22:22:41,855 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-278
+2018-06-04 22:22:41,855 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-278
+2018-06-04 22:22:41,856 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-281
+2018-06-04 22:22:41,856 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-287
+2018-06-04 22:22:41,856 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-281
+2018-06-04 22:22:41,856 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-287
+2018-06-04 22:22:41,857 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-275
+2018-06-04 22:22:41,857 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-275
+2018-06-04 22:22:41,857 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-291
+2018-06-04 22:22:41,857 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-291
+2018-06-04 22:22:41,858 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-284
+2018-06-04 22:22:41,858 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-282
+2018-06-04 22:22:41,858 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-284
+2018-06-04 22:22:41,858 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-282
+2018-06-04 22:22:41,864 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-283
+2018-06-04 22:22:41,864 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-283
+2018-06-04 22:22:41,864 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-292
+2018-06-04 22:22:41,864 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-292
+2018-06-04 22:22:41,867 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-280
+2018-06-04 22:22:41,867 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-280
+2018-06-04 22:22:41,868 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-288
+2018-06-04 22:22:41,868 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-288
+2018-06-04 22:22:41,868 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-290
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-290
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-289
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-289
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-294
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-296
+2018-06-04 22:22:41,869 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-294
+2018-06-04 22:22:41,870 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-296
+2018-06-04 22:22:41,870 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-297
+2018-06-04 22:22:41,870 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-297
+2018-06-04 22:22:41,871 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-300
+2018-06-04 22:22:41,871 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-300
+2018-06-04 22:22:41,872 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-298
+2018-06-04 22:22:41,872 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-293
+2018-06-04 22:22:41,872 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-298
+2018-06-04 22:22:41,873 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-299
+2018-06-04 22:22:41,873 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-299
+2018-06-04 22:22:41,873 INFO o.a.j.t.JMeterThread: Thread is done: websocket 1-295
+2018-06-04 22:22:41,873 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-295
+2018-06-04 22:22:41,875 INFO o.a.j.t.JMeterThread: Thread finished: websocket 1-293
+2018-06-04 22:22:41,875 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2018-06-04 22:22:41,876 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2018-06-04 22:27:10,442 INFO o.a.j.g.a.Load: Loading file: /home/afifridho/Documents/development/tugasakhir/testing.jmx
+2018-06-04 22:27:10,445 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:27:10,448 INFO o.a.j.s.SaveService: Loading file: /home/afifridho/Documents/development/tugasakhir/testing.jmx
+2018-06-04 22:27:10,562 WARN o.a.j.v.ViewResultsFullVisualizer: Error loading result renderer: org.apache.jmeter.visualizers.RenderInBrowser
+java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Class.java:264) ~[?:1.8.0_171]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createComboRender(ViewResultsFullVisualizer.java:462) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createLeftPanel(ViewResultsFullVisualizer.java:430) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.init(ViewResultsFullVisualizer.java:342) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.<init>(ViewResultsFullVisualizer.java:147) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_171]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Class.java:442) ~[?:1.8.0_171]
+	at org.apache.jmeter.gui.GuiPackage.getGuiFromCache(GuiPackage.java:405) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:251) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:222) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addComponent(JMeterTreeModel.java:157) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:125) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.addSubTree(GuiPackage.java:522) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.insertLoadedTree(Load.java:193) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:130) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:101) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.doActionAfterCheck(Load.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.AbstractActionWithNoRunningTest.doAction(AbstractActionWithNoRunningTest.java:45) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.performAction(ActionRouter.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.lambda$actionPerformed$0(ActionRouter.java:70) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758) [?:1.8.0_171]
+	at java.awt.EventQueue.access$500(EventQueue.java:97) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:709) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:703) [?:1.8.0_171]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.8.0_171]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82) [?:1.8.0_171]
+Caused by: java.lang.ClassNotFoundException: javafx.embed.swing.JFXPanel
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_171]
+	... 41 more
+2018-06-04 22:27:10,630 WARN o.a.j.v.ViewResultsFullVisualizer: Error loading result renderer: org.apache.jmeter.visualizers.RenderInBrowser
+java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Class.java:264) ~[?:1.8.0_171]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createComboRender(ViewResultsFullVisualizer.java:462) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createLeftPanel(ViewResultsFullVisualizer.java:430) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.init(ViewResultsFullVisualizer.java:342) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.<init>(ViewResultsFullVisualizer.java:147) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_171]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Class.java:442) ~[?:1.8.0_171]
+	at org.apache.jmeter.gui.GuiPackage.getGuiFromCache(GuiPackage.java:405) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:251) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:222) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addComponent(JMeterTreeModel.java:157) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:125) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.addSubTree(GuiPackage.java:522) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.insertLoadedTree(Load.java:193) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:130) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:101) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.doActionAfterCheck(Load.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.AbstractActionWithNoRunningTest.doAction(AbstractActionWithNoRunningTest.java:45) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.performAction(ActionRouter.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.lambda$actionPerformed$0(ActionRouter.java:70) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758) [?:1.8.0_171]
+	at java.awt.EventQueue.access$500(EventQueue.java:97) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:709) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:703) [?:1.8.0_171]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.8.0_171]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82) [?:1.8.0_171]
+Caused by: java.lang.ClassNotFoundException: javafx.embed.swing.JFXPanel
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_171]
+	... 40 more
+2018-06-04 22:27:10,706 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:27:59,394 INFO o.a.j.g.a.Load: Loading file: /home/afifridho/Documents/development/tugasakhir/websocket.jmx
+2018-06-04 22:27:59,394 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'
+2018-06-04 22:27:59,394 INFO o.a.j.s.SaveService: Loading file: /home/afifridho/Documents/development/tugasakhir/websocket.jmx
+2018-06-04 22:27:59,420 WARN o.a.j.v.ViewResultsFullVisualizer: Error loading result renderer: org.apache.jmeter.visualizers.RenderInBrowser
+java.lang.NoClassDefFoundError: javafx/embed/swing/JFXPanel
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_171]
+	at java.lang.Class.forName(Class.java:264) ~[?:1.8.0_171]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createComboRender(ViewResultsFullVisualizer.java:462) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.createLeftPanel(ViewResultsFullVisualizer.java:430) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.init(ViewResultsFullVisualizer.java:342) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at org.apache.jmeter.visualizers.ViewResultsFullVisualizer.<init>(ViewResultsFullVisualizer.java:147) ~[ApacheJMeter_components.jar:4.0 r1823414]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_171]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_171]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_171]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[?:1.8.0_171]
+	at java.lang.Class.newInstance(Class.java:442) ~[?:1.8.0_171]
+	at org.apache.jmeter.gui.GuiPackage.getGuiFromCache(GuiPackage.java:405) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:251) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.getGui(GuiPackage.java:222) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addComponent(JMeterTreeModel.java:157) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:133) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.tree.JMeterTreeModel.addSubTree(JMeterTreeModel.java:125) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.GuiPackage.addSubTree(GuiPackage.java:522) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.insertLoadedTree(Load.java:193) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:130) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.loadProjectFile(Load.java:101) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.Load.doActionAfterCheck(Load.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.AbstractActionWithNoRunningTest.doAction(AbstractActionWithNoRunningTest.java:45) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.performAction(ActionRouter.java:88) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at org.apache.jmeter.gui.action.ActionRouter.lambda$actionPerformed$0(ActionRouter.java:70) ~[ApacheJMeter_core.jar:4.0 r1823414]
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758) [?:1.8.0_171]
+	at java.awt.EventQueue.access$500(EventQueue.java:97) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:709) [?:1.8.0_171]
+	at java.awt.EventQueue$3.run(EventQueue.java:703) [?:1.8.0_171]
+	at java.security.AccessController.doPrivileged(Native Method) [?:1.8.0_171]
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80) [?:1.8.0_171]
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:205) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93) [?:1.8.0_171]
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82) [?:1.8.0_171]
+Caused by: java.lang.ClassNotFoundException: javafx.embed.swing.JFXPanel
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) ~[?:1.8.0_171]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) ~[?:1.8.0_171]
+	... 40 more
+2018-06-04 22:27:59,450 INFO o.a.j.s.FileServer: Set new base='/home/afifridho/Documents/development/tugasakhir'

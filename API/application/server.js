@@ -88,26 +88,6 @@ io.on('connection', function (socket) {
               }, allDone)
 
               function logMessage(msg) {
-                // function writeDone(notAborted, arr) {
-                //   fs.appendFile("/tmp/test", "-----\n", function(err) {
-                //       if(err) {
-                //           return console.log(err);
-                //       }
-                //   });
-                // }
-                // forEach(JSON.parse(msg.content.toString()), function (item, index, arr) {
-                //     // console.log(item.sendtime);
-                //     var done = this.async()
-                //     var cmd = 'python -c "exec(\\"import time\\nprint time.time()\\")"'
-                //     let stdout = execSync(cmd.toString());
-                //     var ms = (stdout-item.sendtime)*1000
-                //     fs.appendFile("/tmp/test", item.oidname+"  "+ms+"\n", function(err) {
-                //         if(err) {
-                //             return console.log(err);
-                //         }
-                //         done()
-                //     });
-                // }, writeDone)
                 deviceid = JSON.parse(JSON.parse(msg.content.toString()).msg)[0].deviceid
 
                 // var cmd = 'python -c "exec(\\"import time\\nprint time.time()\\")"'
