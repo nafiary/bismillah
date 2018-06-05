@@ -8,7 +8,7 @@ import subprocess
 import json
 import time
 
-database = MySQLDatabase('mydb', user='root', password='password123!', host='localhost', port=3316)
+database = MySQLDatabase('sysmondb', user='remote', password='password123!', host='10.151.36.101', port=3306)
 
 class BaseModel(Model):
     class Meta:
@@ -78,7 +78,9 @@ def rabbitMq(exchange, address):
             message = json.dumps(oidList)
 
     # print json.dumps({ 'msg' : message, 'sendtime' : time.time() })
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    credentials = pika.PlainCredentials('admin', 'admin')
+    parameters = pika.ConnectionParameters('10.151.36.70', 5672, '/', credentials)
+    connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
     try:
@@ -109,4 +111,4 @@ if __name__ == '__main__':
             threadRMQ = Process(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
             threadRMQ.start()
             threadRMQ.join()
-        time.sleep(2)
+	time.sleep(1)

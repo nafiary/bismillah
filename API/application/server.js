@@ -11,7 +11,7 @@ let rabbitMqConnection
 
 retryRmqConnection = () =>{
   if (rabbitMqConnection!==null)console.log('retry connection to rabbitMq')
-    rabbitMq = amqp.connect('amqp://guest:guest@localhost:5672').then((conn) => {
+    rabbitMq = amqp.connect('amqp://admin:admin@10.151.36.70:5672').then((conn) => {
     rabbitMqConnection = conn
     console.log('readyrabbit')
     // io.emit('rabbitOn', 'rabbit')
@@ -27,7 +27,7 @@ retryRmqConnection = () =>{
         }, 0 );
   })
 }
-var rabbitMq = amqp.connect('amqp://guest:guest@localhost:5672').then((conn) => {
+var rabbitMq = amqp.connect('amqp://admin:admin@10.151.36.70:5672').then((conn) => {
   rabbitMqConnection = conn
   conn.on('close', function(err){
     retryRmqConnection()

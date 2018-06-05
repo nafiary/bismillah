@@ -13,7 +13,7 @@ import requests
 from datetime import timedelta
 import json
 
-from flask_assets import Environment, Bundle
+#from flask_assets import Environment, Bundle
 
 DEBUG = True
 SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
@@ -261,16 +261,18 @@ def unsubscribedevice():
 @login_required
 def subscribeoid():
     oid = request.form['data']
+    # print oid
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
-    subscribe = requests.post('http://localhost:5000/subscribe/oid', headers = headers, json={ "oid_id": oid }).json()
+    subscribe = requests.post('http://localhost:5000/subscribe/service', headers = headers, json={ "service_id": oid }).json()
     return jsonify( { 'res' : 'success'} )
 
 @app.route('/unsubscribe/oid', methods=['POST'])
 @login_required
 def unsubscribeoid():
     oid = request.form['data']
+    # print oid
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
-    unsubscribe = requests.post('http://localhost:5000/unsubscribe/oid', headers = headers, json={ "oid_id": oid }).json()
+    unsubscribe = requests.post('http://localhost:5000/unsubscribe/service', headers = headers, json={ "service_id": oid }).json()
     return jsonify( { 'res' : 'success'} )
 
 @app.route('/monitor', methods=['GET'])

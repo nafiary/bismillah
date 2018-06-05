@@ -32,7 +32,7 @@ jwt = JWTManager(app)
 
 blacklist = set()
 
-database = MySQLDatabase('mydb', user='root', password='password123!', host='localhost', port=3316)
+database = MySQLDatabase('mydb', user='remote', password='password123!', host='10.151.36.101', port=3306)
 
 class BaseModel(Model):
     class Meta:
@@ -53,19 +53,20 @@ class Devices(BaseModel):
     location = CharField()
     address = CharField()
 
-class Oid(BaseModel):
+class Services(BaseModel):
     id = UUIDField(primary_key=True)
-    oid = CharField()
-    oidname = CharField()
+    servicename = CharField()
+    command = CharField()
+    params = CharField()
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users, on_delete='CASCADE')
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
-class Subscribeoid(BaseModel):
+class Subscribeservice(BaseModel):
     users_id = ForeignKeyField(Users, on_delete='CASCADE')
-    oid_id = ForeignKeyField(Oid, on_delete='CASCADE')
+    services_id = ForeignKeyField(Services, on_delete='CASCADE')
 
 @jwt.user_claims_loader
 def add_claims_to_access_token(user):
@@ -122,6 +123,7 @@ def join():
             return jsonify({"msg": "New User Created"}), 200
 
         except Exception as e:
+            print e
             return jsonify({"msg": "Error Create New User"}), 401
 
     return homepage()
@@ -205,7 +207,7 @@ def user_detail(username):
         try:
             users = Users.select().where(Users.username == username).get()
             usersdevice = Users.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Devices).where(Users.id == users.id)
-            usersoid = Users.select(Subscribeoid.users_id, Subscribeoid.oid_id).join(Subscribeoid).join(Oid).where(Users.id == users.id)
+            usersservice = Users.select(Subscribeservice.users_id, Subscribeservice.services_id).join(Subscribeservice).join(Services).where(Users.id == users.id)
             dicti =  {
                     'id': usersdevice[0].subscribe.users_id.id,
                     'name': usersdevice[0].subscribe.users_id.name,
@@ -213,7 +215,7 @@ def user_detail(username):
                     'email': usersdevice[0].subscribe.users_id.email,
                     'role': usersdevice[0].subscribe.users_id.role,
                     'subscribing' : [],
-                    'subscribingoid' : [],
+                    'subscribingservice' : [],
                     }
             for item in usersdevice:
                 dicti['subscribing'].append({
@@ -221,12 +223,13 @@ def user_detail(username):
                 'name' : item.subscribe.devices_id.name,
                 'type' : item.subscribe.devices_id.type,
                 })
-            for item in usersoid:
-                dicti['subscribingoid'].append({
-                'id' : item.subscribeoid.oid_id.id,
-                'oidname' : item.subscribeoid.oid_id.oidname,
-                'oid' : item.subscribeoid.oid_id.oid,
-                'deviceid' : item.subscribeoid.oid_id.devices_id.id,
+            for item in usersservice:
+                dicti['subscribingservice'].append({
+                'id' : item.subscribeservice.services_id.id,
+                'servicename' : item.subscribeservice.services_id.servicename,
+                'command' : item.subscribeservice.services_id.command,
+                'params' : item.subscribeservice.services_id.params,
+                'deviceid' : item.subscribeservice.services_id.devices_id.id,
                 })
             res = jsonify(dicti)
             # print dicti
@@ -242,7 +245,7 @@ def user_detail(username):
                     'email': users.email,
                     'role': users.role,
                     'subscribing' : None,
-                    'subscribingoid' : None,
+                    'subscribingservice' : None,
                     })
                 res.status_code = 200
             except Devices.DoesNotExist:
@@ -268,12 +271,13 @@ def createdevice():
                     location=request.json.get('location', None),
                     address=request.json.get('address', None),)
             try:
-                for value in request.json.get('oid', None):
-                    with database.atomic() as createoid:
-                        Oid.create(
+                for value in request.json.get('service', None):
+                    with database.atomic() as createservice:
+                        Services.create(
                             id=uuid.uuid4(),
-                            oid=value['oid'],
-                            oidname=value['oidname'],
+                            servicename=value['servicename'],
+                            command=value['command'],
+                            params=value['params'],
                             devices_id=uuiddevices,)
 
             except Exception as e:
@@ -358,8 +362,8 @@ def device_detail(id):
     if request.method == 'GET':
         try:
             device = Devices.select(Subscribe.users_id, Subscribe.devices_id).join(Subscribe).join(Users).where(Devices.id == id)
-            oid = Oid.select(Subscribeoid.users_id, Subscribeoid.oid_id).join(Subscribeoid).join(Users).where(Subscribeoid.oid_id.devices_id == id)
-            deviceoid =  Oid.select().join(Devices).where(Oid.devices_id == id)
+            service = Services.select(Subscribeservice.users_id, Subscribeservice.services_id).join(Subscribeservice).join(Users).where(Subscribeservice.services_id.devices_id == id)
+            deviceservice =  Services.select().join(Devices).where(Services.devices_id == id)
 
             try:
                 #coba ada yang subscribe ga
@@ -370,32 +374,33 @@ def device_detail(id):
                         'location': device[0].subscribe.devices_id.location,
                         'address': device[0].subscribe.devices_id.address,
                         'subscribed_by' : [],
-                        'oid' : [],
+                        'service' : [],
                         }
                 for item in device:
                     dicti['subscribed_by'].append({
                     'id' : item.subscribe.users_id.id,
                     'username' : item.subscribe.users_id.username,
                     })
-                for item in deviceoid:
-                    dicti['oid'].append({
+                for item in deviceservice:
+                    dicti['service'].append({
                     'id' : item.id,
-                    'oid' : item.oid,
-                    'oidname' : item.oidname,
+                    'servicename' : item.servicename,
+                    'command' : item.command,
+                    'params' : item.params,
                     'subscribed_by' : []
                     })
 
                 try:
-                    for index, item in enumerate(oid):
-                        for item2 in dicti['oid']:
-                            if item2['id'] == item.subscribeoid.oid_id.id:
+                    for index, item in enumerate(service):
+                        for item2 in dicti['service']:
+                            if item2['id'] == item.subscribeservice.services_id.id:
                                 item2['subscribed_by'].append({
-                                'id' : item.subscribeoid.users_id.id,
-                                'email' : item.subscribeoid.users_id.email,
-                                'name' : item.subscribeoid.users_id.name,
-                                'username' : item.subscribeoid.users_id.username,
-                                'password' : item.subscribeoid.users_id.password,
-                                'role' : item.subscribeoid.users_id.role,
+                                'id' : item.subscribeservice.users_id.id,
+                                'email' : item.subscribeservice.users_id.email,
+                                'name' : item.subscribeservice.users_id.name,
+                                'username' : item.subscribeservice.users_id.username,
+                                'password' : item.subscribeservice.users_id.password,
+                                'role' : item.subscribeservice.users_id.role,
                                 })
                 except Exception as e:
                     pass
@@ -406,19 +411,20 @@ def device_detail(id):
                 print e
                 #kalo ga ada yang subscribe dibikin none subscribed_by nya
                 dicti =  {
-                        'id': deviceoid[0].devices_id.id,
-                        'name': deviceoid[0].devices_id.name,
-                        'type': deviceoid[0].devices_id.type,
-                        'location': deviceoid[0].devices_id.location,
-                        'address': deviceoid[0].devices_id.address,
+                        'id': deviceservice[0].devices_id.id,
+                        'name': deviceservice[0].devices_id.name,
+                        'type': deviceservice[0].devices_id.type,
+                        'location': deviceservice[0].devices_id.location,
+                        'address': deviceservice[0].devices_id.address,
                         'subscribed_by' : None,
-                        'oid' : [],
+                        'service' : [],
                         }
-                for item in deviceoid:
-                    dicti['oid'].append({
+                for item in deviceservice:
+                    dicti['service'].append({
                     'id' : item.id,
-                    'oid' : item.oid,
-                    'oidname' : item.oidname,
+                    'servicename' : item.servicename,
+                    'command' : item.command,
+                    'params' : item.params,
                     'subscribed_by' : []
                     })
                 res = jsonify(dicti)
@@ -434,7 +440,7 @@ def device_detail(id):
                     'location': device.location,
                     'address': device.address,
                     'subscribed_by' : None,
-                    'oid' : None,
+                    'service' : None,
                     })
                 res.status_code = 200
             except Exception as e:
@@ -446,57 +452,59 @@ def device_detail(id):
                 res.status_code = 404
         return res
 
-@app.route('/oid/create', methods=['POST'])
+@app.route('/service/create', methods=['POST'])
 @jwt_required
-def createoid():
+def createservice():
     if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
-                createoid = Oid.create(
+                createservice = Services.create(
                     id=uuid.uuid4(),
-                    oid=request.json.get('oid', None),
-                    oidname=request.json.get('oidname', None),
-                    devices_id=request.json.get('deviceid', None),)
+                    servicename=request.json.get('servicename', None),
+                    command=request.json.get('command', None),
+                    params=request.json.get('params', None),
+                    devices_id=request.json.get('device_id', None),)
 
-            res =  jsonify({"msg": "OID data created"}), 200
+            res =  jsonify({"msg": "Service data created"}), 200
 
         except Exception as e:
-            res = jsonify({"msg": "Error while creating OID data"}), 401
+            print e
+            res = jsonify({"msg": "Error while creating service data"}), 401
 
     return res
 
-@app.route('/oid/edit', methods=['POST'])
+@app.route('/service/edit', methods=['POST'])
 @jwt_required
-def editoid():
+def editservice():
     if request.method == 'POST' and request.is_json:
         try:
             # print request.json.get('id', None)
             with database.atomic():
-                editoid = Oid.update(
-                    oid=request.json.get('oid', None),
-                    oidname=request.json.get('oidname', None),).where(Oid.id == request.json.get('id', None))
-                editoid.execute()
+                editservice = Services.update(
+                    servicename=request.json.get('servicename', None),
+                    command=request.json.get('command', None),).where(Services.id == request.json.get('services_id', None))
+                editservice.execute()
 
-            res = jsonify({"msg": "OID data edited"}), 200
+            res = jsonify({"msg": "Service data edited"}), 200
 
         except Exception as e:
-            res = jsonify({"msg": "Error while edit OID data"}), 401
+            res = jsonify({"msg": "Error while edit service data"}), 401
 
     return res
 
-@app.route('/oid/delete', methods=['DELETE'])
+@app.route('/service/delete', methods=['DELETE'])
 @jwt_required
 def deleteoid():
     if request.method == 'DELETE' and request.is_json == True:
         try:
             with database.atomic():
-                deleteoid = Oid.delete().where( Oid.id == request.json.get('oid_id', None) )
-                deleteoid.execute()
-            res = jsonify({"msg": "Oid Deleted"}), 200
+                deleteservice = Services.delete().where( Services.id == request.json.get('services_id', None) )
+                deleteservice.execute()
+            res = jsonify({"msg": "Service Deleted"}), 200
 
         except Exception as e:
             print e
-            res = jsonify({"msg": "Error while deleting oid"}), 401
+            res = jsonify({"msg": "Error while deleting service"}), 401
 
     return res
 
@@ -532,36 +540,36 @@ def unsubscribedevice():
 
     return res
 
-@app.route('/subscribe/oid', methods=['POST'])
+@app.route('/subscribe/service', methods=['POST'])
 @jwt_required
-def subscribeoid():
+def subscribeservice():
     if request.method == 'POST' and request.is_json:
         try:
             with database.atomic():
-                subscribe = Subscribeoid.create(
+                subscribe = Subscribeservice.create(
                     users_id=get_jwt_identity(),
-                    oid_id=request.json.get('oid_id', None),)
+                    services_id=request.json.get('service_id', None),)
 
-            res = jsonify({"msg": "OID Subscribed"}), 200
+            res = jsonify({"msg": "Service Subscribed"}), 200
 
         except Exception as e:
             print e
-            res = jsonify({"msg": "Error while subscribing OID"}), 401
+            res = jsonify({"msg": "Error while subscribing services"}), 401
 
     return res
 
-@app.route('/unsubscribe/oid', methods=['POST'])
+@app.route('/unsubscribe/service', methods=['POST'])
 @jwt_required
-def unsubscribeoid():
+def unsubscribeservice():
     if request.method == 'POST' and request.is_json == True:
         try:
             with database.atomic():
-                unsubscribe = Subscribeoid.delete().where( Subscribeoid.users_id == get_jwt_identity(), Subscribeoid.oid_id == request.json.get('oid_id', None) )
+                unsubscribe = Subscribeservice.delete().where( Subscribeservice.users_id == get_jwt_identity(), Subscribeservice.services_id == request.json.get('service_id', None) )
                 unsubscribe.execute()
-            res = jsonify({"msg": "OID Unsubscribed"}), 200
+            res = jsonify({"msg": "Service Unsubscribed"}), 200
 
         except Exception as e:
-            res = jsonify({"msg": "Error while unsubscribing OID"}), 401
+            res = jsonify({"msg": "Error while unsubscribing Service"}), 401
 
     return res
 

@@ -20,7 +20,7 @@
       {% if monitor.subscribing %}
       {% for subscribing in monitor.subscribing %}
       <a href="{{ request.url_root }}devices/{{ subscribing.id }}"><h2 class="content-heading device" id="{{subscribing.id}}">{{subscribing.name}} <small>{{subscribing.type}}</small></h2></a>
-      <div class="row gutters-tiny snmpresult" id="{{ subscribing.id }}">
+      <div class="row gutters-tiny nrperesult" id="{{ subscribing.id }}">
       </div>
       {% endfor %}
       {% else %}
@@ -72,7 +72,7 @@
         socket.on('disconnect', function() {
             $("#idlogs").text("Disconnect");
             $("#idlogs").parent().parent().attr('class', 'block-content block-content-full bg-danger');
-            $('.snmpresult').each(function() {
+            $('.nrperesult').each(function() {
               $(this).html("")
             });
         });
@@ -81,20 +81,22 @@
           json = JSON.parse(data)
           hasil = ''
           json.forEach(function(entry) {
-            {% for m in monitor.subscribingoid %}
+            console.log(entry)
+            {% for m in monitor.subscribingservice %}
             if (entry.id === '{{ m.id }}' ) {
+              hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-success"><div class="text-center"><div class="font-size-md font-w700">'+entry.servicename+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.nrperesult+'</div></div></div></a></div>'
               // console.log(entry.snmpresult.split(" ")[1]);
-              if (entry.snmpresult.split(" ")[1] == "CRITICAL") {
-                hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-danger"><div class="text-center"><div class="font-size-md font-w700">'+entry.oidname+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.snmpresult+'</div></div></div></a></div>'
-              }
-              else {
-                hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-success"><div class="text-center"><div class="font-size-md font-w700">'+entry.oidname+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.snmpresult+'</div></div></div></a></div>'
-              }
+              // if (entry.nrperesult.split(" ")[1] == "CRITICAL") {
+              //   hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-danger"><div class="text-center"><div class="font-size-md font-w700">'+entry.servicename+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.nrperesult+'</div></div></div></a></div>'
+              // }
+              // else {
+              //   hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-success"><div class="text-center"><div class="font-size-md font-w700">'+entry.servicename+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.nrperesult+'</div></div></div></a></div>'
+              // }
             }
             {% endfor %}
           });
           // console.log(json);
-          $('.snmpresult').each(function() {
+          $('.nrperesult').each(function() {
             if (this.id === json[0].deviceid) {
               $(this).html(hasil)
             }

@@ -125,31 +125,31 @@
               <div class="oidlist">
                 <form id="oidform">
                   <div class="container oidcontainer">
-                  {% if not devicedetail.oid %}
+                  {% if not devicedetail.service %}
                   {% else %}
-                    {% for oid in devicedetail.oid %}
-                    <div class="form-group row" data-oidname="{{ oid.id }}">
+                    {% for service in devicedetail.service %}
+                    <div class="form-group row" data-oidname="{{ service.id }}">
                       <div class="col-4">
-                          <p class="inputoidname">{{ oid.oidname }}</p>
+                          <p class="inputoidname">{{ service.servicename }}</p>
                       </div>
                       <div class="col-4">
-                          <p class="inputoid">{{ oid.oid }}</p>
+                          <p class="inputoid">{{ service.command }}</p>
                       </div>
                       <button class="deleteoid btn btn-danger" style="display: none" type="button">-</button>
                       {% if session['userid'] not in subscriber %}
                       {% else %}
-                        {% if oid.subscribed_by %}
-                          {% for subs in oid.subscribed_by %}
+                        {% if service.subscribed_by %}
+                          {% for subs in service.subscribed_by %}
                             {% if session['userid'] == subs['id'] %}
                             <div class="col-4">
-                                <button class="unsubscribeoid btn btn-danger" type="button" data-oidid="{{ oid.id }}">Unsubscribe</button>
+                                <button class="unsubscribeoid btn btn-danger" type="button" data-oidid="{{ service.id }}">Unsubscribe</button>
                             </div>
                             {% else %}
                             {% endif %}
                           {% endfor %}
                         {% else %}
                         <div class="col-2">
-                            <button class="subscribeoid btn btn-success" type="button" data-oidid="{{ oid.id }}">Subscribe</button>
+                            <button class="subscribeoid btn btn-success" type="button" data-oidid="{{ service.id }}">Subscribe</button>
                         </div>
                         {% endif %}
                       {% endif %}
