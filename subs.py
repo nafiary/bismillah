@@ -3,7 +3,7 @@ import pika
 import uuid
 import json
 import time
-from threading import Thread, Lock
+from multiprocessing import Process, Lock
 
 def subscribe(queue_name):
     credentials = pika.PlainCredentials('admin', 'admin')
@@ -24,10 +24,10 @@ def subscribe(queue_name):
 
     def callback(ch, method, properties, body):
         x = json.loads(body)
-        diffTime = time.time()-x['sendtime']
+        # diffTime = time.time()-x['sendtime']
         # with open('hasiltesting/pubsubtest.csv', 'a') as f:
         #     f.write(diffTime+"\n")
-        print(" [x] %r" % diffTime)
+        print(" [x] %r" % x)
 
         # print proc_num
 
@@ -40,7 +40,7 @@ def subscribe(queue_name):
     # lock.release()
 
 if __name__ == '__main__':
-    for i in range(100):
-        p = Thread(target=subscribe, args=(str(uuid.uuid4()),))
+    while True:
+        p = Process(target=subscribe, args=(str(uuid.uuid4()),))
         p.start()
         time.sleep(1)
