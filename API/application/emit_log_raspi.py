@@ -7,6 +7,7 @@ from peewee import *
 import subprocess
 import json
 import time
+import Adafruit_DHT
 
 database = MySQLDatabase('mydb', user='remote', password='password123!', host='10.151.36.101', port=3306)
 
@@ -29,20 +30,20 @@ class Devices(BaseModel):
     location = CharField()
     address = CharField()
 
-class Services(BaseModel):
-    id = UUIDField(primary_key=True)
-    servicename = CharField()
-    command = CharField()
-    params = CharField()
-    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
+# class Services(BaseModel):
+#     id = UUIDField(primary_key=True)
+#     servicename = CharField()
+#     command = CharField()
+#     params = CharField()
+#     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users, on_delete='CASCADE')
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
-class Subscribeservice(BaseModel):
-    users_id = ForeignKeyField(Users, on_delete='CASCADE')
-    services_id = ForeignKeyField(Services, on_delete='CASCADE')
+# class Subscribeservice(BaseModel):
+#     users_id = ForeignKeyField(Users, on_delete='CASCADE')
+#     services_id = ForeignKeyField(Services, on_delete='CASCADE')
 
 def rabbitMq(exchange, address):
     # deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
@@ -75,13 +76,10 @@ def rabbitMq(exchange, address):
 
     try:
         for service in serviceList:
-            print "halo"
             p = subprocess.Popen(["/usr/local/nagios/libexec/check_nrpe", "-H", address, "-c", service['command']], stdout=subprocess.PIPE)
-            print "==============================="
-            print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
+            # print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
             output, err = p.communicate()
-            print output.split('-')[1]
-            print "====="
+            # print output.split('-')[1]
             # print p.poll()
             # if not p.wait():
             service['nrperesult'] = output.split('-')[1]
@@ -95,7 +93,7 @@ def rabbitMq(exchange, address):
             service['nrperesult'] = 'NRPE CRITICAL - Error while checking related service'
             message = json.dumps(serviceList)
 
-    credentials = pika.PlainCredentials('admin', 'admin')
+    credentials = pika.PlainCredentials('admin', 'Nafia1996')
     parameters = pika.ConnectionParameters('10.151.36.70', '5672', '/', credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()

@@ -1,14 +1,14 @@
 #!/usr/bin/python
 import pika
 import sys
-from multiprocessing import Process
+from threading import Thread
 from uuid import UUID
 from peewee import *
 import subprocess
 import json
 import time
 
-database = MySQLDatabase('mydb', user='remote', password='password123!', host='10.151.36.101', port=3306)
+database = MySQLDatabase('mydb', user='remote', password='password123!', host='localhost', port=3306)
 
 class BaseModel(Model):
     class Meta:
@@ -45,9 +45,6 @@ class Subscribeservice(BaseModel):
     services_id = ForeignKeyField(Services, on_delete='CASCADE')
 
 def rabbitMq(exchange, address):
-    # deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
-    # for service in deviceservice:
-    #     print service.command
     try:
         deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
         serviceList = []
@@ -69,19 +66,13 @@ def rabbitMq(exchange, address):
             'nrperesult' : None,
             'deviceid' : str(exchange)
             })
-    # for service in serviceList:
-    #     print service
-    #     print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
 
     try:
         for service in serviceList:
-            print "halo"
             p = subprocess.Popen(["/usr/local/nagios/libexec/check_nrpe", "-H", address, "-c", service['command']], stdout=subprocess.PIPE)
-            print "==============================="
-            print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
+            # print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
             output, err = p.communicate()
-            print output.split('-')[1]
-            print "====="
+            # print output.split('-')[1]
             # print p.poll()
             # if not p.wait():
             service['nrperesult'] = output.split('-')[1]
@@ -95,6 +86,7 @@ def rabbitMq(exchange, address):
             service['nrperesult'] = 'NRPE CRITICAL - Error while checking related service'
             message = json.dumps(serviceList)
 
+    # print json.dumps({ 'msg' : message, 'sendtime' : time.time() })
     credentials = pika.PlainCredentials('admin', 'admin')
     parameters = pika.ConnectionParameters('10.151.36.70', '5672', '/', credentials)
     connection = pika.BlockingConnection(parameters)
@@ -123,9 +115,8 @@ if __name__ == '__main__':
              'id' : device.id,
              'address' : device.address
             })
-        # print deviceInfo
+        print deviceInfo
         for info in deviceInfo:
-            threadRMQ = Process(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
+            threadRMQ = Thread(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
             threadRMQ.start()
-            #threadRMQ.join()
         time.sleep(2)
