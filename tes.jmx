@@ -16,7 +16,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">3</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">900</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -264,7 +264,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900/viewtree.csv</stringProp>
+          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900-loop/viewtree.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
@@ -300,7 +300,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900/graphresults.csv</stringProp>
+          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900-loop/graphresults.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
@@ -336,7 +336,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900/resptime.csv</stringProp>
+          <stringProp name="filename">/home/nafiary/Documents/TA/tapubsub/test-jmeter/900-loop/resptime.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
