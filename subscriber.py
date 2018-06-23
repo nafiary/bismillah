@@ -25,7 +25,7 @@ def subscribe(queue_name):
     def callback(ch, method, properties, body):
         x = json.loads(body)
         diffTime = time.time()-x['sendtime']
-        with open('test-jmeter/pubsubtest-900.csv', 'a') as f:
+        with open('test-jmeter/pubsubtest-1200.csv', 'a') as f:
             f.write(str(diffTime)+"\n")
         # print(" [x] %r" % diffTime)
 
@@ -40,7 +40,7 @@ def subscribe(queue_name):
     # lock.release()
 
 if __name__ == '__main__':
-    for i in range(1200):
+    for i in range(900):
         p = Thread(target=subscribe, args=(str(uuid.uuid4()),))
         p.start()
         time.sleep(1)
