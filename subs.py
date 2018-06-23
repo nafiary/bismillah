@@ -6,8 +6,8 @@ import time
 from multiprocessing import Process, Lock
 
 def subscribe(queue_name):
-    credentials = pika.PlainCredentials('admin', 'admin')
-    parameters = pika.ConnectionParameters('10.151.36.70', 5672, '/', credentials)
+    credentials = pika.PlainCredentials('guest', 'guest')
+    parameters = pika.ConnectionParameters('10.151.36.98', 5672, '/', credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 

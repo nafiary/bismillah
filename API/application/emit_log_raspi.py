@@ -30,20 +30,20 @@ class Devices(BaseModel):
     location = CharField()
     address = CharField()
 
-# class Services(BaseModel):
-#     id = UUIDField(primary_key=True)
-#     servicename = CharField()
-#     command = CharField()
-#     params = CharField()
-#     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
+class Services(BaseModel):
+    id = UUIDField(primary_key=True)
+    servicename = CharField()
+    command = CharField()
+    params = CharField()
+    devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
 class Subscribe(BaseModel):
     users_id = ForeignKeyField(Users, on_delete='CASCADE')
     devices_id = ForeignKeyField(Devices, on_delete='CASCADE')
 
-# class Subscribeservice(BaseModel):
-#     users_id = ForeignKeyField(Users, on_delete='CASCADE')
-#     services_id = ForeignKeyField(Services, on_delete='CASCADE')
+class Subscribeservice(BaseModel):
+    users_id = ForeignKeyField(Users, on_delete='CASCADE')
+    services_id = ForeignKeyField(Services, on_delete='CASCADE')
 
 def rabbitMq(exchange, address):
     # deviceservice =  Services.select().join(Devices).where(Services.devices_id == exchange)
@@ -75,25 +75,40 @@ def rabbitMq(exchange, address):
     #     print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
 
     try:
-        for service in serviceList:
-            p = subprocess.Popen(["/usr/local/nagios/libexec/check_nrpe", "-H", address, "-c", service['command']], stdout=subprocess.PIPE)
-            # print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
+        while True:
+            p = subprocess(humidity, temperature = Adafruit_DHT.read_retry(11, 4))
+            print 'Temp: {0:0.1f} C  Humidity: {1:0.1f} %'.format(temperature, humidity)
             output, err = p.communicate()
-            # print output.split('-')[1]
-            # print p.poll()
-            # if not p.wait():
-            service['nrperesult'] = output.split('-')[1]
-            message = json.dumps(serviceList)
-            # else:
-            #     service['nrperesult'] = 'NRPE CRITICAL -Error while checking related OID'
-            #     message = json.dumps(serviceList)
-    except Exception as e:
-        # pass
-        for service in serviceList:
-            service['nrperesult'] = 'NRPE CRITICAL - Error while checking related service'
+
+            service['nrperesult'] = output
             message = json.dumps(serviceList)
 
-    credentials = pika.PlainCredentials('admin', 'Nafia1996')
+    except Exception as e:
+        for service in serviceList:
+            service['nrperesult'] = 'Data cannot be taken'
+            message = json.dumps(serviceList)
+
+
+    # try:
+    #     for service in serviceList:
+    #         p = subprocess.Popen(["/usr/local/nagios/libexec/check_nrpe", "-H", address, "-c", service['command']], stdout=subprocess.PIPE)
+    #         # print "/usr/local/nagios/libexec/check_nrpe "+"-H "+address+ " -c "+ service['command']
+    #         output, err = p.communicate()
+    #         # print output.split('-')[1]
+    #         # print p.poll()
+    #         # if not p.wait():
+    #         service['nrperesult'] = output.split('-')[1]
+    #         message = json.dumps(serviceList)
+    #         # else:
+    #         #     service['nrperesult'] = 'NRPE CRITICAL -Error while checking related OID'
+    #         #     message = json.dumps(serviceList)
+    # except Exception as e:
+    #     # pass
+    #     for service in serviceList:
+    #         service['nrperesult'] = 'NRPE CRITICAL - Error while checking related service'
+    #         message = json.dumps(serviceList)
+
+    credentials = pika.PlainCredentials('admin', 'admin')
     parameters = pika.ConnectionParameters('10.151.36.70', '5672', '/', credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()

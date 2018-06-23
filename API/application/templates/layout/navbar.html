@@ -1,6 +1,6 @@
 <header id="page-header">
     <!-- Header Content -->
-    <div class="content-header">
+    <div class="content-header" style="background-color: grey;">
         <!-- Left Section -->
         <div class="content-header-section">
             <!-- Toggle Sidebar -->
@@ -15,30 +15,28 @@
         <div class="content-header-section">
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
                     {{ session['name'] }}<i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
-                    <a class="dropdown-item" href="be_pages_generic_profile.html">
+                    <!-- <a class="dropdown-item" href="be_pages_generic_profile.html">
                         <i class="si si-user mr-5"></i> Profile
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
+                    </a> -->
+                   <!--  <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
                         <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
                         <span class="badge badge-primary">3</span>
                     </a>
                     <a class="dropdown-item" href="be_pages_generic_invoice.html">
                         <i class="si si-note mr-5"></i> Invoices
-                    </a>
-                    <div class="dropdown-divider"></div>
+                    </a> -->
 
                     <!-- Toggle Side Overlay -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                    <!-- <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
                         <i class="si si-wrench mr-5"></i> Settings
-                    </a>
+                    </a> -->
                     <!-- END Side Overlay -->
 
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="op_auth_signin.html">
                         <i class="si si-logout mr-5"></i> Sign Out
                     </a>

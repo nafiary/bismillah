@@ -71,7 +71,7 @@
                             {% if oid.subscribed_by %}
                               {% for subs in oid.subscribed_by %}
                                 {% if session['userid'] == subs['id'] %}
-                                <input type="hidden" name="oid_id[]" value="{{ oid.id }}">
+                                <input type="hidden" name="service_id[]" value="{{ service.id }}">
                                 {% else %}
                                 {% endif %}
                               {% endfor %}
@@ -113,10 +113,10 @@
 
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title">OID</h3>
+                <h3 class="block-title">Service</h3>
                 <div class="block-options">
                   <div>
-                    <button type="button" id="editoidbutton" class="editphase btn btn-primary">Edit OID</button>
+                    <button type="button" id="editoidbutton" class="editphase btn btn-primary">Edit Service</button>
                     <button style="display: none" type="button" id="uneditoidbutton" class="editphase btn btn-danger">Cancel Edit</button>
                   </div>
                 </div>
@@ -136,28 +136,44 @@
                           <p class="inputoid">{{ service.command }}</p>
                       </div>
                       <button class="deleteoid btn btn-danger" style="display: none" type="button">-</button>
+                      {% set vars = {'foo': False} %}
                       {% if session['userid'] not in subscriber %}
+
                       {% else %}
                         {% if service.subscribed_by %}
+
                           {% for subs in service.subscribed_by %}
                             {% if session['userid'] == subs['id'] %}
-                            <div class="col-4">
-                                <button class="unsubscribeoid btn btn-danger" type="button" data-oidid="{{ service.id }}">Unsubscribe</button>
-                            </div>
-                            {% else %}
+
+                              {% if vars.update({'foo': True}) %} {% endif %}
+                              
+                            
+                            
                             {% endif %}
                           {% endfor %}
+
+                          {% for indexa in vars %}
+                            {% if vars.foo %}
+                              <div class="col-4">
+                                <button class="unsubscribeoid btn btn-danger" type="button" data-oidid="{{ service.id }}">Unsubscribe</button>
+                              </div>
+                            {% else %}
+                              <div class="col-2">
+                                  <button class="subscribeoid btn btn-success" type="button" data-oidid="{{ service.id }}">Subscribe</button>
+                              </div>
+                            {% endif %}
+
+                          {% endfor %}
+
                         {% else %}
-                        <div class="col-2">
-                            <button class="subscribeoid btn btn-success" type="button" data-oidid="{{ service.id }}">Subscribe</button>
-                        </div>
+                        
                         {% endif %}
                       {% endif %}
                     </div>
                     {% endfor %}
                   {% endif %}
                   </div>
-                  <button style="display: none" type="button" id="addoid" class="editphase btn btn-primary">Add OID</button>
+                  <button style="display: none" type="button" id="addoid" class="editphase btn btn-primary">Add Service</button>
                   <button style="display: none" type="submit" id="submitedit" class="editphase btn btn-primary">Submit</button>
                 </form>
               </div>
@@ -212,14 +228,14 @@
   });
 
   $(document.body).on('click', '#addoid', function() {
-    $(this).parent().find(".oidcontainer").append('<div class="form-group row"><div class="col-4"><input type="text" placeholder="Enter OID name" class="form-control" name="oidname[]" required></div><div class="col-4"><input type="text" placeholder="Enter OID number" class="form-control" name="oid[]" required><input type="hidden" name="oidid[]" required></div><button class="deleteoid btn btn-danger" type="button">-</button></div>');
+    $(this).parent().find(".oidcontainer").append('<div class="form-group row"><div class="col-4"><input type="text" placeholder="Enter service name" class="form-control" name="servicename[]" required></div><div class="col-4"><input type="text" placeholder="Enter service" class="form-control" name="service[]" required><input type="hidden" name="serviceid[]" required></div><button class="deleteoid btn btn-danger" type="button">-</button></div>');
   });
 
   $(document.body).on('submit', '#oidform', function(e) {
     e.preventDefault();
     console.log($(this).serialize());
     $.ajax({
-        url: '{{ request.url_root }}oid/edit',
+        url: '{{ request.url_root }}service/edit',
         type: 'post',
         dataType: 'json',
         success: function(response){

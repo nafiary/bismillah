@@ -13,7 +13,7 @@ import requests
 from datetime import timedelta
 import json
 
-#from flask_assets import Environment, Bundle
+from flask_assets import Environment, Bundle
 
 DEBUG = True
 SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
@@ -21,6 +21,7 @@ SECRET_KEY = 'hin6bab8ge25*r=x&amp;+5$0kn=-#log$pt^#@vrqjld!^2ci@g*b'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=12)
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 # assets = Environment(app)
 
 # js = Bundle('js/jquery.input-ip-address-control-1.0.min.js')
@@ -105,16 +106,17 @@ def createdevice():
         location = request.form['location']
         address = request.form['address']
 
-        oidNameList = request.form.getlist('oidname[]')
-        oidList = request.form.getlist('oid[]')
-        oidArray = []
-        for index, value in enumerate(request.form.getlist('oidname[]')):
-            oidArray.append({ 'oidname' : request.form.getlist('oidname[]')[index],
-                    'oid' : request.form.getlist('oid[]')[index]})
+        serviceNameList = request.form.getlist('servicename[]')
+        serviceList = request.form.getlist('service[]')
+        serviceArray = []
+        for index, value in enumerate(request.form.getlist('servicename[]')):
+            serviceArray.append({ 'servicename' : request.form.getlist('servicename[]')[index],
+                    'command' : request.form.getlist('service[]')[index]})
+        print serviceArray
 
         headers = { 'Authorization' : 'Bearer %s' % session['token'] }
         try:
-            requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address, "oid" : oidArray })
+            requests.post('http://localhost:5000/devices/create', headers = headers, json={ "name": name, "type":type, "location" : location, "address" : address, "service" : serviceArray })
             return redirect(url_for('devices'))
         except Exception as e:
             print e
@@ -180,14 +182,14 @@ def devicedetail(id):
     devicedetail = requests.get('http://localhost:5000/devices/%s' % id, headers = headers).json()
     # print devicedetail['subscribed_by']
     subscriber = []
-    oidsubscriber = []
+    servicesubscriber = []
     try:
         for subscribe in devicedetail['subscribed_by']:
             subscriber.append(subscribe['id'])
 
         print subscriber
         print '\n'
-        print oidsubscriber
+        print servicesubscriber
         return render_template('devicedetail2.html', devicedetail = devicedetail, subscriber = subscriber)
         # return jsonify({'msg':'test'})
     except Exception as e:
@@ -195,34 +197,34 @@ def devicedetail(id):
         return render_template('devicedetail2.html', devicedetail = devicedetail)
         # return jsonify({'msg':'test'})
 
-@app.route('/oid/edit', methods=['POST'])
+@app.route('/service/edit', methods=['POST'])
 @login_required
 def editoid():
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
     dataDict = []
-    oidNow = []
-    for index, value in enumerate(request.form.getlist('oid[]')):
-        oidNow.append(request.form.getlist('oidid[]')[index])
-        if request.form.getlist('oidid[]')[index] == '':
-            dataDict.append({ 'id' : request.form.getlist('oidid[]')[index],
-                        'oidname' : request.form.getlist('oidname[]')[index],
-                        'oid' : request.form.getlist('oid[]')[index],
+    serviceNow = []
+    for index, value in enumerate(request.form.getlist('service[]')):
+        serviceNow.append(request.form.getlist('serviceid[]')[index])
+        if request.form.getlist('serviceid[]')[index] == '':
+            dataDict.append({ 'id' : request.form.getlist('serviceid[]')[index],
+                        'servicename' : request.form.getlist('servicename[]')[index],
+                        'command' : request.form.getlist('service[]')[index],
                         'deviceid' : request.referrer.split('/')[4]})
         else:
-            dataDict.append({ 'id' : request.form.getlist('oidid[]')[index],
-                        'oidname' : request.form.getlist('oidname[]')[index],
-                        'oid' : request.form.getlist('oid[]')[index]})
+            dataDict.append({ 'id' : request.form.getlist('serviceid[]')[index],
+                        'servicename' : request.form.getlist('servicename[]')[index],
+                        'command' : request.form.getlist('service[]')[index]})
 
-    currentOidid = []
-    oidData = requests.get('http://localhost:5000/devices/%s' % request.referrer.split('/')[4], headers = headers).json()
-    for oid in oidData['oid']:
-        currentOidid.append(oid['id'])
+    currentServiceid = []
+    serviceData = requests.get('http://localhost:5000/devices/%s' % request.referrer.split('/')[4], headers = headers).json()
+    for service in serviceData['service']:
+        currentServiceid.append(service['id'])
 
-    dataToDelete = set(currentOidid) - set(oidNow)
+    dataToDelete = set(currentServiceid) - set(serviceNow)
     for data in dataToDelete:
         print data
         try:
-            deleteoid = requests.delete('http://localhost:5000/oid/delete', headers = headers, json={ "oid_id": data })
+            deleteservice = requests.delete('http://localhost:5000/service/delete', headers = headers, json={ "service_id": data })
         except Exception as e:
             pass
 
@@ -230,12 +232,12 @@ def editoid():
     for data in dataDict:
         if data['id'] == '':
             try:
-                editoid = requests.post('http://localhost:5000/oid/create', headers = headers, json=data)
+                editservice = requests.post('http://localhost:5000/service/create', headers = headers, json=data)
             except Exception as e:
                 return redirect(url_for('devices'))
         else:
             try:
-                editoid = requests.post('http://localhost:5000/oid/edit', headers = headers, json=data)
+                editservice = requests.post('http://localhost:5000/service/edit', headers = headers, json=data)
             except Exception as e:
                 return redirect(url_for('devices'))
 

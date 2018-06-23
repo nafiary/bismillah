@@ -1,12 +1,13 @@
 #!/usr/bin/python
 import pika
 import sys
-from multiprocessing import Process
+from threading import Thread
 from uuid import UUID
 from peewee import *
 import subprocess
 import json
 import time
+import telegram
 
 database = MySQLDatabase('mydb', user='remote', password='password123!', host='10.151.36.101', port=3306)
 
@@ -91,12 +92,13 @@ def rabbitMq(exchange, address):
             #     message = json.dumps(serviceList)
     except Exception as e:
         # pass
+
         for service in serviceList:
             service['nrperesult'] = 'NRPE CRITICAL - Error while checking related service'
             message = json.dumps(serviceList)
 
-    credentials = pika.PlainCredentials('admin', 'admin')
-    parameters = pika.ConnectionParameters('10.151.36.70', '5672', '/', credentials)
+    credentials = pika.PlainCredentials('guest', 'guest')
+    parameters = pika.ConnectionParameters('10.151.36.98', '5672', '/', credentials)
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
@@ -116,16 +118,16 @@ def rabbitMq(exchange, address):
 if __name__ == '__main__':
 
     while True:
-        devices = Devices.select()
+        devices = Devices.select().where(Devices.address != "10.151.36.109")
         deviceInfo = []
         for device in devices:
             deviceInfo.append({
              'id' : device.id,
              'address' : device.address
             })
-        # print deviceInfo
-        for info in deviceInfo:
-            threadRMQ = Process(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
-            threadRMQ.start()
-            #threadRMQ.join()
-        time.sleep(2)
+        print deviceInfo
+        # for info in deviceInfo:
+        #     threadRMQ = Thread(target=rabbitMq, kwargs=dict(exchange=info['id'], address=info['address']))
+        #     threadRMQ.start()
+        #     #threadRMQ.join()
+        # time.sleep(2)

@@ -45,6 +45,7 @@ class Users(BaseModel):
     password = CharField()
     email = CharField()
     role = CharField()
+    chat_id = IntegerField()
 
 class Devices(BaseModel):
     id = UUIDField(primary_key=True)
@@ -277,12 +278,11 @@ def createdevice():
                             id=uuid.uuid4(),
                             servicename=value['servicename'],
                             command=value['command'],
-                            params=value['params'],
                             devices_id=uuiddevices,)
 
             except Exception as e:
                 createdevice.rollback()
-                return jsonify({"msg": "Error while creating OID data"}), 401
+                return jsonify({"msg": "Error while creating service data"}), 401
 
             res = jsonify({"msg": "Device data created", "deviceid" : uuiddevices}), 200
 
@@ -380,6 +380,7 @@ def device_detail(id):
                     dicti['subscribed_by'].append({
                     'id' : item.subscribe.users_id.id,
                     'username' : item.subscribe.users_id.username,
+                    'chat_id' :  item.subscribe.users_id.chat_id
                     })
                 for item in deviceservice:
                     dicti['service'].append({
@@ -401,6 +402,7 @@ def device_detail(id):
                                 'username' : item.subscribeservice.users_id.username,
                                 'password' : item.subscribeservice.users_id.password,
                                 'role' : item.subscribeservice.users_id.role,
+                                'chat_id' :  item.subscribeservice.users_id.chat_id
                                 })
                 except Exception as e:
                     pass
