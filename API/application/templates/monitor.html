@@ -82,6 +82,7 @@
           hasil = ''
           json.forEach(function(entry) {
             console.log(entry)
+            {% if monitor.subscribingservice %}
             {% for m in monitor.subscribingservice %}
             if (entry.id === '{{ m.id }}' ) {
               hasil = hasil + '<div class="col-md-6 col-xl-3"><a class="block block-link-shadow" href="javascript:void(0)"><div style="min-height: 150px;" class="block-content block-content-full bg-success"><div class="text-center"><div class="font-size-md font-w700">'+entry.servicename+'</div><div class="font-size-lg font-w600 text-uppercase text-muted text-white-op">'+entry.nrperesult+'</div></div></div></a></div>'
@@ -94,6 +95,7 @@
               // }
             }
             {% endfor %}
+            {% endif %}
           });
           // console.log(json);
           $('.nrperesult').each(function() {

@@ -16,7 +16,7 @@
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
-                    {{ session['name'] }}<i class="fa fa-angle-down ml-5"></i>
+                    {{ session['username'] }}<i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                     <!-- <a class="dropdown-item" href="be_pages_generic_profile.html">
@@ -37,7 +37,7 @@
                     </a> -->
                     <!-- END Side Overlay -->
 
-                    <a class="dropdown-item" href="op_auth_signin.html">
+                    <a class="dropdown-item" href="{{ request.url_root }}logout">
                         <i class="si si-logout mr-5"></i> Sign Out
                     </a>
                 </div>

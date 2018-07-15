@@ -1,0 +1,79 @@
+{% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <!-- Bootstrap Design -->
+        <h2 class="content-heading">User</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Default Elements -->
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Create New User</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option">
+                                <i class="si si-wrench"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <form action="{{ request.url_root }}register" method="post">
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Username</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="username" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Password</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="password" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-12" for="example-text-input">Role</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" id="example-text-input" name="role" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-alt-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- END Default Elements -->
+            </div>
+        </div>
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+{% endblock %}

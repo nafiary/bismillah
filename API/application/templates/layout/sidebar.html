@@ -64,18 +64,7 @@
                     </a>
                     <ul class="list-inline mt-10">
                         <li class="list-inline-item">
-                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="be_pages_generic_profile.html">{{ session['username'] }}</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                            <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
-                                <i class="si si-drop"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="link-effect text-dual-primary-dark" href="op_auth_signin.html">
-                                <i class="si si-logout"></i>
-                            </a>
+                            <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="{{ request.url_root }}users/{{ session['username'] }}">{{ session['name'] }}</a>
                         </li>
                     </ul>
                 </div>
@@ -86,9 +75,7 @@
             <!-- Side Navigation -->
             <div class="content-side content-side-full">
                 <ul class="nav-main">
-                    <li>
-                        <a href="be_pages_dashboard.html"><i class="si si-cup"></i><span class="sidebar-mini-hide">Home</span></a>
-                    </li>
+                   
                     <li>
                         <a href="{{ request.url_root }}devices"><i class="si si-screen-desktop"></i><span class="sidebar-mini-hide">Device Management</span></a>
                     </li>

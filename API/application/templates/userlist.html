@@ -1,10 +1,74 @@
-<title>User List</title>
-<p>Hello, {{ session['username'] }}!</p>
-<h1>Here come the list!</h1>
-{% for user in users %}
-  <ul>
-    <li>ID: {{ user.id }}</li>
-    <li>Username: {{ user.username }}</li>
-    <li><a href="{{ request.url }}/{{ user.username }}">info</a></li>
-  </ul>
-{% endfor %}
+{% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <h2 class="content-heading">User</h2>
+
+        <!-- Dynamic Table Full Pagination -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">List of Users</h3>
+                {%if session['role'] == 'admin'%}
+                    <a href="{{ request.url_root }}register" class="btn btn-success pull-right">Create New User</a>
+                {%endif%}
+            </div>
+            <div class="block-content block-content-full">
+                <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/be_tables_datatables.js -->
+                <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
+                    <thead>
+                        <tr>
+                          <th class="text-center">No.</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td class="text-center">{{ loop.index }}</td>
+                            <td class="font-w600">{{ user.username }}</td>
+                            {%if session['role'] == 'admin'%}
+                            <td class="text-center" style="width: 300px;">
+                              <div class="row">
+                                  <!-- <div class="col-8"></div> -->
+                                  <div class="col-4">
+                                  <a href="{{ request.url }}/{{ user.username }}" class="btn btn-primary">Info</a>
+                                  </div>
+                                  <div class="col-4">
+                                  <form action="{{ request.url_root }}users/delete" method="post">
+                                    <input type="hidden" value="{{ user.id }}" name="users_id[]">
+                                    <button type="submit" name="Delete" class="btn btn-danger">Delete</button>
+                                  </form>
+                                  </div>
+                              </div>
+                            </td>
+                            {%else%}
+                            <td class="text-center" style="width: 300px;">
+                                <label class="badge badge-danger">No Action</label>
+                            </td>
+                            {%endif%}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END Dynamic Table Full Pagination -->
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+{% endblock %}

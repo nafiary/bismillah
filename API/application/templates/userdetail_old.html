@@ -1,0 +1,36 @@
+<title>User Detail</title>
+<p>Hello, {{ session['username'] }}!</p>
+<h1>Here come the detail!</h1>
+<ul>
+  <li>ID: {{ userdetail.id }}</li>
+  <li>Name: {{ userdetail.name }}</li>
+  <li>Username: {{ userdetail.username }}</li>
+  <li>Email: {{ userdetail.email }}</li>
+  <li>Role: {{ userdetail.role }}</li>
+  <li>Subscribing:
+    {% if not userdetail.subscribing %}
+    None
+    {% else %}
+    <ul>
+      {% for subscribing in userdetail.subscribing %}
+      <li><a href="{{ request.url_root }}devices/{{ subscribing.id }}">{{subscribing.name}} ({{subscribing.type}})</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+
+  <li>Oid Subscribing:
+    {% if not userdetail.subscribing %}
+    None
+    {% else %}
+      {% if not userdetail.subscribingoid %}
+      {% else %}
+      <ul>
+        {% for subscribing in userdetail.subscribingoid %}
+        <li>{{subscribing.oidname}} : {{subscribing.oid}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endif %}
+  </li>
+</ul>

@@ -1,36 +1,76 @@
-<title>User Detail</title>
-<p>Hello, {{ session['username'] }}!</p>
-<h1>Here come the detail!</h1>
-<ul>
-  <li>ID: {{ userdetail.id }}</li>
-  <li>Name: {{ userdetail.name }}</li>
-  <li>Username: {{ userdetail.username }}</li>
-  <li>Email: {{ userdetail.email }}</li>
-  <li>Role: {{ userdetail.role }}</li>
-  <li>Subscribing:
-    {% if not userdetail.subscribing %}
-    None
-    {% else %}
-    <ul>
-      {% for subscribing in userdetail.subscribing %}
-      <li><a href="{{ request.url_root }}devices/{{ subscribing.id }}">{{subscribing.name}} ({{subscribing.type}})</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </li>
+{% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <h2 class="content-heading">User</h2>
 
-  <li>Oid Subscribing:
-    {% if not userdetail.subscribing %}
-    None
-    {% else %}
-      {% if not userdetail.subscribingoid %}
-      {% else %}
-      <ul>
-        {% for subscribing in userdetail.subscribingoid %}
-        <li>{{subscribing.oidname}} : {{subscribing.oid}}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    {% endif %}
-  </li>
-</ul>
+        <!-- Dynamic Table Full Pagination -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">User Detail</h3>
+                <div class="block-options">
+                </div>
+            </div>
+            <div class="block-content">
+                <table class="table table-borderless table-vcenter">
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>:</td>
+                            <td>{{ userdetail.id }}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td>{{ userdetail.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Username</td>
+                            <td>:</td>
+                            <td>{{ userdetail.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>{{ userdetail.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Role</td>
+                            <td>:</td>
+                            <td>{{ userdetail.role }}</td>
+                        </tr>
+                        <tr>
+                            <td>Subscribing</td>
+                            <td>:</td>
+                            <td>{% if not userdetail.subscribing %}
+                            None
+                            {% else %}
+                            <ul>
+                              {% for subscribing in userdetail.subscribing %}
+                              <li><a href="{{ request.url_root }}devices/{{ subscribing.id }}">{{subscribing.name}} ({{subscribing.type}})</a></li>
+                              {% endfor %}
+                            </ul>
+                            {% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+
+{% endblock %}

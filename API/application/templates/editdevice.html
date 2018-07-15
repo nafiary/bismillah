@@ -1,21 +1,77 @@
-  <h2>Edit Device</h2>
+  {% extends "layout/base.html" %}\
+{% block head %}
+<!-- TABLE STYLES-->
+<link href="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<main id="main-container">
+    <!-- Page Content -->
+    <div class="content">
+        <h2 class="content-heading">Devices</h2>
 
-  <form action="{{ request.url_root }}devices/edit/{{ devicedetail.id }}" method="POST">
-    Device Name:
-    <input id="devicename" type="text" name="name" value="{{ devicedetail.name }}" required>
-    <br>
-    Device Type
-    <input type="text" name="type" value="{{ devicedetail.type }}" required>
-    <br><br>
-    Location:
-    <input type="text" name="location" value="{{ devicedetail.location }}" required>
-    <br><br>
-    Address:
-    <input type="text" name="address" value="{{ devicedetail.address }}" required>
-    <br>
-    <br>
-    <input type="submit" value="Submit"><input type="reset" value="reset">
-  </form>
+        <!-- Dynamic Table Full Pagination -->
+        <div class="block">
+            <div class="block-header block-header-default">
+                <h3 class="block-title">Edit Device</h3>
+            </div>
+            <div class="block-content">
+              <form action="{{ request.url_root }}devices/edit/{{ devicedetail.id }}" method="POST" style="margin-bottom: 30px;">
+                <div class="form">
+                    <div class="col-4">
+                        Device Name
+                    </div>
+                    <div class="col-4">
+                        <input id="devicename" type="text" name="name" value="{{ devicedetail.name }}" required>
+                    </div>
+                </div>
+                <br>
+                <div class="form">
+                    <div class="col-4">
+                        Device Type
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="type" value="{{ devicedetail.type }}" required>
+                    </div>
+                </div>
+                <br>
+                <div class="form">
+                    <div class="col-4">
+                        Location
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="location" value="{{ devicedetail.location }}" required>
+                    </div>
+                </div>
+                <br>
+                <div class="form">
+                    <div class="col-4">
+                        Address
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="address" value="{{ devicedetail.address }}" required>
+                    </div>
+                </div>
+                
+                <br>
+                <div class="form">
+                    <div class="col-4">
+                        <input type="submit" class="btn btn-success" value="Submit">
+                        <input type="reset" class="btn btn-success" value="Reset">
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</main>
 
-</body>
-</html>
+{% endblock %}
+{% block foot %}
+<!-- Page JS Plugins -->
+<script src="{{ url_for('static', filename='js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+<!-- Page JS Code -->
+<script src="{{ url_for('static', filename='js/pages/be_tables_datatables.js') }}"></script>
+
+{% endblock %}

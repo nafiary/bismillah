@@ -51,7 +51,7 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('signin.html')
     elif request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -77,16 +77,29 @@ def logout():
     session.pop('email', None)
     session.pop('role', None)
     session.pop('token', None)
-    return login()
+    return redirect(url_for('login'))
+
 
 @app.route('/users', methods=['GET'])
 @login_required
 def users():
     print session['token']
-    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }    
     users = requests.get('http://localhost:5000/users', headers = headers).json()
     # print devices
     return render_template('userlist.html', users = users)
+
+@app.route('/users/delete', methods=['POST'])
+@login_required
+def deleteuser():
+    print session['token']
+    headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+    userid = request.form.getlist('users_id[]')[0]
+    try:
+        users = requests.delete('http://localhost:5000/users/delete', headers = headers, json={ "users_id": userid }).json()
+        return redirect(url_for('users'))
+    except Exception as e:
+        return redirect(url_for('users'))
 
 @app.route('/users/<string:username>', methods=['GET'])
 @login_required
@@ -94,6 +107,26 @@ def userdetail(username):
     headers = { 'Authorization' : 'Bearer %s' % session['token'] }
     userdetail = requests.get('http://localhost:5000/users/%s' % username, headers = headers).json()
     return render_template('userdetail.html', userdetail = userdetail)
+
+@app.route('/register', methods=['POST','GET'])
+@login_required
+def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+    elif request.method == 'POST':
+        name = request.form['name']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        role = request.form['role']
+
+        headers = { 'Authorization' : 'Bearer %s' % session['token'] }
+        try:
+            requests.post('http://localhost:5000/register', headers = headers, json={ "name": name, "username":username, "email" : email, "password" : password, "role" : role })
+            return redirect(url_for('users'))
+        except Exception as e:
+            print e
+            return redirect(url_for('register'))
 
 @app.route('/devices/create', methods=['POST', 'GET'])
 @login_required
@@ -190,11 +223,11 @@ def devicedetail(id):
         print subscriber
         print '\n'
         print servicesubscriber
-        return render_template('devicedetail2.html', devicedetail = devicedetail, subscriber = subscriber)
+        return render_template('devicedetail3.html', devicedetail = devicedetail, subscriber = subscriber)
         # return jsonify({'msg':'test'})
     except Exception as e:
         print e
-        return render_template('devicedetail2.html', devicedetail = devicedetail)
+        return render_template('devicedetail3.html', devicedetail = devicedetail)
         # return jsonify({'msg':'test'})
 
 @app.route('/service/edit', methods=['POST'])

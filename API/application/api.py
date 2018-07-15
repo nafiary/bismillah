@@ -119,6 +119,7 @@ def join():
                     username=request.json.get('username', None),
                     password=md5((request.json.get('password', None)).encode('utf-8')).hexdigest(),
                     email=request.json.get('email', None),
+                    role=request.json.get('role', None),
                     join_date=datetime.datetime.now())
 
             return jsonify({"msg": "New User Created"}), 200
@@ -186,6 +187,7 @@ def users():
             res.status_code = 200
         except Exception as e:
             # if no results are found.
+            print e
             output = {
                 "error": "No results found. Check url again",
                 "url": request.url,
@@ -193,6 +195,22 @@ def users():
             res = jsonify(output)
             res.status_code = 404
         return res
+
+@app.route('/users/delete', methods=['DELETE'])
+@jwt_required
+def deleteusers():
+    if request.method == 'DELETE' and request.is_json == True:
+        try:
+            with database.atomic():
+                users = Users.delete().where( Users.id == request.json.get('users_id', None) )
+                users.execute()
+            res = jsonify({"msg": "User Deleted"}), 200
+
+        except Exception as e:
+            print e
+            res = jsonify({"msg": "Error while deteting user"}), 401
+
+    return res
 
 @app.route('/users/<string:username>', methods=['GET'])
 @jwt_required
@@ -459,13 +477,15 @@ def device_detail(id):
 def createservice():
     if request.method == 'POST' and request.is_json:
         try:
+            # print request.json.get('servicename', None)
+            # print request.json.get('command', None)
+            # print request.json.get('deviceid', None)
             with database.atomic():
                 createservice = Services.create(
                     id=uuid.uuid4(),
                     servicename=request.json.get('servicename', None),
                     command=request.json.get('command', None),
-                    params=request.json.get('params', None),
-                    devices_id=request.json.get('device_id', None),)
+                    devices_id=request.json.get('deviceid', None),)
 
             res =  jsonify({"msg": "Service data created"}), 200
 
@@ -480,11 +500,13 @@ def createservice():
 def editservice():
     if request.method == 'POST' and request.is_json:
         try:
+            # print request.json.get('servicename', None)
+            # print request.json.get('command', None)
             # print request.json.get('id', None)
             with database.atomic():
                 editservice = Services.update(
                     servicename=request.json.get('servicename', None),
-                    command=request.json.get('command', None),).where(Services.id == request.json.get('services_id', None))
+                    command=request.json.get('command', None),).where(Services.id == request.json.get('id', None))
                 editservice.execute()
 
             res = jsonify({"msg": "Service data edited"}), 200
@@ -500,7 +522,7 @@ def deleteoid():
     if request.method == 'DELETE' and request.is_json == True:
         try:
             with database.atomic():
-                deleteservice = Services.delete().where( Services.id == request.json.get('services_id', None) )
+                deleteservice = Services.delete().where( Services.id == request.json.get('service_id', None) )
                 deleteservice.execute()
             res = jsonify({"msg": "Service Deleted"}), 200
 

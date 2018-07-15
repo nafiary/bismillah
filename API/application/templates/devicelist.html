@@ -13,7 +13,9 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">List of Networking Devices</h3>
+                {%if session['role'] == 'admin'%}
                 <a href="{{ request.url_root }}devices/create" class="btn btn-success pull-right">Create New Devices</a>
+                {%endif%}
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/be_tables_datatables.js -->
@@ -21,11 +23,11 @@
                     <thead>
                         <tr>
                           <th class="text-center">No.</th>
-                          <th>Name</th>
-                          <th>Type</th>
-                          <th>Address</th>
-                          <th>Location</th>
-                          <th>Action</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Type</th>
+                          <th class="text-center">Address</th>
+                          <th class="text-center">Location</th>
+                          <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +38,7 @@
                             <td>{{ device.type }}</td>
                             <td>{{ device.address }}</td>
                             <td>{{ device.location }}</td>
+                            {%if session['role'] == 'admin'%}
                             <td class="text-center">
                               <a href="{{ request.url }}/{{ device.id }}" class="btn btn-primary">Info</a>
                               <form action="{{ request.url_root }}devices/delete" method="post">
@@ -43,6 +46,11 @@
                                 <button type="submit" name="Delete" class="btn btn-danger">Delete</button>
                               </form>
                             </td>
+                            {%else%}
+                            <td class="text-center" style="width: 300px;">
+                                <label class="badge badge-danger">No Action</label>
+                            </td>
+                            {%endif%}
                         </tr>
                         {% endfor %}
                     </tbody>
